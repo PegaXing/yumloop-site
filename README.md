@@ -16,8 +16,10 @@ Plain static HTML — no build step, no dependencies. Hosted on GitHub Pages.
 | `404.html` | Branded not-found page. |
 | `yumloop-logo.png` | Wordmark, white on transparent (1400×196), cleaned and trimmed from the source art. |
 | `yumloop-mark.png` | The ∞ loop alone — icon source and spare asset. |
+| `sightline-logo.png` | Sightline logotype, white on transparent, cut from the source banner. |
+| `sightline-board.png` | The puzzle-board illustration, background keyed out so it sits on any blue. |
 | `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png`, `icon-512.png` | White loop on electric blue. |
-| `og.png` | 1200×630 link preview card. |
+| `og.png` | 1200×630 link preview card, cropped from the Sightline banner. |
 | `CNAME` | Tells GitHub Pages the custom domain. |
 | `robots.txt`, `sitemap.xml` | Basic SEO. |
 | `_archive/full-site.html` | The longer About / Sightline / Contact page, parked for later. Not published. |
