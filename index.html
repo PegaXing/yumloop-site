@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yumloop</title>
-<meta name="description" content="Yumloop — an independent studio of one. Sightline, a logic puzzle, coming soon to iOS.">
+<title>Yumloop Games</title>
+<meta name="description" content="Yumloop, an independent studio of one. Sightline, a logic puzzle, coming soon to iOS.">
 <meta name="theme-color" content="#140FD7">
 <link rel="canonical" href="https://yumloop.net/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --blue:#140FD7;
@@ -56,7 +56,14 @@
     width:100%;
   }
   .copy{text-align:left; max-width:440px}
-  .copy .mark{width:min(420px,40vw)}
+  /* The game's own menu heading, verbatim: Avenir Next, weight 400,
+     .42em letterspacing, uppercase, indent to optically centre the tracking. */
+  .mark-heading{
+    font-family:'Avenir Next','Avenir',Archivo,-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+    font-weight:400; font-size:clamp(30px,3.6vw,46px); line-height:1;
+    letter-spacing:.42em; text-indent:.42em; text-transform:uppercase;
+    color:#fff; margin:0;
+  }
   .rule{height:1px; background:rgba(255,255,255,.38); border:0; margin:clamp(18px,2.4vw,30px) 0}
   .soon{
     margin:0; font-weight:600; text-transform:uppercase;
@@ -70,7 +77,7 @@
     .copy{text-align:center; max-width:none}
     /* keep the studio wordmark reading larger than the game's */
     .brand{width:min(360px,64vw); margin-bottom:clamp(46px,9vw,64px)}
-    .copy .mark{width:min(290px,54vw); margin-inline:auto}
+    .mark-heading{font-size:clamp(24px,7.2vw,34px)}
     .board{width:min(290px,62vw)}
   }
 
@@ -117,7 +124,7 @@
 
   <section class="game" aria-label="Sightline">
     <div class="copy">
-      <img class="mark" src="sightline-logo.png" alt="Sightline" width="1200" height="172">
+      <h1 class="mark-heading">Sightline</h1>
       <hr class="rule">
       <p class="soon">Coming soon to <span>iOS</span></p>
     </div>
@@ -139,5 +146,111 @@
   <a href="/support.html">Support</a>
 </nav>
 
+
+<!-- Falling Sightline tiles: real game tiles (exact colours, borders, Sora
+     clue numerals) drop from the top with gravity, bounce off any text or
+     image they hit (which flinches in response), spin a little, and exit off
+     the bottom of the page. Decorative only: pointer-events none, skipped
+     entirely under prefers-reduced-motion. -->
+<style>
+  .fx-tile{position:fixed; top:0; left:0; z-index:5; pointer-events:none;
+    width:46px; height:46px; background:#fff;
+    box-shadow:inset 0 0 0 3px #000; border-radius:0;
+    will-change:transform; contain:layout style;}
+  .fx-tile .clue{position:absolute; inset:0; font-family:Sora,var(--sans);
+    font-weight:800; font-size:17px; color:#111; pointer-events:none;}
+  .fx-tile .clue span{position:absolute; line-height:1;}
+  .fx-tile .clue .r{right:10%; top:50%; transform:translateY(-50%);}
+  .fx-tile .clue .d{bottom:8%; left:50%; transform:translateX(-50%);}
+  .fx-tile.wall{background:repeating-linear-gradient(45deg,#000 0,#000 5px,#444 5px,#444 10px);}
+  .fx-tile.chan{background:#0040f7;}
+  .fx-tile.nbr{background:#a040d8;}
+  .fx-tile.nbr .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:Sora,var(--sans);font-weight:800;font-size:19px;color:#fff;}
+  .fx-tile.mirror{background:#ffb88a;}
+  .fx-tile.mirror::after{content:"";position:absolute;left:22%;top:22%;right:22%;bottom:22%;
+    background:linear-gradient(to top right,transparent calc(50% - 2.5px),#000 calc(50% - 2.5px),#000 calc(50% + 2.5px),transparent calc(50% + 2.5px));}
+  .fx-tile.bomb{background:#ff2e2e;}
+  .fx-tile.bomb::after{content:"";position:absolute;inset:31%;background:#000;border-radius:50%;}
+  .fx-tile.chan svg{position:absolute;inset:0;width:100%;height:100%;
+    fill:none;stroke:#fff;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;}
+  .fx-bump{animation:fxBump .4s cubic-bezier(.22,.61,.36,1);}
+  @keyframes fxBump{
+    0%{transform:translateY(0);}
+    35%{transform:translateY(5px);}
+    65%{transform:translateY(-2px);}
+    100%{transform:translateY(0);}
+  }
+</style>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var KINDS=[
+    function(el){ el.innerHTML='<div class="clue"><span class="r">1</span></div>'; },
+    function(el){ el.innerHTML='<div class="clue"><span class="d">2</span></div>'; },
+    function(el){ el.classList.add('wall'); },
+    function(el){ el.classList.add('chan'); el.innerHTML='<svg viewBox="0 0 100 100"><line x1="28" y1="50" x2="72" y2="50"/><polyline points="36,40 28,50 36,60"/><polyline points="64,40 72,50 64,60"/></svg>'; },
+    function(el){ el.classList.add('nbr'); el.innerHTML='<div class="n">1</div>'; },
+    function(el){ el.classList.add('mirror'); },
+    function(el){ el.classList.add('bomb'); },
+    function(el){ /* plain hidden tile */ },
+  ];
+  var live=[], MAX=(innerWidth<640)?2:4, G=1900, REST=0.42;
+  var colliders=[], colTs=0;
+  function refreshColliders(){
+    colliders=[];
+    document.querySelectorAll('.brand,.mark-heading,.soon,.board,.more,.actions a,.foot a').forEach(function(n){
+      var r=n.getBoundingClientRect();
+      if(r.width>4 && r.height>4) colliders.push({el:n, r:r});
+    });
+    colTs=performance.now();
+  }
+  function spawn(){
+    if(live.length>=MAX) return;
+    var el=document.createElement('div');
+    el.className='fx-tile';
+    KINDS[(Math.random()*KINDS.length)|0](el);
+    var size=38+Math.random()*16;
+    el.style.width=size+'px'; el.style.height=size+'px';
+    document.body.appendChild(el);
+    live.push({el:el, s:size,
+      x:20+Math.random()*(innerWidth-40-size),
+      y:-size-10, vx:(Math.random()-0.5)*60, vy:0,
+      rot:(Math.random()-0.5)*20, vr:(Math.random()-0.5)*120,
+      bounced:{}, last:performance.now()});
+  }
+  function frame(now){
+    if(now-colTs>900) refreshColliders();
+    for(var i=live.length-1;i>=0;i--){
+      var t=live[i];
+      var dt=Math.min(0.033,(now-t.last)/1000); t.last=now;
+      t.vy+=G*dt; t.x+=t.vx*dt; t.y+=t.vy*dt; t.rot+=t.vr*dt;
+      if(t.vy>0){
+        for(var c=0;c<colliders.length;c++){
+          var cc=colliders[c], r=cc.r;
+          var bx=t.x, by=t.y+t.s;
+          if(by>=r.top && by<=r.top+Math.max(14,t.vy*dt+8) &&
+             bx+t.s>r.left+4 && bx<r.right-4 && !t.bounced[c]){
+            t.bounced[c]=1;
+            t.vy=-t.vy*REST; t.vx+=(Math.random()-0.5)*140; t.vr=(Math.random()-0.5)*260;
+            t.y=r.top-t.s;
+            cc.el.classList.remove('fx-bump'); void cc.el.offsetWidth;
+            cc.el.classList.add('fx-bump');
+            break;
+          }
+        }
+      }
+      if(t.y>innerHeight+80){ t.el.remove(); live.splice(i,1); continue; }
+      t.el.style.transform='translate('+t.x.toFixed(1)+'px,'+t.y.toFixed(1)+'px) rotate('+t.rot.toFixed(1)+'deg)';
+    }
+    requestAnimationFrame(frame);
+  }
+  refreshColliders();
+  addEventListener('resize', refreshColliders);
+  requestAnimationFrame(frame);
+  setTimeout(spawn, 1400);
+  setInterval(spawn, 3600);
+})();
+</script>
 </body>
 </html>
