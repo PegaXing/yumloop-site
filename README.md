@@ -9,7 +9,10 @@ Plain static HTML — no build step, no dependencies. Hosted on GitHub Pages.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The page. All CSS inline. |
+| `index.html` | The landing page. All CSS inline. |
+| `privacy.html` | Privacy policy. Required by App Store Connect. |
+| `support.html` | Support page. Required by App Store Connect. |
+| `page.css` | Shared styles for the text pages (privacy, support). |
 | `404.html` | Branded not-found page. |
 | `yumloop-logo.png` | Wordmark, white on transparent (1400×196), cleaned and trimmed from the source art. |
 | `yumloop-mark.png` | The ∞ loop alone — icon source and spare asset. |
@@ -20,6 +23,19 @@ Plain static HTML — no build step, no dependencies. Hosted on GitHub Pages.
 | `_archive/full-site.html` | The longer About / Sightline / Contact page, parked for later. Not published. |
 
 Brand: electric blue `#140FD7` (matches the app splash), white, Archivo + JetBrains Mono.
+Flat and square throughout — no rounded corners, shadows, gradients, or background art.
+
+## App Store Connect URLs
+
+- Privacy Policy URL — `https://yumloop.net/privacy.html`
+- Support URL — `https://yumloop.net/support.html`
+
+The privacy policy was written against what Sightline actually does, audited from
+`~/Downloads/sightline-ios`: TelemetryDeck analytics (`AnalyticsPlugin.swift`),
+Game Center (`GameCenterPlugin.swift`), StoreKit purchases (`PurchasePlugin.swift`),
+`localStorage` for progress, Google Fonts loaded at runtime, and a Google Form for
+in-game feedback. No ad SDKs, no IDFA, no Firebase. **If any of that changes, the
+policy has to change with it.**
 
 ## Publishing changes
 
