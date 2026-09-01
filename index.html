@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yumloop Games</title>
-<meta name="description" content="Yumloop, an independent studio of one. Sightline, a logic puzzle, coming soon to iOS.">
+<meta name="description" content="Yumloop, an independent studio of one. Sightline, a logic puzzle, coming soon to iOS, Google Play and Steam.">
 <meta name="theme-color" content="#140FD7">
 <link rel="canonical" href="https://yumloop.net/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yumloop">
 <meta property="og:title" content="Yumloop">
-<meta property="og:description" content="Sightline, a logic puzzle, coming soon to iOS. And more games coming soon.">
+<meta property="og:description" content="Sightline, a logic puzzle, coming soon to iOS, Google Play and Steam. And more games coming soon.">
 <meta property="og:url" content="https://yumloop.net/">
 <meta property="og:image" content="https://yumloop.net/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -126,7 +126,7 @@
     <div class="copy">
       <h1 class="mark-heading">Sightline</h1>
       <hr class="rule">
-      <p class="soon">Coming soon to <span>iOS</span></p>
+      <p class="soon">Coming soon to <span>iOS</span>, <span>Google&nbsp;Play</span> &amp;&nbsp;<span>Steam</span></p>
     </div>
     <img class="board" src="sightline-board.png"
          alt="A Sightline puzzle board: a four-by-four grid with numbered clues down the left edge and coloured tiles marking blockers and directions."
@@ -167,9 +167,6 @@
   .fx-tile.nbr{background:#a040d8;}
   .fx-tile.nbr .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     font-family:Sora,var(--sans);font-weight:800;font-size:19px;color:#fff;}
-  .fx-tile.mirror{background:#ffb88a;}
-  .fx-tile.mirror::after{content:"";position:absolute;left:22%;top:22%;right:22%;bottom:22%;
-    background:linear-gradient(to top right,transparent calc(50% - 2.5px),#000 calc(50% - 2.5px),#000 calc(50% + 2.5px),transparent calc(50% + 2.5px));}
   .fx-tile.bomb{background:#ff2e2e;}
   .fx-tile.bomb::after{content:"";position:absolute;inset:31%;background:#000;border-radius:50%;}
   .fx-tile.chan svg{position:absolute;inset:0;width:100%;height:100%;
@@ -191,7 +188,6 @@
     function(el){ el.classList.add('wall'); },
     function(el){ el.classList.add('chan'); el.innerHTML='<svg viewBox="0 0 100 100"><line x1="28" y1="50" x2="72" y2="50"/><polyline points="36,40 28,50 36,60"/><polyline points="64,40 72,50 64,60"/></svg>'; },
     function(el){ el.classList.add('nbr'); el.innerHTML='<div class="n">1</div>'; },
-    function(el){ el.classList.add('mirror'); },
     function(el){ el.classList.add('bomb'); },
     function(el){ /* plain hidden tile */ },
   ];
