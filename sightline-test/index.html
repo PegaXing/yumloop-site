@@ -131,8 +131,11 @@ body{
 .clue .d{bottom:7%;left:50%;transform:translateX(-50%);}
 .clue .l{left:9%;top:50%;transform:translateY(-50%);}
 .clue .r{right:9%;top:50%;transform:translateY(-50%);}
-.clue .n0{color:var(--n0);} .clue .n1{color:var(--n1);} .clue .n2{color:var(--n2);}
+.clue .n1{color:var(--n1);} .clue .n2{color:var(--n2);}
 .clue .n3{color:var(--n3);} .clue .n4{color:var(--n4);} .clue .n5{color:var(--n5);}
+/* the all-clear X tile — exactly the game's .z cross */
+.clue .z{top:50%;left:50%;transform:translate(-50%,-50%);width:34%;height:34%;color:#999;display:flex;align-items:center;justify-content:center;}
+.clue .z svg{width:100%;height:100%;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;fill:none;}
 .clue span.cluepulse{animation:cluePulse .8s cubic-bezier(.22,.61,.36,1);}
 @keyframes cluePulse{0%{transform-origin:center;}35%{filter:brightness(1.1);}
   0%,100%{scale:1;}40%{scale:1.7;}}
@@ -244,7 +247,7 @@ body{
    change lives here; game logic never reads anything else.
    ============================================================ */
 var CFG = {"headline":"Can you pass<br>the Sightline test?","subtitle":"Numbers point toward bombs.<br>Reveal all the safe tiles!","ctaText":"Play Sightline","ctaSub":"No guessing. Just logic.","bombToast":"Careful — that's a bomb.","appStoreUrl":"https://apps.apple.com/app/id6774281459","displayPassStatistic":false,"passStatistic":null,"statTemplate":"Only {n}% pass. Can you?","background":"yumloop-blue","levelId":"ad-test-01","network":"web","useMraid":false,"injectMraidTag":false,"analyticsMode":"dev"};
-var PUZZLE = {"id":"ad-test-01","note":"Bespoke playable-ad puzzle. 5x5, three bombs, core sightline logic only. Clues live on tiles; a clue becomes visible when its tile is revealed. (0,0) is pre-revealed and opens the board with an unmissable 0-to-the-right.","size":5,"bombs":[[1,1],[2,4],[4,2]],"preRevealed":[[0,0]],"clues":{"0,0":[{"dir":"R","n":0}],"0,1":[{"dir":"D","n":1}],"0,2":[{"dir":"D","n":1}],"0,3":[{"dir":"D","n":0}],"0,4":[{"dir":"D","n":1}],"1,3":[{"dir":"L","n":1}],"2,3":[{"dir":"R","n":1}],"3,3":[{"dir":"L","n":0}],"4,3":[{"dir":"L","n":1}],"3,1":[{"dir":"D","n":0}],"3,2":[{"dir":"D","n":1}],"2,2":[{"dir":"L","n":0}]},"firstHint":{"cell":[0,1],"clueCell":[0,0]}};
+var PUZZLE = {"id":"ad-test-02","note":"Bespoke playable-ad puzzle, faithful to the shipping game: every revealed tile shows its full four-direction bomb counts (zeros omitted, all-zero renders the X cross), rays run to the board edge, bombs do not block sight. Clues are COMPUTED from the bomb layout exactly like the game's losCounts — nothing curated. (0,0) is pre-revealed as an X tile: its whole row and column are provably safe, which is the five-second hook.","size":5,"bombs":[[1,3],[3,1],[4,1],[3,4]],"preRevealed":[[0,0]],"firstHint":{"cell":[0,1],"clueCell":[0,0]}};
 
 /* ============================================================
    ANALYTICS — PlayableAnalytics with per-network adapters.
@@ -372,6 +375,21 @@ var DIRS = { R:[0,1], L:[0,-1], D:[1,0], U:[-1,0] };
 var DIRCLS = { R:'r', L:'l', D:'d', U:'u' };
 var bombSet = {};
 PUZZLE.bombs.forEach(function(b){ bombSet[b[0]+','+b[1]] = true; });
+
+/* The game's information model, verbatim (losCounts in www/index.html):
+   a revealed tile shows its bomb count in ALL FOUR directions; rays run to
+   the board edge and bombs never block sight; zeros render as absence, and
+   a tile that sees zero everywhere renders the X cross. */
+function rayKeys(r, c, dir){
+  var d = DIRS[dir], out = [];
+  for (var rr=r+d[0], cc=c+d[1]; rr>=0&&rr<N&&cc>=0&&cc<N; rr+=d[0], cc+=d[1]) out.push(rr+','+cc);
+  return out;
+}
+function losCounts(r, c){
+  var o = {};
+  for (var dir in DIRS) o[dir] = rayKeys(r, c, dir).reduce(function(a, k){ return a + (bombSet[k] ? 1 : 0); }, 0);
+  return o;
+}
 var revealed = {}, mistakes = 0, taps = 0, started = false, startAt = 0, done = false;
 var safeTotal = N*N - PUZZLE.bombs.length;
 var safeCount = 0;
@@ -393,13 +411,17 @@ window.addEventListener('resize', sizeBoard);
 window.addEventListener('orientationchange', function(){ setTimeout(sizeBoard, 120); });
 
 function clueHtml(r, c){
-  var list = PUZZLE.clues[r+','+c];
-  if (!list) return '';
+  var lc = losCounts(r, c);
+  var tot = lc.U + lc.D + lc.L + lc.R;
   var h = '<div class="clue">';
-  list.forEach(function(cl){
-    var ncls = 'n' + Math.min(cl.n, 5);
-    h += '<span class="'+DIRCLS[cl.dir]+' '+ncls+'" data-dir="'+cl.dir+'">'+cl.n+'</span>';
-  });
+  if (tot === 0){
+    h += '<span class="z"><svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></span>';
+  } else {
+    for (var dir in DIRS){
+      if (!lc[dir]) continue;
+      h += '<span class="'+DIRCLS[dir]+' n'+Math.min(lc[dir],5)+'" data-dir="'+dir+'">'+lc[dir]+'</span>';
+    }
+  }
   return h + '</div>';
 }
 
@@ -431,20 +453,54 @@ function revealCell(r, c, silent){
   safeCount++;
 }
 
-/* Trace a clue's line of sight — the wordless "this is how numbers work"
-   beat after the very first reveal. Beam-lights the ray cell by cell,
-   pulses the numeral, then fades. Pure visuals, no modal. */
-function traceClue(clueR, clueC, dir){
-  var el = cells[clueR+','+clueC];
-  var span = el.querySelector('.clue span[data-dir="'+dir+'"]');
-  if (span){ span.classList.add('cluepulse'); setTimeout(function(){ span.classList.remove('cluepulse'); }, 850); }
-  var d = DIRS[dir], lit = [];
-  var seq = [];
-  for (var rr=clueR+d[0], cc=clueC+d[1]; rr>=0&&rr<N&&cc>=0&&cc<N; rr+=d[0], cc+=d[1]) seq.push(rr+','+cc);
+/* SIGHTLINE TOGGLE — the game's own signature interaction, 1:1: tapping a
+   revealed tile animates its line of sight outward in all four directions,
+   cell by cell with a soft pop per lit cell; tapping it again retracts the
+   beam cell by cell. Bomb-revealed tiles keep their look (beam passes over
+   them logically but never repaints them). One beam at a time, like a
+   fresh tap in the game moving the beam to the new caster. */
+var beamOwner = null, beamTimers = [], beamLit = [];
+function clearBeamTimers(){ beamTimers.forEach(clearTimeout); beamTimers = []; }
+function unlightAll(instant){
+  clearBeamTimers();
+  var seq = beamLit.slice().reverse();
+  beamLit = [];
+  if (instant){ seq.forEach(function(k){ cells[k].classList.remove('beamlit'); }); return; }
   seq.forEach(function(k, i){
-    setTimeout(function(){ cells[k].classList.add('beamlit'); lit.push(k); }, 140 + i*110);
+    beamTimers.push(setTimeout(function(){
+      cells[k].classList.remove('beamlit');
+      Sound.pop();
+    }, i*70));
   });
-  setTimeout(function(){ lit.forEach(function(k){ cells[k].classList.remove('beamlit'); }); }, 140 + seq.length*110 + 650);
+}
+function toggleSightline(r, c){
+  var k = r+','+c;
+  if (beamOwner === k){ beamOwner = null; unlightAll(false); return; }
+  if (beamOwner) unlightAll(true);
+  beamOwner = k;
+  clearBeamTimers();
+  // interleave the four rays ring by ring, like the game's outward wave
+  var rays = ['U','D','L','R'].map(function(dir){ return rayKeys(r, c, dir); });
+  var maxLen = Math.max.apply(null, rays.map(function(a){ return a.length; }));
+  var step = 0;
+  for (var ring = 0; ring < maxLen; ring++){
+    (function(ring){
+      beamTimers.push(setTimeout(function(){
+        var litAny = false;
+        rays.forEach(function(ray){
+          var kk = ray[ring];
+          if (!kk) return;
+          var el = cells[kk];
+          if (el.classList.contains('mine')) return;
+          el.classList.add('beamlit');
+          beamLit.push(kk);
+          litAny = true;
+        });
+        if (litAny) Sound.pop();
+      }, 90 + ring*95));
+    })(ring);
+    step++;
+  }
 }
 
 var toastTimer = null;
@@ -473,7 +529,8 @@ function onTap(ev){
     PlayableAnalytics.run.start = startAt;
     PlayableAnalytics.event('first_tile_tapped', null, true);
   }
-  if (revealed[k] || el.classList.contains('mine')) return;
+  if (el.classList.contains('mine')) return;
+  if (revealed[k]){ toggleSightline(r, c); return; }
   taps++;
   PlayableAnalytics.run.taps = taps;
   if (taps === 3) PlayableAnalytics.event('third_tile_reached', null, true);
@@ -491,15 +548,18 @@ function onTap(ev){
   }
   revealCell(r, c);
   if (taps === 1 && PUZZLE.firstHint){
+    // wordless tutorial: auto-play the pre-revealed tile's sightline, out
+    // and back, exactly as if the player had tapped it
     var fc = PUZZLE.firstHint.clueCell;
-    var firstClue = (PUZZLE.clues[fc[0]+','+fc[1]]||[])[0];
-    if (firstClue) setTimeout(function(){ traceClue(fc[0], fc[1], firstClue.dir); }, 220);
+    setTimeout(function(){ toggleSightline(fc[0], fc[1]); }, 260);
+    setTimeout(function(){ if (beamOwner === fc[0]+','+fc[1]) toggleSightline(fc[0], fc[1]); }, 1900);
   }
   if (safeCount >= safeTotal) finish();
 }
 
 function finish(){
   done = true;
+  if (beamOwner){ beamOwner = null; unlightAll(true); }
   var elapsed = Date.now() - startAt;
   PlayableAnalytics.run.completed = true;
   PlayableAnalytics.run.flawless = mistakes === 0;
