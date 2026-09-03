@@ -40,12 +40,12 @@
 
     <section>
       <h2>The short version</h2>
-      <p>Yumloop is one person. There is no account to create, no profile to fill in, and nothing here is sold or handed to advertisers. Your game progress lives on your device. A small amount of anonymous usage data tells me which parts of a game people actually play, and that's the extent of it.</p>
+      <p>Yumloop is one person. There is no sign-up form, no email address and no password to invent, no profile to fill in, and nothing here is sold or handed to advertisers. Your game progress lives on your device, backed up to your own iCloud or Steam Cloud. If you use Sightline+ on iPhone or play on Steam, a small Yumloop account keyed to your Game Center or Steam identity can also keep a copy of your save so it can follow you between an iPhone and a Steam Deck; you can delete it at any time from inside the game. A small amount of anonymous usage data tells me which parts of a game people actually play, and that's the extent of it.</p>
     </section>
 
     <section>
       <h2>Your progress</h2>
-      <p>Your progress, settings, and anything you've unlocked are stored locally on your phone, and your save is also backed up to your personal iCloud storage under your own Apple ID so it can follow you to a new device or survive a reinstall. That backup is handled entirely by Apple, lives in <em>your</em> iCloud, and is never uploaded to me — I have no way to read it. Deleting the app removes the local copy; the iCloud backup stays with your Apple ID.</p>
+      <p>Your progress, settings, and anything you've unlocked are stored locally on your phone, and your save is also backed up to your personal iCloud storage under your own Apple ID so it can follow you to a new device or survive a reinstall. That backup is handled entirely by Apple, lives in <em>your</em> iCloud, and is never uploaded to me — I have no way to read it. On Steam the same job is done by Steam Cloud under your Steam account. Separately from those, Sightline can keep a copy of your save in a Yumloop account so that it can move between different kinds of device; that is described under <em>Yumloop account</em> below. Deleting the app removes the local copy; the iCloud backup stays with your Apple ID.</p>
     </section>
 
     <section>
@@ -84,8 +84,8 @@
           <p>If you write to me, I have your email address and whatever you put in the message, for as long as I keep the thread. I use it to answer you and nothing else.</p>
         </div>
         <div>
-          <span class="lab">Save codes</span>
-          <p>If you choose <strong>Settings → Transfer progress → Export</strong>, a compressed copy of your save (levels, stars, streaks, statistics and settings, nothing that identifies you) is stored for 30 days under a random code on <a href="https://dpaste.com/" rel="noopener">dpaste.com</a>, an anonymous text-hosting service, so another device can fetch it when you type the code. Nothing is uploaded unless you press Export, and the copy expires on its own.</p>
+          <span class="lab">Yumloop account (cross-device sync)</span>
+          <p>Sightline+ on iPhone, and the Steam version, can sync your save through a small account service I run on Cloudflare. It holds only a pseudonymous identity from the platform you're on (a Game Center player ID that Apple issues for this game alone, or your 64-bit Steam ID, each proven to me by Apple or Valve rather than typed by you), your compressed save (levels, stars, streaks, statistics and settings — nothing that identifies you), and the time it was last updated. No email, name, IP address or device details are kept. Saves only ever move forward, so a linked device can never overwrite a newer save with an older one. Linking two devices uses a short code or QR that expires after a few minutes and works once; on iPhone the camera is used only while you're on the <strong>Scan a code</strong> screen, and nothing from it is stored or uploaded. <strong>Settings → Account → Delete account</strong> removes everything the service holds about you immediately; the older <em>save code</em> transfer via dpaste.com has been retired and issues no new codes.</p>
         </div>
         <div>
           <span class="lab">Steam</span>
@@ -100,8 +100,8 @@
         <li>No advertising, and no ad networks embedded in the games.</li>
         <li>No selling, renting, or sharing of personal data with anyone.</li>
         <li>No tracking you across other apps or websites, and no advertising identifier.</li>
-        <li>No account, sign-up, or password anywhere in a Yumloop game.</li>
-        <li>No location, contacts, photos, microphone, or camera access.</li>
+        <li>No sign-up form, email address, or password anywhere in a Yumloop game.</li>
+        <li>No location, contacts, photos, or microphone access. The camera is used only while you scan a link code, and never records or uploads anything.</li>
       </ul>
     </section>
 
@@ -119,6 +119,7 @@
       <h2>Your choices</h2>
       <ul>
         <li><strong>Delete everything held on your device</strong> by deleting the app.</li>
+        <li><strong>Delete your Yumloop account</strong> from <strong>Settings → Account</strong> inside the game; the service forgets you at once.</li>
         <li><strong>Stay out of Game Center</strong> by declining the sign-in prompt, or signing out in iOS Settings.</li>
         <li><strong>Ask about analytics.</strong> The usage events are anonymous and aggregated, so there is no per-person record for me to look up or delete. But if you have a question about what is collected, ask and I'll answer honestly.</li>
         <li><strong>Ask me to delete an email thread</strong> and I will.</li>
