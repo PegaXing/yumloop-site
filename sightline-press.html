@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What is Sightline?</title>
-<meta name="description" content="Sightline, by Yumloop: a logic puzzle about seeing straight. Press page.">
+<meta name="description" content="Sightline, by Yumloop: a pure-deduction puzzle about line of sight. Press page.">
 <meta name="theme-color" content="#140FD7">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yumloop">
 <meta property="og:title" content="What is Sightline?">
-<meta property="og:description" content="A logic puzzle about seeing straight. Every level solvable by pure deduction. No guessing, ever.">
+<meta property="og:description" content="A pure-deduction puzzle about line of sight. Numbers tell you how many bombs a tile can see in each direction. No guessing, ever.">
 <meta property="og:image" content="https://yumloop.net/press/poster.jpg">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -75,6 +75,11 @@
   .kit a{display:block; text-decoration:none; border:1px solid rgba(255,255,255,.45); padding:14px 16px; font-size:14px; line-height:1.4}
   .kit a b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:6px}
   .kit a:hover{background:#fff; color:var(--blue)} .kit a:hover b{color:var(--blue)}
+  .bio{margin-top:clamp(28px,4vw,44px); padding-top:clamp(20px,2.6vw,28px); border-top:1px solid rgba(255,255,255,.28); max-width:62ch}
+  .bio h3{font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.6); margin:0 0 10px}
+  .bio p{font-size:15px; line-height:1.55; margin:0; color:rgba(255,255,255,.88)}
+  .bio .contact{margin-top:14px}
+  .bio .contact a{font-weight:600}
   .actions{display:flex; margin-top:clamp(22px,3vw,34px)}
   .actions a{display:inline-block; text-decoration:none; font-weight:600; font-size:15.5px; padding:15px 34px; border:1px solid #fff; transition:background .15s linear, color .15s linear}
   .actions a.solid{background:#fff; color:var(--blue)} .actions a.solid:hover{background:transparent; color:#fff}
@@ -101,7 +106,7 @@
     <div>
       <div class="kicker rv">What is</div>
       <h1 class="rv" data-hit>Sightline<span class="q">?</span></h1>
-      <p class="lede rv" data-hit>A logic puzzle about seeing straight. Numbers on the edge tell you how far a line of sight reaches into the grid. Find the bombs. <b>Every level is solvable by pure deduction. No guessing, ever.</b></p>
+      <p class="lede rv" data-hit>A pure-deduction puzzle about line of sight. Numbers on the edges of revealed tiles tell you how many bombs they can see in each direction. Find every bomb. <b>Every level is solvable through logic. No guessing, ever.</b></p>
       <div class="facts rv" data-hit>
         <div class="fact"><div class="n" data-count="400">0</div><div class="l">levels</div></div>
         <div class="fact"><div class="n" data-count="1">0</div><div class="l">new daily, every day</div></div>
@@ -120,8 +125,8 @@
     <h2 class="rv" data-hit>How it plays</h2>
     <hr class="rule">
     <div class="steps">
-      <div class="step rv" data-hit><div class="tile t-clue"><span>3</span></div><div class="t">Read the edge</div><p>Each number says how many tiles you can see along that row or column before something blocks the view.</p></div>
-      <div class="step rv" data-hit><div class="tile t-bomb"></div><div class="t">Deduce, don't guess</div><p>Cross-reference the clues and every bomb reveals itself. There is always a next safe move, verified by a solver before a level ships.</p></div>
+      <div class="step rv" data-hit><div class="tile t-clue"><span>3</span></div><div class="t">Read the edge</div><p>Each number tells you how many bombs that tile can see in that direction.</p></div>
+      <div class="step rv" data-hit><div class="tile t-bomb"></div><div class="t">Deduce, don't guess</div><p>Cross-reference the four directions and every bomb reveals itself. There is always a next safe move, verified by a solver before a level ships.</p></div>
       <div class="step rv" data-hit><div class="tile t-chan"></div><div class="t">Then it twists</div><p>Walls, channels, number tiles, mirrors, one-ways and portals bend the sightlines. Each arrives with its own teaching level.</p></div>
     </div>
   </section>
@@ -172,7 +177,11 @@
       <a class="rv" href="press/shot-3-1290x2796.png" download><b>Screenshot 3</b>1290 × 2796 PNG</a>
       <a class="rv" href="press/shot-4-1290x2796.png" download><b>Screenshot 4</b>1290 × 2796 PNG</a>
     </div>
-    <p class="rv" style="margin-top:22px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.85)" data-hit><b>Yumloop</b> is a studio of one, Yoni Shihor, in the UK. Sightline is its first game. Review builds, interviews and anything else: <a href="mailto:yoni@yumloop.net?subject=Sightline%20press">yoni@yumloop.net</a>.</p>
+    <div class="bio rv" data-hit>
+      <h3>About the developer</h3>
+      <p>Yumloop is a studio of one: Yoni Shihor, a game developer based in Scotland. Sightline is his first solo release. Previously, Yoni worked across AAA and mobile development, including Red Dead Redemption 2 and as a designer on Grand Theft Auto VI.</p>
+      <p class="contact">Review builds, interviews &amp; press:<br><a href="mailto:yoni@yumloop.net?subject=Sightline%20press">yoni@yumloop.net</a></p>
+    </div>
     <div class="actions rv" data-hit>
       <a class="solid" href="https://apps.apple.com/app/id6774281459" rel="noopener">App Store</a>
       <a class="line" href="mailto:yoni@yumloop.net?subject=Sightline%20press">Contact</a>
