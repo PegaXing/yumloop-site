@@ -1,9 +1,9 @@
 /* Sightline publisher pitch — configuration.
    Everything a pitch variant can change lives here; sightline-pitch.html reads it at load.
-   Select a publisher with ?to=<key> (default: PITCH.defaultPublisher). Unknown key → the
-   publisher-specific section is hidden and the page reads as a general pitch. */
+   Select a publisher with ?to=<key>. With no key (the default link) the page names nobody: the
+   "Why you?" section shows its generic copy. A key swaps in that publisher's name and paragraphs. */
 window.PITCH = {
-  defaultPublisher: 'rawfury',
+  defaultPublisher: '',                        /* '' = the generic, publisher-neutral page (what the shared link shows). A key here or ?to=<key> swaps in a named 'why' section. */
 
   /* Links. Empty string = not available yet: the page then shows the action as "on request" (mailto). */
   links: {
@@ -13,7 +13,9 @@ window.PITCH = {
     contact: 'mailto:yoni@yumloop.net?subject=Sightline'
   },
 
-  launch: 'Q4 2026',                             /* target launch, shown in "When will you be there?" — flexible with publishing strategy */
+  launch: 'Q4 2026',
+  budget: '',                                  /* development budget line for the scout panel; '' keeps the default "complete and self-funded … on request" wording */
+                             /* target launch, shown in "When will you be there?" — flexible with publishing strategy */
 
   /* Publisher-specific "Why you?" copy. Keys are what ?to= accepts. */
   publishers: {

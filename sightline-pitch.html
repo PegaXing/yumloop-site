@@ -23,7 +23,7 @@
   :root{ --blue:#140FD7; --lilac:#BFA6FD; --gold:#F5B301; --red:#ff2e2e; --chan:#0040f7; --nbr:#a040d8; --mirror:#f2b78f; --cell:#c9caff; --ink:#06062B;
          --sans:Archivo,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; --display:Sora,var(--sans) }
   *,*::before,*::after{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip}
   body{margin:0; min-height:100svh; background:var(--blue); color:#fff; font-family:var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden}
   img,video{max-width:100%; height:auto; display:block}
   a{color:#fff}
@@ -57,6 +57,7 @@
   .hero{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(20px,3vw,44px) 0 clamp(30px,4vw,60px)}
   .lockup{width:min(440px,100%); margin:0 0 18px} .lockup img{width:100%} .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
   .close .lockup{margin:0 auto 10px; text-align:center}
+  .scout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px} .scout div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14px; line-height:1.45; color:rgba(255,255,255,.9)} .scout div b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--lilac); margin-bottom:8px}
   /* mini board (mechanic demo + decorative boards) */
   .board{--n:5; --t:56px; display:grid; grid-template-columns:repeat(var(--n),var(--t)); grid-auto-rows:var(--t); gap:0; position:relative; margin:0 auto; width:max-content; background:#000; padding:3px; box-shadow:10px 10px 0 #000}
   .cell{position:relative; background:var(--cell); box-shadow:inset 0 0 0 3px #000; font-family:var(--display); font-weight:800; color:#111; transition:background .35s ease, transform .35s ease}
@@ -72,6 +73,8 @@
   .cell .e.d{bottom:7%; left:50%; transform:translate(-50%,0) scale(.6)} .cell .e.u{top:7%; left:50%; transform:translate(-50%,0) scale(.6)}
   .cell.open .e{opacity:1} .cell.open .e.r,.cell.open .e.l{transform:translate(0,-50%) scale(1)} .cell.open .e.d,.cell.open .e.u{transform:translate(-50%,0) scale(1)}
   .cell .e.hot{color:var(--blue); text-shadow:0 0 0 var(--blue)}
+  .cell .z{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s} .cell.open .z{opacity:1} .cell .z i{width:34%; height:34%; position:relative} .cell .z i::before,.cell .z i::after{content:""; position:absolute; left:50%; top:50%; width:100%; height:3px; background:#8a8aa6; transform:translate(-50%,-50%) rotate(45deg)} .cell .z i::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .cell.nbr .n{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:calc(var(--t)*.42); color:#fff}
   .cell .eye{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
   .cell .eye i{width:44%; height:26%; border:3px solid var(--blue); border-radius:50%; position:relative} .cell .eye i::after{content:""; position:absolute; left:50%; top:50%; width:40%; height:75%; background:var(--blue); border-radius:50%; transform:translate(-50%,-50%)}
   .beam{position:absolute; background:rgba(20,15,215,.55); box-shadow:0 0 0 2px rgba(20,15,215,.25), 0 0 18px rgba(20,15,215,.5); transform-origin:left center; transform:scaleX(0); transition:transform .55s cubic-bezier(.22,.61,.36,1), opacity .3s; pointer-events:none; z-index:2}
@@ -94,7 +97,7 @@
   /* mechanics */
   .mechs{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,26px)}
   .mech{background:#fff; color:var(--ink); border:3px solid #000; box-shadow:8px 8px 0 #000; overflow:hidden}
-  .mech img{width:100%; aspect-ratio:1; object-fit:cover; border-bottom:3px solid #000; background:#f2f2ff}
+  .mech .clip{aspect-ratio:560/597; border-bottom:3px solid #000; background:#f2f2ff; overflow:hidden} .mech .clip video,.mech .clip img{width:100%; height:100%; object-fit:cover}
   .mech .b{padding:16px 18px 18px}
   .mech .b .t{font-family:var(--display); font-weight:800; font-size:19px; margin:0 0 6px}
   .mech .b p{margin:0; font-size:14.5px; line-height:1.45; color:#3a3c5a}
@@ -106,21 +109,24 @@
   .trailer .play{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(6,6,43,.18); cursor:pointer; border:0; padding:0}
   .trailer .play span{font-family:var(--mono); font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#fff; background:var(--blue); border:3px solid #000; box-shadow:6px 6px 0 #000; padding:16px 24px}
   .trailer.playing .play{display:none}
-  /* product / devices */
-  .devices{display:grid; grid-template-columns:1.25fr .55fr 1.05fr; gap:clamp(18px,3vw,40px); align-items:end}
+  /* product / devices: Valve's Steam Deck OLED press render and Apple's iPhone 17 Pro product bezel, with the
+     game's own clips sitting exactly on their screens. The screen rectangles are measured from the PNGs. */
+  .devices{display:grid; grid-template-columns:1.6fr .6fr; gap:clamp(18px,3vw,48px); align-items:end}
   .dev{position:relative}
-  .dev .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:14px; text-align:center}
-  .deck{background:#1c1c22; border:3px solid #000; border-radius:26px; padding:14px 64px; box-shadow:10px 10px 0 #000; position:relative}
-  .deck::before,.deck::after{content:""; position:absolute; top:22%; width:34px; height:34px; border-radius:50%; background:#0d0d11; box-shadow:inset 0 0 0 4px #2a2a33}
-  .deck::before{left:16px} .deck::after{right:16px}
-  .deck .scr{background:#000; border:2px solid #000; border-radius:6px; overflow:hidden; aspect-ratio:16/10}
-  .deck .scr img{width:100%; height:100%; object-fit:contain; background:#000}
-  .iphone{border:3px solid #000; border-radius:34px; background:#000; padding:8px; box-shadow:10px 10px 0 #000; width:min(220px,100%); margin:0 auto}
-  .iphone video,.iphone img{border-radius:26px; width:100%; aspect-ratio:576/1152; object-fit:cover; background:var(--blue)}
-  .laptop{position:relative}
-  .laptop .scr{background:#000; border:3px solid #000; border-radius:10px 10px 0 0; padding:8px 8px 0; box-shadow:10px 10px 0 #000}
-  .laptop .scr img{width:100%; aspect-ratio:16/10; object-fit:contain; background:#000; border-radius:4px 4px 0 0}
-  .laptop .base{height:12px; background:#2a2a33; border:3px solid #000; border-top:0; border-radius:0 0 12px 12px; box-shadow:10px 10px 0 #000}
+  .dev .frame{position:relative}
+  .dev .shell{position:relative; display:block; width:100%; height:auto; z-index:1; pointer-events:none}
+  .dev .scr{position:absolute; overflow:hidden; background:#000}
+  .dev .scr video,.dev .scr img{width:100%; height:100%; object-fit:cover; display:block}
+  .dev.deck .scr{left:23.66%; top:8.67%; width:52.8%; height:82%; z-index:2}                 /* the OLED panel in the render */
+  .dev.phone{width:min(300px,100%); margin:0 auto 0 auto}
+  .dev.phone .scr{left:5.33%; top:4.35%; width:89.33%; height:93.1%; border-radius:12% / 6%; z-index:0}   /* behind the bezel's transparent cut-out */
+  .dev .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:16px; text-align:center}
+  /* entrance: the Deck rises and settles, the phone drifts in from the right, then floats */
+  .dev.rv{transform:translateY(60px) rotate(1.5deg); transition:opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1)}
+  .dev.phone.rv{transform:translate(48px,30px) rotate(-3deg)}
+  .dev.rv.in{transform:none}
+  .dev.phone.rv.in .frame{animation:float 6s ease-in-out 1s infinite}
+  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
   .platgrid{display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-top:clamp(22px,3vw,34px)}
   .platgrid span{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:12px 10px; border:1px solid rgba(255,255,255,.6); text-align:center}
   .platgrid span.soon{color:var(--lilac); border-color:var(--lilac); border-style:dashed}
@@ -165,12 +171,24 @@
   footer{display:flex; justify-content:center; gap:26px; flex-wrap:wrap; padding:clamp(30px,5vw,60px) 0 30px}
   footer a{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); text-decoration:none}
   footer a:hover{color:#fff}
+  /* inverted chapters: white ground, ink text, blue accents (full-bleed from inside the centred column) */
+  section.inv{color:var(--ink)} section.inv::before{content:""; position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); background:#fff; z-index:-1}   /* full-bleed white ground painted behind the column; layout untouched */
+  section.inv .kicker{color:#6b6d8a} section.inv .kicker.q{color:var(--blue)}
+  section.inv h2,section.inv .big{color:var(--ink)} section.inv .quote,section.inv .sub,section.inv .card p,section.inv .checks li{color:#2b2d4a}
+  section.inv .rule{background:#c9cadb} section.inv .card{border-color:#c9cadb} section.inv .card .role{color:var(--blue)}
+  section.inv .checks li::before{background:#fff; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .checks li::after{border-color:var(--blue)}
+  section.inv .callout{background:var(--blue); color:#fff; border-color:#000} section.inv .callout .t{color:#fff} section.inv .callout p{color:rgba(255,255,255,.85)}
+  section.inv .needs span{border-color:var(--blue); color:var(--blue)}
+  section.inv .meter .l{color:#6b6d8a} section.inv .meter .bar{background:#eceefc; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .meter .bar i{background:var(--blue)} section.inv .meter .v{color:var(--ink)}
+  section.inv a{color:var(--blue)}
+  section.inv .lockup img{filter:invert(1) hue-rotate(180deg) brightness(.35)}
+  @media print{ section.inv::before{display:none} }
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
   .rv.in{opacity:1; transform:none}
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr 1fr} .devices .dev:first-child{grid-column:1/-1} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
-  @media (max-width:600px){ .board{--t:44px} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
-  @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
   /* print: the PDF version. Static, white, no video, each chapter on its own page. */
   @media print{
     @page{ size:A4 landscape; margin:14mm }
@@ -217,6 +235,16 @@
     </div>
   </section>
 
+  <!-- FOR THE SCOUT: what a publisher's pitch checklist asks for, in one glance -->
+  <section class="tight" id="scout">
+    <div class="scout rv" data-hit>
+      <div><b>Playable build</b>macOS and Windows, standalone (no store client). Opens straight into the game; no intro to skip. Windowed or fullscreen; mouse, keyboard and controller. Controls listed in Settings.</div>
+      <div><b>Checkpoints</b>Settings → <em>Explore mechanics</em> jumps to the level that introduces each mechanic (Walls, Channels, Purple tiles, Mirrors, One-way arrows, Portals) or to any of the 400 levels.</div>
+      <div><b>Video</b>The 48-second trailer below doubles as a playthrough of the mechanics, and every clip on this page is captured from the real game.</div>
+      <div><b>Budget</b><span id="budgetLine">Development to a releasable PC 1.0 is complete and self-funded. Remaining development spend is release polish and certification; a figure in USD is available on request.</span></div>
+    </div>
+  </section>
+
   <!-- 2 · WHAT ARE YOU DOING -->
   <section class="chapter" id="what">
     <div class="kicker q rv">What are you doing?</div>
@@ -225,7 +253,7 @@
     <div class="demo">
       <div class="rv" data-hit>
         <div class="board" id="demoBoard" style="--n:5" aria-label="Animated example: a revealed tile shows edge numbers; each number counts the bombs visible in that direction; combining two clues pins a bomb; every safe tile is revealed."></div>
-        <div class="legend"><span><i style="background:#fff"></i>revealed</span><span><i style="background:var(--cell)"></i>unknown</span><span><i style="background:var(--red)"></i>bomb</span><span><i style="background:var(--blue)"></i>sightline</span></div>
+        <div class="legend"><span><i style="background:#fff"></i>revealed</span><span><i style="background:var(--cell)"></i>unknown</span><span><i style="background:var(--red)"></i>bomb</span><span><i style="background:var(--blue)"></i>sightline</span><span><i style="background:#fff;box-shadow:inset 0 0 0 2px #000"></i>× sees nothing</span></div>
       </div>
       <div class="cap rv" data-hit>
         <div id="demoSteps">
@@ -236,7 +264,7 @@
         </div>
         <p class="why" id="demoWhy">Not what is next to it. What it can see: the whole line, until something blocks it.</p>
         <div class="ctl"><button type="button" id="demoReplay">Replay</button><button type="button" id="demoStep">Step</button></div>
-        <p class="print-only" style="margin-top:14px;font-size:14px">The board above is the final state of a four-step example: a revealed tile shows edge numbers; a number counts the bombs visible along its line; two lines cross to pin a bomb; every safe tile is revealed.</p>
+        <p class="print-only" style="margin-top:14px;font-size:14px">The board above is the final state of a four-step example: a revealed tile shows edge numbers; a number counts the bombs visible along its line; a second tile that sees nothing rules out its whole row, which pins the bomb; every safe tile is revealed.</p>
       </div>
     </div>
   </section>
@@ -245,14 +273,15 @@
   <section class="chapter" id="depth">
     <div class="kicker q rv">One rule, increasing depth</div>
     <h2 class="rv" data-hit>The board changes. The rule doesn’t.</h2>
+    <p class="sub rv" data-hit style="margin:-6px 0 22px">Clips from the real game. Each shows a sightline meeting the mechanic named exactly as the game names it.</p>
     <hr class="rule">
     <div class="mechs">
-      <figure class="mech rv" data-hit><img src="pitch/mech-walls.gif" alt="Walls cut off sightlines" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 5</div><div class="t">Walls</div><p>Walls cut off sightlines.</p></div></figure>
-      <figure class="mech rv" data-hit><img src="pitch/mech-channels.gif" alt="Channels pass sight along their direction and block it across them" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 9</div><div class="t">Directional channels</div><p>Channels pass sight along their direction and block it across them.</p></div></figure>
-      <figure class="mech rv" data-hit><img src="pitch/mech-mirrors.gif" alt="Reflectors redirect sight" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 25</div><div class="t">Reflectors</div><p>Reflectors redirect sight.</p></div></figure>
-      <figure class="mech rv" data-hit><img src="pitch/mech-purple.gif" alt="Purple tiles count the eight tiles around them" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 12</div><div class="t">Purple tiles</div><p>Ignore sightlines and count the eight tiles around them.</p></div></figure>
-      <figure class="mech rv" data-hit><img src="pitch/mech-oneway.gif" alt="One-way arrows let sight through one way" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 50</div><div class="t">One-way arrows</div><p>Only let sight through the way they point.</p></div></figure>
-      <figure class="mech rv" data-hit><img src="pitch/mech-portals.gif" alt="Portals carry sight from one to the other" loading="lazy" width="480" height="480"><div class="b"><div class="k">Level 75</div><div class="t">Portals</div><p>Sight goes in one and comes out the other.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/walls.mp4" poster="pitch/clips/walls.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline stopping at a wall"></video><img class="print-only" src="pitch/clips/walls.jpg" alt=""></div><div class="b"><div class="k">Level 5</div><div class="t">Walls</div><p>Sightlines stop dead at a wall and cannot see past it.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/channels.mp4" poster="pitch/clips/channels.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline passing along a channel"></video><img class="print-only" src="pitch/clips/channels.jpg" alt=""></div><div class="b"><div class="k">Level 9</div><div class="t">Channels</div><p>A window: sight passes through the way its arrows point, and is blocked across them.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/purple.mp4" poster="pitch/clips/purple.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A purple tile counting its neighbours"></video><img class="print-only" src="pitch/clips/purple.jpg" alt=""></div><div class="b"><div class="k">Level 12</div><div class="t">Purple tiles</div><p>Count the bombs in the eight tiles around them and ignore sightlines entirely.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/mirrors.mp4" poster="pitch/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline bending at a mirror"></video><img class="print-only" src="pitch/clips/mirrors.jpg" alt=""></div><div class="b"><div class="k">Level 25</div><div class="t">Mirrors</div><p>A slanted mirror bends a sightline 90°. Several can curve one line around the whole board.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/oneway.mp4" poster="pitch/clips/oneway.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline passing a one-way arrow"></video><img class="print-only" src="pitch/clips/oneway.jpg" alt=""></div><div class="b"><div class="k">Level 50</div><div class="t">One-way arrows</div><p>Let a sightline pass only the way the arrow points. Every other direction is blocked like a wall.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/portals.mp4" poster="pitch/clips/portals.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline entering one portal and leaving the other"></video><img class="print-only" src="pitch/clips/portals.jpg" alt=""></div><div class="b"><div class="k">Level 75</div><div class="t">Portals</div><p>A linked pair: a sightline entering one exits the other, reaching bombs a straight line never could.</p></div></figure>
     </div>
     <div class="closer rv" data-hit>
       <p class="big">The language stays simple. The deductions don’t.</p>
@@ -271,7 +300,7 @@
   </section>
 
   <!-- 4 · WHY -->
-  <section class="chapter" id="why">
+  <section class="chapter inv" id="why">
     <div class="kicker q rv">Why are you doing it?</div>
     <h2 class="rv" data-hit>It started with one question.</h2>
     <hr class="rule">
@@ -287,9 +316,16 @@
     <h2 class="rv" data-hit>One game. Every screen. One save.</h2>
     <hr class="rule">
     <div class="devices">
-      <div class="dev rv" data-hit><div class="deck"><div class="scr"><img src="pitch/steam-1.jpg" alt="Sightline on Steam Deck" loading="lazy" width="1600" height="900"></div></div><div class="lbl">Steam Deck · full controller support</div></div>
-      <div class="dev rv" data-hit><div class="iphone"><video src="press/sightline.mp4" poster="press/poster.jpg" autoplay muted loop playsinline aria-label="Sightline on iPhone"></video><img class="print-only" src="press/poster.jpg" alt="Sightline on iPhone"></div><div class="lbl">iPhone · iPad · Android</div></div>
-      <div class="dev rv" data-hit><div class="laptop"><div class="scr"><img src="pitch/steam-6.jpg" alt="Sightline on Mac" loading="lazy" width="1600" height="900"></div><div class="base"></div></div><div class="lbl">Steam · Windows · macOS</div></div>
+      <div class="dev deck rv" data-hit>
+        <div class="frame"><div class="scr"><video src="pitch/clips/deck.mp4" poster="pitch/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline running on Steam Deck"></video><img class="print-only" src="pitch/clips/mirrors.jpg" alt=""></div>
+        <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1400" height="565" loading="lazy"></div>
+        <div class="lbl">Steam Deck · Steam · Windows · macOS</div>
+      </div>
+      <div class="dev phone rv" data-hit>
+        <div class="frame"><div class="scr"><video src="press/sightline.mp4" poster="press/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline on iPhone"></video><img class="print-only" src="press/poster.jpg" alt=""></div>
+        <img class="shell" src="pitch/devices/iphone-17-pro.png" alt="iPhone 17 Pro" width="1350" height="2760" loading="lazy"></div>
+        <div class="lbl">iPhone · iPad · Android</div>
+      </div>
     </div>
     <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Steam</span><span>macOS</span><span>Steam Deck</span><span class="soon">Console · potential</span></div>
     <div class="feat rv" data-hit>
@@ -326,7 +362,7 @@
   </section>
 
   <!-- 6 · STATUS -->
-  <section class="chapter" id="status">
+  <section class="chapter inv" id="status">
     <div class="kicker q rv">Development status</div>
     <h2 class="rv" data-hit>Built. Tested. Not yet launched.</h2>
     <hr class="rule">
@@ -359,7 +395,7 @@
   </section>
 
   <!-- 8 · WHO -->
-  <section class="chapter" id="who">
+  <section class="chapter inv" id="who">
     <div class="kicker q rv">Who are you?</div>
     <h2 class="rv" data-hit>Yumloop.</h2>
     <hr class="rule">
@@ -378,7 +414,7 @@
   </section>
 
   <!-- 9 · WHERE -->
-  <section class="chapter" id="where">
+  <section class="chapter inv" id="where">
     <div class="kicker q rv">Where do you want to go?</div>
     <h2 class="rv" data-hit>A real first audience, then a studio that lasts.</h2>
     <hr class="rule">
@@ -409,16 +445,20 @@
     <p class="quote rv" data-hit>The final launch date has not been publicly committed and remains flexible enough to accommodate the right announcement, marketing and platform strategy with a publishing partner.</p>
   </section>
 
-  <!-- 12 · WHY <PUBLISHER> (from pitch/config.js; hidden when no match) -->
-  <section class="chapter" id="whyyou" hidden>
-    <div class="kicker q rv">Why <span data-pub-name></span>?</div>
-    <h2 class="rv" data-hit>Why I’m writing to <span data-pub-name></span>.</h2>
+  <!-- 12 · WHY YOU (generic by default; pitch/config.js can swap in a named version with ?to=<key>) -->
+  <section class="chapter inv" id="whyyou">
+    <div class="kicker q rv">Why you?</div>
+    <h2 class="rv" data-hit>Why I’m writing to <span data-pub-name>you</span>.</h2>
     <hr class="rule">
-    <div id="whyyouCopy"></div>
+    <div id="whyyouCopy">
+      <p class="quote rv" data-hit>I’m approaching publishers with a track record of bringing mechanically distinctive independent games to market, and treating a clear idea as the asset rather than the scope.</p>
+      <p class="quote rv" data-hit>Sightline isn’t a game whose value comes from enormous production scope. Its strength is a simple central idea that creates significantly more depth than it initially appears to.</p>
+      <p class="quote rv" data-hit>I’m looking for a partner that sees that simplicity as a strength and can help communicate it to a much larger audience.</p>
+    </div>
   </section>
 
   <!-- 13 · PARTNERSHIP -->
-  <section class="chapter" id="partnership">
+  <section class="chapter inv" id="partnership">
     <div class="kicker q rv">The partnership</div>
     <h2 class="rv" data-hit>Sightline first. Yumloop alongside.</h2>
     <hr class="rule">
@@ -473,13 +513,12 @@
   // ---- links + publisher variant (pitch/config.js)
   var to = (new URLSearchParams(location.search).get('to') || P.defaultPublisher || '').toLowerCase();
   var pub = (P.publishers || {})[to];
-  if(pub){
-    var sec = document.getElementById('whyyou'); sec.hidden = false;
+  if(pub && pub.why && pub.why.length){   // a named variant replaces the generic copy; the default page names nobody
     document.querySelectorAll('[data-pub-name]').forEach(function(n){ n.textContent = pub.name; });
-    var box = document.getElementById('whyyouCopy'); (pub.why || []).forEach(function(t){ var p = document.createElement('p'); p.className = 'quote rv'; p.setAttribute('data-hit', ''); p.textContent = t; box.appendChild(p); });
-    document.title = 'Sightline — Yumloop';
+    var box = document.getElementById('whyyouCopy'); box.innerHTML = ''; pub.why.forEach(function(t){ var p = document.createElement('p'); p.className = 'quote rv'; p.setAttribute('data-hit', ''); p.textContent = t; box.appendChild(p); });
   }
   if(P.launch) document.getElementById('launchDate').textContent = P.launch;
+  if(P.budget) document.getElementById('budgetLine').textContent = P.budget;
   document.querySelectorAll('[data-link]').forEach(function(a){
     var k = a.getAttribute('data-link'), url = L[k];
     if(k === 'trailer'){ a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('trailer').scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); setTimeout(playTrailer, RM ? 0 : 600); }); return; }
@@ -498,63 +537,72 @@
   var mo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; e.target.querySelectorAll('.bar i').forEach(function(b){ b.style.width = b.dataset.w; }); mo.unobserve(e.target); }); }, { threshold: .3 });
   document.querySelectorAll('.meters').forEach(function(m){ mo.observe(m); });
 
-  // ---- boards
-  function mkBoard(el, n){ el.style.setProperty('--n', n); el.innerHTML = ''; var cells = []; for(var i = 0; i < n * n; i++){ var c = document.createElement('div'); c.className = 'cell'; el.appendChild(c); cells.push(c); } return cells; }
-  function edge(c, side, val, hot){ var s = document.createElement('span'); s.className = 'e ' + side + (hot ? ' hot' : ''); s.textContent = val; c.appendChild(s); return s; }
-  function chanSvg(){ return '<svg viewBox="0 0 100 100"><line x1="28" y1="50" x2="72" y2="50"/><polyline points="36,40 28,50 36,60"/><polyline points="64,40 72,50 64,60"/></svg>'; }
-  // decorative hero board: a finished level, mixed mechanics
-  (function(){ var el = document.getElementById('heroBoard'); if(!el) return; var n = 5, cells = mkBoard(el, n), idx = function(r, c){ return r * n + c; };
-    var open = [[0,0],[0,1],[0,3],[1,0],[1,1],[1,2],[1,4],[2,1],[2,2],[2,4],[3,0],[3,2],[3,3],[4,1],[4,2],[4,3],[4,4]]; open.forEach(function(p){ cells[idx(p[0],p[1])].classList.add('open'); });
-    [[0,2],[2,0],[3,4]].forEach(function(p){ cells[idx(p[0],p[1])].classList.add('bomb'); });
-    cells[idx(1,3)].classList.add('wall'); cells[idx(2,3)].classList.add('chan'); cells[idx(2,3)].innerHTML = chanSvg(); cells[idx(3,1)].classList.add('mirror'); cells[idx(4,0)].classList.add('nbr'); cells[idx(4,0)].innerHTML = '<span class="eye"></span>'; cells[idx(4,0)].textContent = '1'; cells[idx(4,0)].style.display = 'flex'; cells[idx(4,0)].style.alignItems = 'center'; cells[idx(4,0)].style.justifyContent = 'center';
-    edge(cells[idx(0,1)], 'r', 1, true); edge(cells[idx(1,1)], 'u', 1); edge(cells[idx(1,2)], 'l', 1); edge(cells[idx(2,1)], 'l', 1, true); edge(cells[idx(2,2)], 'r', 0); edge(cells[idx(3,3)], 'r', 1, true); edge(cells[idx(2,4)], 'd', 1); edge(cells[idx(4,3)], 'u', 0); edge(cells[idx(1,0)], 'd', 1); edge(cells[idx(3,0)], 'u', 1);
+  // ---- boards. Clue numbers are COMPUTED with the game's own rule (a number counts the bombs a tile can see
+  // in that direction; sight stops at walls; purple tiles are transparent to sight and instead count the bombs in
+  // the eight tiles around them; a revealed tile that sees nothing shows the game's × mark). Nothing is drawn by hand.
+  var DIRS = { r:[1,0], l:[-1,0], d:[0,1], u:[0,-1] };
+  function Board(el, n, spec){
+    var self = this; this.el = el; this.n = n; this.bombs = {}; this.walls = {}; this.purple = {};
+    (spec.bombs || []).forEach(function(p){ self.bombs[p.join(',')] = 1; });
+    (spec.walls || []).forEach(function(p){ self.walls[p.join(',')] = 1; });
+    (spec.purple || []).forEach(function(p){ self.purple[p.join(',')] = 1; });
+    el.style.setProperty('--n', n); el.innerHTML = ''; this.cells = [];
+    for(var i = 0; i < n * n; i++){ var c = document.createElement('div'); c.className = 'cell'; el.appendChild(c); this.cells.push(c); }
+    for(var k in this.bombs) this.cell(k).classList.add('bomb');
+    for(var k2 in this.walls) this.cell(k2).classList.add('wall');
+    for(var k3 in this.purple){ var pc = this.cell(k3); pc.classList.add('nbr'); pc.innerHTML = '<span class="n">' + this.around(k3) + '</span>'; }
+  }
+  Board.prototype.cell = function(k){ var p = k.split(',').map(Number); return this.cells[p[0] * this.n + p[1]]; };   // k = "row,col"
+  Board.prototype.see = function(r, c, dir){ var v = DIRS[dir], n = 0, rr = r + v[1], cc = c + v[0]; while(rr >= 0 && cc >= 0 && rr < this.n && cc < this.n){ var k = rr + ',' + cc; if(this.walls[k]) break; if(this.bombs[k]) n++; rr += v[1]; cc += v[0]; } return n; };
+  Board.prototype.around = function(k){ var p = k.split(',').map(Number), n = 0; for(var dr = -1; dr <= 1; dr++) for(var dc = -1; dc <= 1; dc++){ if(!dr && !dc) continue; if(this.bombs[(p[0] + dr) + ',' + (p[1] + dc)]) n++; } return n; };
+  Board.prototype.open = function(k, hot){   // reveal a safe tile: numbers where the count is > 0, × when it sees nothing
+    var c = this.cell(k); if(c.classList.contains('open') || this.bombs[k] || this.walls[k] || this.purple[k]) return c;
+    var p = k.split(',').map(Number), tot = 0, self = this;
+    ['r','l','d','u'].forEach(function(dir){ var v = self.see(p[0], p[1], dir); tot += v; if(v){ var e = document.createElement('span'); e.className = 'e ' + dir + (hot === dir ? ' hot' : ''); e.textContent = v; c.appendChild(e); } });
+    if(!tot){ var z = document.createElement('span'); z.className = 'z'; z.innerHTML = '<i></i>'; c.appendChild(z); }
+    c.classList.add('open'); return c;
+  };
+  Board.prototype.openAll = function(delay){ var self = this, i = 0; this.cells.forEach(function(c, idx){ var k = Math.floor(idx / self.n) + ',' + (idx % self.n); if(c.classList.contains('open') || self.bombs[k] || self.walls[k] || self.purple[k]) return; setTimeout(function(){ self.open(k); }, (delay || 0) * (i++)); }); };
+  // hero: a finished board (every safe tile revealed) with walls and a purple tile, all numbers real
+  (function(){ var el = document.getElementById('heroBoard'); if(!el) return;
+    var B = new Board(el, 5, { bombs: [[0,2],[2,0],[3,4],[4,2]], walls: [[1,3],[3,2]], purple: [[4,0]] }); B.openAll(0);
   })();
 
-  // ---- the mechanic demo: a scripted, replayable example (four beats)
+  // ---- the mechanic demo: a scripted, replayable example (four beats), same rule, same board object
   (function(){
-    var el = document.getElementById('demoBoard'); if(!el) return; var n = 5, cells, idx = function(r, c){ return r * n + c; }, timers = [], stepEls = document.querySelectorAll('#demoSteps .step'), why = document.getElementById('demoWhy');
-    var WHY = ['Not what is next to it. What it can see: the whole line, until something blocks it.', 'The 2 on the right edge sees exactly two bombs along its row. Both unknown tiles in that direction must be bombs.', 'The 1 below sees one bomb down its column, but the 0 on the tile at the bottom sees none along its row. So the bomb is the nearer one.', 'Everything the numbers cannot account for is safe. No guessing was needed, and never is.'];
+    var el = document.getElementById('demoBoard'); if(!el) return; var timers = [], stepEls = document.querySelectorAll('#demoSteps .step'), why = document.getElementById('demoWhy'), B;
+    var SPEC = { bombs: [[2,2],[2,3],[3,1]] };
+    var WHY = ['Not what is next to it. What it can see: the whole line, until something blocks it.', 'The 2 on the right edge sees exactly two bombs along its row. Both unknown tiles in that direction must be bombs.', 'The 1 below sees one bomb somewhere down its column. The corner tile shows ×: it sees no bombs in any direction, so the tile beside it is safe. The bomb is the nearer one.', 'Everything the numbers cannot account for is safe. No guessing was needed, and never is.'];
     function t(fn, ms){ timers.push(setTimeout(fn, ms)); }
     function clear(){ timers.forEach(clearTimeout); timers = []; }
-    function beam(r, c, dir, len){ var b = document.createElement('div'); b.className = 'beam' + (dir === 'd' ? ' v' : ''); var T = parseFloat(getComputedStyle(el).getPropertyValue('--t')) || 56, pad = 3;
-      if(dir === 'r'){ b.style.left = (pad + (c + 1) * T - 6) + 'px'; b.style.top = (pad + r * T + T * .42) + 'px'; b.style.height = (T * .16) + 'px'; b.style.width = (len * T + 6) + 'px'; }
-      else { b.style.top = (pad + (r + 1) * T - 6) + 'px'; b.style.left = (pad + c * T + T * .42) + 'px'; b.style.width = (T * .16) + 'px'; b.style.height = (len * T + 6) + 'px'; }
+    function T(){ return parseFloat(getComputedStyle(el).getPropertyValue('--t')) || 56; }
+    function beam(r, c, dir, len){ var b = document.createElement('div'); b.className = 'beam' + (dir === 'd' ? ' v' : ''); var s = T(), pad = 3;
+      if(dir === 'r'){ b.style.left = (pad + (c + 1) * s - 6) + 'px'; b.style.top = (pad + r * s + s * .42) + 'px'; b.style.height = (s * .16) + 'px'; b.style.width = (len * s + 6) + 'px'; }
+      else { b.style.top = (pad + (r + 1) * s - 6) + 'px'; b.style.left = (pad + c * s + s * .42) + 'px'; b.style.width = (s * .16) + 'px'; b.style.height = (len * s + 6) + 'px'; }
       el.appendChild(b); requestAnimationFrame(function(){ requestAnimationFrame(function(){ b.classList.add('on'); }); }); return b; }
     function pulse(c){ c.classList.remove('pulse'); void c.offsetWidth; c.classList.add('pulse'); }
-    function caption(k){ stepEls.forEach(function(s){ s.classList.toggle('show', Number(s.dataset.k) === k); }); why.textContent = WHY[k]; }
-    function reset(){ clear(); cells = mkBoard(el, n); caption(-1); why.textContent = WHY[0]; }
+    function hot(k, dir, on){ var e = B.cell(k).querySelector('.e.' + dir); if(e) e.classList.toggle('hot', !!on); }
+    function caption(k){ stepEls.forEach(function(s){ s.classList.toggle('show', Number(s.dataset.k) === k); }); why.textContent = WHY[k < 0 ? 0 : k]; }
+    function reset(){ clear(); B = new Board(el, 5, SPEC); B.cells.forEach(function(c){ c.classList.remove('bomb'); }); caption(-1); }   // bombs stay hidden until a sightline finds them
     var beats = [
-      function(){ // 0: reveal the centre tile with its edge numbers
-        var c = cells[idx(2,1)]; c.classList.add('open'); edge(c, 'r', 2); edge(c, 'd', 1); edge(c, 'l', 0); edge(c, 'u', 0); pulse(c); caption(0);
-      },
-      function(){ // 1: the right-hand 2 sees two bombs along its row
-        var c = cells[idx(2,1)]; c.querySelector('.e.r').classList.add('hot'); beam(2, 1, 'r', 3);
-        t(function(){ cells[idx(2,2)].classList.add('bomb'); pulse(cells[idx(2,2)]); }, 650); t(function(){ cells[idx(2,3)].classList.add('bomb'); pulse(cells[idx(2,3)]); }, 950);
-        t(function(){ cells[idx(2,4)].classList.add('open'); pulse(cells[idx(2,4)]); }, 1250); caption(1);
-      },
-      function(){ // 2: combine: the 1 below + a 0 on another tile pins the bomb
-        var c = cells[idx(2,1)]; c.querySelector('.e.r').classList.remove('hot'); c.querySelector('.e.d').classList.add('hot'); beam(2, 1, 'd', 2);
-        t(function(){ var o = cells[idx(4,3)]; o.classList.add('open'); edge(o, 'l', 0, true); pulse(o); }, 700);
-        t(function(){ var b = document.createElement('div'); b.className = 'beam'; var T = parseFloat(getComputedStyle(el).getPropertyValue('--t')) || 56; b.style.right = (3 + T + 6) + 'px'; b.style.top = (3 + 4 * T + T * .42) + 'px'; b.style.height = (T * .16) + 'px'; b.style.width = (2 * T + 6) + 'px'; b.style.transformOrigin = 'right center'; el.appendChild(b); requestAnimationFrame(function(){ requestAnimationFrame(function(){ b.classList.add('on'); }); }); }, 1000);
-        t(function(){ cells[idx(4,1)].classList.add('open'); pulse(cells[idx(4,1)]); cells[idx(4,2)].classList.add('open'); pulse(cells[idx(4,2)]); }, 1500);
-        t(function(){ cells[idx(3,1)].classList.add('bomb'); pulse(cells[idx(3,1)]); }, 1900); caption(2);
-      },
-      function(){ // 3: everything else is safe
-        el.querySelectorAll('.beam').forEach(function(b){ b.classList.add('off'); }); cells[idx(2,1)].querySelectorAll('.e').forEach(function(e){ e.classList.remove('hot'); });
-        var k = 0; cells.forEach(function(c, i){ if(c.classList.contains('open') || c.classList.contains('bomb')) return; t(function(){ c.classList.add('open'); }, 80 * (k++)); });
-        caption(3);
-      }
+      function(){ pulse(B.open('2,1')); caption(0); },                                   // the clue tile: 2 to the right, 1 below (computed)
+      function(){ hot('2,1', 'r', true); beam(2, 1, 'r', 3);
+        t(function(){ B.cell('2,2').classList.add('bomb'); pulse(B.cell('2,2')); }, 650); t(function(){ B.cell('2,3').classList.add('bomb'); pulse(B.cell('2,3')); }, 950);
+        t(function(){ pulse(B.open('2,4')); }, 1250); caption(1); },
+      function(){ hot('2,1', 'r', false); hot('2,1', 'd', true); beam(2, 1, 'd', 2);
+        t(function(){ pulse(B.open('4,0')); }, 700);                                      // the corner tile sees nothing: ×
+        t(function(){ beam(4, 0, 'r', 4); }, 1000);
+        t(function(){ pulse(B.open('4,1')); pulse(B.open('4,2')); pulse(B.open('4,3')); pulse(B.open('4,4')); }, 1500);
+        t(function(){ B.cell('3,1').classList.add('bomb'); pulse(B.cell('3,1')); }, 1950); caption(2); },
+      function(){ el.querySelectorAll('.beam').forEach(function(b){ b.classList.add('off'); }); hot('2,1', 'd', false); B.openAll(80); caption(3); }
     ];
     var step = -1, auto = true;
-    function next(){ step = (step + 1) % beats.length; if(step === 0) reset(); beats[step](); if(auto) t(next, step === 3 ? 4200 : 2600); }
+    function next(){ step = (step + 1) % beats.length; if(step === 0) reset(); beats[step](); if(auto) t(next, step === 3 ? 4200 : 2800); }
     function replay(){ auto = true; step = -1; reset(); next(); }
     document.getElementById('demoReplay').addEventListener('click', replay);
     document.getElementById('demoStep').addEventListener('click', function(){ auto = false; clear(); if(step >= beats.length - 1){ step = -1; reset(); } step = step + 1; beats[step](); });
-    if(RM){ // reduced motion: the finished example, no timers
-      reset(); step = 3; beats[0](); clear(); beats[1](); clear(); beats[2](); clear(); cells.forEach(function(c){ if(!c.classList.contains('bomb')) c.classList.add('open'); }); el.querySelectorAll('.beam').forEach(function(b){ b.remove(); }); cells[idx(2,2)].classList.add('bomb'); cells[idx(2,3)].classList.add('bomb'); cells[idx(3,1)].classList.add('bomb'); caption(3); auto = false;
-    } else {
-      reset(); var started = false; var so = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting || started) return; started = true; replay(); so.unobserve(el); }); }, { threshold: .4 }); so.observe(el);
-    }
+    if(RM){ reset(); for(var k in B.bombs) B.cell(k).classList.add('bomb'); B.openAll(0); caption(3); auto = false; }
+    else { reset(); var started = false; var so = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting || started) return; started = true; replay(); so.unobserve(el); }); }, { threshold: .4 }); so.observe(el); }
   })();
 
   // ---- falling tiles (verbatim from the press page). ?static=1 turns them off (renders, PDF, screenshots).
@@ -569,10 +617,10 @@
     function(el){ },
   ];
   var live = [], MAX = (innerWidth < 640) ? 2 : 4, G = 1900, REST = 0.42, colliders = [], colTs = 0;
-  function refreshColliders(){ colliders = []; document.querySelectorAll('[data-hit]').forEach(function(n){ var r = n.getBoundingClientRect(); if(r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight) colliders.push({ el: n, r: r }); }); colTs = performance.now(); }
+  function refreshColliders(){ colliders = []; document.querySelectorAll('[data-hit]').forEach(function(n){ if(n.closest('[hidden]')) return; var cs = getComputedStyle(n); if(cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) < .95 || (n.classList.contains('rv') && !n.classList.contains('in'))) return; var r = n.getBoundingClientRect(); if(r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight) colliders.push({ el: n, r: r }); }); colTs = performance.now(); }
   function spawn(){ if(live.length >= MAX || document.hidden) return; var el = document.createElement('div'); el.className = 'fx-tile'; KINDS[(Math.random() * KINDS.length) | 0](el); var size = 38 + Math.random() * 16; el.style.width = size + 'px'; el.style.height = size + 'px'; document.body.appendChild(el); live.push({ el: el, s: size, x: 20 + Math.random() * (innerWidth - 40 - size), y: -size - 10, vx: (Math.random() - 0.5) * 60, vy: 0, rot: (Math.random() - 0.5) * 30, vr: (Math.random() - 0.5) * 60, last: performance.now(), bounced: {} }); }
   function frame(now){
-    if(now - colTs > 900) refreshColliders();
+    if(now - colTs > 120) refreshColliders();   // reveal transitions move elements: re-measure often so a tile only bounces on what is really there
     for(var i = live.length - 1; i >= 0; i--){ var t = live[i]; var dt = Math.min(0.033, (now - t.last) / 1000); t.last = now; t.vy += G * dt; t.x += t.vx * dt; t.y += t.vy * dt; t.rot += t.vr * dt;
       if(t.vy > 0){ for(var c = 0; c < colliders.length; c++){ var cc = colliders[c], r = cc.r, bx = t.x, by = t.y + t.s; if(by >= r.top && by <= r.top + Math.max(14, t.vy * dt + 8) && bx + t.s > r.left + 4 && bx < r.right - 4 && !t.bounced[c]){ t.bounced[c] = 1; t.vy = -t.vy * REST; t.vx += (Math.random() - 0.5) * 140; t.vr = (Math.random() - 0.5) * 260; t.y = r.top - t.s; cc.el.classList.remove('fx-bump'); void cc.el.offsetWidth; cc.el.classList.add('fx-bump'); break; } } }
       if(t.y > innerHeight + 80){ t.el.remove(); live.splice(i, 1); continue; }
