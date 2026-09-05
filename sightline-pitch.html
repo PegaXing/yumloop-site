@@ -276,7 +276,7 @@
   <section class="chapter" id="depth">
     <div class="kicker q rv">One rule, increasing depth</div>
     <h2 class="rv" data-hit>The board changes. The rule doesn’t.</h2>
-    <p class="sub rv" data-hit style="margin:-6px 0 22px">Clips from the real game. Each shows a sightline meeting the mechanic named exactly as the game names it.</p>
+    <p class="sub rv" data-hit style="margin:-6px 0 22px">Clips from the real game. Each feature and mechanic is highlighted below.</p>
     <hr class="rule">
     <div class="mechs">
       <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/walls.mp4" poster="pitch/clips/walls.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline stopping at a wall"></video><img class="print-only" src="pitch/clips/walls.jpg" alt=""></div><div class="b"><div class="k">Level 5</div><div class="t">Walls</div><p>Sightlines stop dead at a wall and cannot see past it.</p></div></figure>
@@ -308,7 +308,7 @@
     <h2 class="rv" data-hit>It started with one question.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>What if a Minesweeper-style clue didn’t tell you what was immediately around it, but instead told you what it could <em>see</em>?</p>
-    <p class="quote rv" data-hit>That created a visual rule that takes seconds to understand but opens a surprisingly large space for deduction.</p>
+    <p class="quote rv" data-hit>The results created a visual rule that takes seconds to understand but opens a surprisingly large space for unique gameplay.</p>
     <p class="quote rv" data-hit>I love games where complexity emerges from a small number of consistent rules rather than continually adding exceptions, and Sightline grew naturally from that idea.</p>
     <p class="kicker rv" style="margin-top:18px">— Yoni, designer</p>
   </section>
@@ -430,7 +430,7 @@
   <!-- 10 · NEEDS -->
   <section class="chapter" id="needs">
     <div class="kicker q rv">What do you need to get there?</div>
-    <h2 class="rv" data-hit>I can release Sightline independently. I’m looking for a partner who can make the opportunity bigger.</h2>
+    <h2 class="rv" data-hit>I’m looking for a partner who can make the opportunity bigger.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>Sightline’s core development has already been self-funded and is substantially complete, so I’m not primarily seeking financing to turn a prototype into a finished game.</p>
     <p class="quote rv" data-hit>I’m looking for a publishing partner who can materially increase Sightline’s potential through:</p>
@@ -624,7 +624,9 @@
   ];
   var live = [], MAX = (innerWidth < 640) ? 2 : 4, G = 1900, REST = 0.42, colliders = [], colTs = 0;
   function refreshColliders(){ colliders = []; document.querySelectorAll('[data-hit]').forEach(function(n){ if(n.closest('[hidden]')) return; var cs = getComputedStyle(n); if(cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) < .95 || (n.classList.contains('rv') && !n.classList.contains('in'))) return; var r = n.getBoundingClientRect(); if(r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight) colliders.push({ el: n, r: r }); }); colTs = performance.now(); }
-  function spawn(){ if(live.length >= MAX || document.hidden) return; var el = document.createElement('div'); el.className = 'fx-tile'; KINDS[(Math.random() * KINDS.length) | 0](el); var size = 38 + Math.random() * 16; el.style.width = size + 'px'; el.style.height = size + 'px'; document.body.appendChild(el); live.push({ el: el, s: size, x: 20 + Math.random() * (innerWidth - 40 - size), y: -size - 10, vx: (Math.random() - 0.5) * 60, vy: 0, rot: (Math.random() - 0.5) * 30, vr: (Math.random() - 0.5) * 60, last: performance.now(), bounced: {} }); }
+  var heroEl = document.getElementById('top');
+  function heroOnScreen(){ try { return !heroEl || heroEl.getBoundingClientRect().bottom > 0; } catch(_){ return true; } }   // tiles fall only over the hero; scrolling back up brings them back
+  function spawn(){ if(live.length >= MAX || document.hidden || !heroOnScreen()) return; var el = document.createElement('div'); el.className = 'fx-tile'; KINDS[(Math.random() * KINDS.length) | 0](el); var size = 38 + Math.random() * 16; el.style.width = size + 'px'; el.style.height = size + 'px'; document.body.appendChild(el); live.push({ el: el, s: size, x: 20 + Math.random() * (innerWidth - 40 - size), y: -size - 10, vx: (Math.random() - 0.5) * 60, vy: 0, rot: (Math.random() - 0.5) * 30, vr: (Math.random() - 0.5) * 60, last: performance.now(), bounced: {} }); }
   function frame(now){
     if(now - colTs > 120) refreshColliders();   // reveal transitions move elements: re-measure often so a tile only bounces on what is really there
     for(var i = live.length - 1; i >= 0; i--){ var t = live[i]; var dt = Math.min(0.033, (now - t.last) / 1000); t.last = now; t.vy += G * dt; t.x += t.vx * dt; t.y += t.vy * dt; t.rot += t.vr * dt;
