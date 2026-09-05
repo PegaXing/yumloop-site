@@ -111,15 +111,17 @@
   .trailer.playing .play{display:none}
   /* product / devices: Valve's Steam Deck OLED press render and Apple's iPhone 17 Pro product bezel, with the
      game's own clips sitting exactly on their screens. The screen rectangles are measured from the PNGs. */
-  .devices{display:grid; grid-template-columns:1.6fr .6fr; gap:clamp(18px,3vw,48px); align-items:end}
-  .dev{position:relative}
+  .devices{display:grid; grid-template-columns:1.6fr .6fr; gap:clamp(18px,3vw,48px); align-items:stretch}
+  .dev{position:relative; display:flex; flex-direction:column; justify-content:flex-end}
   .dev .frame{position:relative}
+  .dev.phone .frame{flex:1 1 auto; min-height:0; aspect-ratio:1350/2760; width:auto; margin:0 auto; max-width:100%}
+  .dev.phone .frame .shell{height:100%; width:auto; max-width:100%}
   .dev .shell{position:relative; display:block; width:100%; height:auto; z-index:1; pointer-events:none}
   .dev .scr{position:absolute; overflow:hidden; background:#000}
   .dev .scr video,.dev .scr img{width:100%; height:100%; object-fit:cover; display:block}
-  .dev.deck .scr{left:23.66%; top:8.67%; width:52.8%; height:82%; z-index:2}                 /* the OLED panel in the render */
-  .dev.phone{width:min(300px,100%); margin:0 auto 0 auto}
-  .dev.phone .scr{left:5.33%; top:4.35%; width:89.33%; height:93.1%; border-radius:12% / 6%; z-index:0}   /* behind the bezel's transparent cut-out */
+  .dev.deck .scr{left:24.21%; top:23.98%; width:51.68%; height:62.76%; z-index:2}             /* the OLED panel in the render (crop 300..2200 × 0..980 of Valve's 2500×980 PNG, shadow included) */
+  .dev.phone{width:100%}
+  .dev.phone .scr{left:5.33%; top:2.5%; width:89.33%; height:94.96%; border-radius:12% / 6%; z-index:0; background:#fbf8f1}   /* the bezel's full screen opening (measured from the PNG), behind its transparent cut-out */
   .dev .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:16px; text-align:center}
   /* entrance: the Deck rises and settles, the phone drifts in from the right, then floats */
   .dev.rv{transform:translateY(60px) rotate(1.5deg); transition:opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1)}
@@ -186,7 +188,7 @@
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
   .rv.in{opacity:1; transform:none}
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone .frame{flex:none; height:auto; width:min(280px,100%)} .dev.phone .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
   @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
   @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
   /* print: the PDF version. Static, white, no video, each chapter on its own page. */
@@ -238,7 +240,7 @@
   <!-- FOR THE SCOUT: what a publisher's pitch checklist asks for, in one glance -->
   <section class="tight" id="scout">
     <div class="scout rv" data-hit>
-      <div><b>Playable build</b>macOS and Windows, standalone (no store client). Opens straight into the game; no intro to skip. Windowed or fullscreen; mouse, keyboard and controller. Controls listed in Settings.</div>
+      <div><b>Playable build</b>Standalone, no store client: <a href="#" data-link="build">macOS</a> (notarized) and <a href="#" data-link="buildWindows">Windows</a>. Opens straight into the game; no intro to skip. Windowed or fullscreen; mouse, keyboard and controller. Controls listed in Settings.</div>
       <div><b>Checkpoints</b>Settings → <em>Explore mechanics</em> jumps to the level that introduces each mechanic (Walls, Channels, Purple tiles, Mirrors, One-way arrows, Portals) or to any of the 400 levels.</div>
       <div><b>Video</b>The 48-second trailer below doubles as a playthrough of the mechanics, and every clip on this page is captured from the real game.</div>
       <div><b>Budget</b><span id="budgetLine">Development to a releasable PC 1.0 is complete and self-funded. Remaining development spend is release polish and certification; a figure in USD is available on request.</span></div>
@@ -318,7 +320,7 @@
     <div class="devices">
       <div class="dev deck rv" data-hit>
         <div class="frame"><div class="scr"><video src="pitch/clips/deck.mp4" poster="pitch/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline running on Steam Deck"></video><img class="print-only" src="pitch/clips/mirrors.jpg" alt=""></div>
-        <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1400" height="565" loading="lazy"></div>
+        <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1500" height="774" loading="lazy"></div>
         <div class="lbl">Steam Deck · Steam · Windows · macOS</div>
       </div>
       <div class="dev phone rv" data-hit>
@@ -523,7 +525,7 @@
     var k = a.getAttribute('data-link'), url = L[k];
     if(k === 'trailer'){ a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('trailer').scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); setTimeout(playTrailer, RM ? 0 : 600); }); return; }
     if(url){ a.href = url; if(/^https?:/.test(url) || k === 'pdf'){ a.target = '_blank'; a.rel = 'noopener'; } if(k === 'pdf'){ a.removeAttribute('target'); } }
-    else { a.href = 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Sightline — ' + a.textContent.trim()); a.classList.remove('solid'); a.classList.add('muted'); a.title = 'Sent on request'; a.textContent = a.textContent.trim() + ' · on request'; }
+    else { a.href = 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Sightline — ' + a.textContent.trim()); a.classList.remove('solid'); a.classList.add('muted'); a.title = 'Sent on request'; if(a.closest('.actions')) a.textContent = a.textContent.trim() + ' · on request'; }
   });
   // ---- trailer
   var v = document.getElementById('trailerVideo'), box = document.getElementById('trailerBox');
