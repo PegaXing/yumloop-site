@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=JetBrains+Mono:wght@500&family=Nunito+Sans:wght@400;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
 <script src="pitch/config.js"></script>
 <style>
   :root{ --blue:#140FD7; --lilac:#BFA6FD; --gold:#F5B301; --red:#ff2e2e; --chan:#0040f7; --nbr:#a040d8; --mirror:#f2b78f; --cell:#c9caff; --ink:#06062B;
@@ -55,8 +55,8 @@
   .actions a.muted{color:rgba(255,255,255,.7); border-style:dashed}
   /* hero */
   .hero{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(20px,3vw,44px) 0 clamp(30px,4vw,60px)}
-  .lockup{width:min(440px,100%); margin:0 0 18px} .lockup img{width:100%} .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
-  .close .lockup{margin:0 auto 10px; text-align:center}
+  .lockup{width:min(520px,100%); margin:0 0 18px} .lockup .wm{font-family:'Nunito Sans',Archivo,sans-serif; font-weight:400; font-size:clamp(30px,5vw,66px); line-height:1; letter-spacing:.42em; text-indent:.42em; text-transform:uppercase; color:#fff; white-space:nowrap}   /* the game's main-menu wordmark, verbatim styling */ .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
+  .close .lockup{margin:0 auto 10px; text-align:center; width:auto}
   .scout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px} .scout div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14px; line-height:1.45; color:rgba(255,255,255,.9)} .scout div b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--lilac); margin-bottom:8px}
   /* mini board (mechanic demo + decorative boards) */
   .board{--n:5; --t:56px; display:grid; grid-template-columns:repeat(var(--n),var(--t)); grid-auto-rows:var(--t); gap:0; position:relative; margin:0 auto; width:max-content; background:#000; padding:3px; box-shadow:10px 10px 0 #000}
@@ -185,7 +185,7 @@
   section.inv .needs span{border-color:var(--blue); color:var(--blue)}
   section.inv .meter .l{color:#6b6d8a} section.inv .meter .bar{background:#eceefc; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .meter .bar i{background:var(--blue)} section.inv .meter .v{color:var(--ink)}
   section.inv a{color:var(--blue)}
-  section.inv .lockup img{filter:invert(1) hue-rotate(180deg) brightness(.35)}
+  
   @media print{ section.inv::before{display:none} }
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
@@ -208,7 +208,7 @@
     section{padding:10mm 0; break-inside:avoid}
     section.chapter{break-before:page}
     .board{box-shadow:none; margin:0}
-    .lockup img{filter:invert(1)} .lockup .lp{color:var(--ink); border-color:var(--ink)}
+    .lockup .wm,.lockup .lp{color:var(--ink)} .lockup .lp{border-color:var(--ink)}
     .close{padding-top:10mm}
   }
   .print-only{display:none}
@@ -224,7 +224,7 @@
   <!-- 1 · HERO -->
   <section class="hero" id="top">
     <div>
-      <div class="lockup rv" data-hit><img src="sightline-logo.png" alt="Sightline" width="1200" height="300"><span class="lp">Logic puzzle</span></div>
+      <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline">Sightline</div><span class="lp">Logic puzzle</span></div>
       <h1 class="rv" data-hit>Every number can see something.</h1>
       <p class="lede rv" data-hit>Sightline is a pure-deduction puzzle game where numbers tell you how many bombs they can see.</p>
       <p class="sub rv" data-hit>Every puzzle has a logical solution. <b style="color:var(--gold);font-weight:600">No guessing. No luck. Just deduction.</b></p>
@@ -250,7 +250,6 @@
 
   <!-- 2 · WHAT ARE YOU DOING -->
   <section class="chapter" id="what">
-    <div class="kicker q rv">What are you doing?</div>
     <h2 class="rv" data-hit>One rule. Read it in seconds.</h2>
     <hr class="rule">
     <div class="demo">
@@ -274,7 +273,6 @@
 
   <!-- 3 · DEPTH -->
   <section class="chapter" id="depth">
-    <div class="kicker q rv">One rule, increasing depth</div>
     <h2 class="rv" data-hit>The board changes. The rule doesn’t.</h2>
     <p class="sub rv" data-hit style="margin:-6px 0 22px">Clips from the real game. Each feature and mechanic is highlighted below.</p>
     <hr class="rule">
@@ -304,18 +302,16 @@
 
   <!-- 4 · WHY -->
   <section class="chapter inv" id="why">
-    <div class="kicker q rv">Why are you doing it?</div>
     <h2 class="rv" data-hit>It started with one question.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>What if a Minesweeper-style clue didn’t tell you what was immediately around it, but instead told you what it could <em>see</em>?</p>
-    <p class="quote rv" data-hit>The results created a visual rule that takes seconds to understand but opens a surprisingly large space for unique gameplay.</p>
+    <p class="quote rv" data-hit>The result was a visual rule that takes seconds to understand but opens a surprisingly large space for unique gameplay.</p>
     <p class="quote rv" data-hit>I love games where complexity emerges from a small number of consistent rules rather than continually adding exceptions, and Sightline grew naturally from that idea.</p>
     <p class="kicker rv" style="margin-top:18px">— Yoni, designer</p>
   </section>
 
   <!-- 5 · PRODUCT -->
   <section class="chapter" id="product">
-    <div class="kicker q rv">The product</div>
     <h2 class="rv" data-hit>One game. Every screen. One save.</h2>
     <hr class="rule">
     <div class="devices">
@@ -366,7 +362,6 @@
 
   <!-- 6 · STATUS -->
   <section class="chapter inv" id="status">
-    <div class="kicker q rv">Development status</div>
     <h2 class="rv" data-hit>Built. Tested. Not yet launched.</h2>
     <hr class="rule">
     <div class="status">
@@ -386,7 +381,6 @@
 
   <!-- 7 · OPPORTUNITY -->
   <section class="chapter" id="opportunity">
-    <div class="kicker q rv">The launch opportunity</div>
     <h2 class="rv" data-hit>The game exists. The audience is still to be built.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>Sightline has not yet had a meaningful public marketing campaign, and it does not yet have an established audience.</p>
@@ -399,7 +393,6 @@
 
   <!-- 8 · WHO -->
   <section class="chapter inv" id="who">
-    <div class="kicker q rv">Who are you?</div>
     <h2 class="rv" data-hit>Yumloop.</h2>
     <hr class="rule">
     <div class="who">
@@ -410,7 +403,7 @@
       </div>
       <div class="card rv" data-hit>
         <p class="role">Yoni · Founder / Designer</p>
-        <p>Former Rockstar designer, with credits on Red Dead Redemption 2 and Grand Theft Auto VI. Based in Scotland.</p>
+        <p>Former Rockstar designer, with credits on Grand Theft Auto V, Red Dead Redemption 2 and Grand Theft Auto VI. Based in Scotland.</p>
         <p>Designed and built Sightline across every platform above, solo.</p>
       </div>
     </div>
@@ -418,7 +411,6 @@
 
   <!-- 9 · WHERE -->
   <section class="chapter inv" id="where">
-    <div class="kicker q rv">Where do you want to go?</div>
     <h2 class="rv" data-hit>A real first audience, then a studio that lasts.</h2>
     <hr class="rule">
     <div class="who">
@@ -429,7 +421,6 @@
 
   <!-- 10 · NEEDS -->
   <section class="chapter" id="needs">
-    <div class="kicker q rv">What do you need to get there?</div>
     <h2 class="rv" data-hit>I’m looking for a partner who can make the opportunity bigger.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>Sightline’s core development has already been self-funded and is substantially complete, so I’m not primarily seeking financing to turn a prototype into a finished game.</p>
@@ -440,7 +431,6 @@
 
   <!-- 11 · WHEN -->
   <section class="chapter" id="when">
-    <div class="kicker q rv">When will you be there?</div>
     <h2 class="rv" data-hit>Ready to move quickly.</h2>
     <hr class="rule">
     <p class="big rv" data-hit>Target launch: <span id="launchDate">Q4 2026</span> — flexible with publishing strategy.</p>
@@ -450,7 +440,6 @@
 
   <!-- 12 · WHY YOU (generic by default; pitch/config.js can swap in a named version with ?to=KEY) -->
   <section class="chapter inv" id="whyyou">
-    <div class="kicker q rv">Why you?</div>
     <h2 class="rv" data-hit>Why I’m writing to <span data-pub-name>you</span>.</h2>
     <hr class="rule">
     <div id="whyyouCopy">
@@ -462,7 +451,6 @@
 
   <!-- 13 · PARTNERSHIP -->
   <section class="chapter inv" id="partnership">
-    <div class="kicker q rv">The partnership</div>
     <h2 class="rv" data-hit>Sightline first. Yumloop alongside.</h2>
     <hr class="rule">
     <p class="quote rv" data-hit>I’m seeking a publishing partnership around Sightline while building Yumloop as an independent long-term games company.</p>
@@ -471,7 +459,7 @@
 
   <!-- 14 · CLOSE -->
   <section class="close chapter" id="close">
-    <div class="lockup rv" data-hit><img src="sightline-logo.png" alt="Sightline" width="1200" height="300"><span class="lp">Logic puzzle</span></div>
+    <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline">Sightline</div><span class="lp">Logic puzzle</span></div>
     <h2 class="rv" data-hit>Every number can see something.</h2>
     <p class="sub rv" data-hit style="margin:0 auto">Sightline is substantially complete and available to play now. I’d love to hear what you think.</p>
     <div class="actions rv" data-hit>
