@@ -30,7 +30,7 @@
   :focus-visible{outline:2px solid #fff; outline-offset:4px}
   .wrap{width:min(1120px, 100% - clamp(40px,8vw,120px)); margin:0 auto}
   header.top{display:flex; align-items:center; justify-content:space-between; padding:clamp(20px,3vw,34px) 0; gap:16px}
-  .brand{width:min(180px,40vw)}
+  .brand{width:min(180px,40vw); margin-left:-10.4%; margin-left:calc(min(180px,40vw) * -0.104)}   /* the PNG's own left padding, so the Y sits on the column edge like everything below it */
   .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62)}
   .kicker.q{color:var(--lilac)}
   h1{font-family:var(--display); font-weight:800; font-size:clamp(38px,6.4vw,88px); line-height:.96; letter-spacing:-.02em; margin:.25em 0 .35em; text-wrap:balance}
@@ -55,8 +55,8 @@
   .actions a.muted{color:rgba(255,255,255,.7); border-style:dashed}
   /* hero */
   .hero{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(20px,3vw,44px) 0 clamp(30px,4vw,60px)}
-  .lockup{width:min(520px,100%); margin:0 0 18px} .lockup .wm{font-family:'Nunito Sans',Archivo,sans-serif; font-weight:400; font-size:clamp(30px,5vw,66px); line-height:1; letter-spacing:.42em; text-indent:.42em; text-transform:uppercase; color:#fff; white-space:nowrap}   /* the game's main-menu wordmark, verbatim styling */ .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
-  .close .lockup{margin:0 auto 10px; text-align:center; width:auto}
+  .lockup{width:min(520px,100%); margin:0 0 18px} .lockup .wm{font-family:'Nunito Sans',Archivo,sans-serif; font-weight:400; font-size:clamp(30px,5vw,66px); line-height:1; letter-spacing:.42em; text-indent:0; margin-left:-.06em; text-transform:uppercase; color:#fff; white-space:nowrap}   /* the game's main-menu wordmark, verbatim styling */ .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
+  .close .lockup{margin:0 auto 10px; text-align:center; width:auto} .close .lockup .wm{text-indent:.42em; margin-left:0}
   .scout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px} .scout div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14px; line-height:1.45; color:rgba(255,255,255,.9)} .scout div b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--lilac); margin-bottom:8px}
   /* mini board (mechanic demo + decorative boards) */
   .board{--n:5; --t:56px; display:grid; grid-template-columns:repeat(var(--n),var(--t)); grid-auto-rows:var(--t); gap:0; position:relative; margin:0 auto; width:max-content; background:#000; padding:3px; box-shadow:10px 10px 0 #000}
@@ -227,7 +227,7 @@
       <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline">Sightline</div><span class="lp">Logic puzzle</span></div>
       <h1 class="rv" data-hit>Every number can see something.</h1>
       <p class="lede rv" data-hit>Sightline is a pure-deduction puzzle game where numbers tell you how many bombs they can see.</p>
-      <p class="sub rv" data-hit>Every puzzle has a logical solution. <b style="color:var(--gold);font-weight:600">No guessing. No luck. Just deduction.</b></p>
+      <p class="sub rv" data-hit style="max-width:36ch">Every puzzle has a logical solution. <b style="color:var(--gold);font-weight:600">No guessing. No luck. Just deduction.</b></p>
       <div class="actions rv" data-hit>
         <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch trailer</a>
         <a href="#" data-link="build">Download Mac build</a>
