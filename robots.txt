@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /sightline-pitch.html
+Disallow: /pitch/
 
 Sitemap: https://yumloop.net/sitemap.xml
