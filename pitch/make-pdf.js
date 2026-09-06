@@ -19,7 +19,7 @@ app.whenReady().then(async () => {
   // device mockups as PNGs
   fs.mkdirSync(path.join(__dirname, 'devices'), { recursive: true });
   const devs = await win.webContents.executeJavaScript(`document.documentElement.style.scrollBehavior='auto'; [...document.querySelectorAll('.devices .dev')].map(d => { const r = d.getBoundingClientRect(); return { x: r.left, y: r.top + scrollY, w: r.width, h: r.height, label: d.querySelector('.lbl').textContent }; })`);
-  const names = ['steam-deck-mockup', 'iphone-mockup'];
+  const names = ['iphone-mockup', 'steam-deck-mockup', 'switch-box-mockup'];
   for(let i = 0; i < devs.length; i++){
     const d = devs[i];
     await win.webContents.executeJavaScript(`document.documentElement.style.scrollBehavior='auto'; scrollTo({ top: ${Math.max(0, d.y - 40)}, behavior: 'instant' }); 1`);

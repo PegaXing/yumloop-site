@@ -113,7 +113,11 @@
   .trailer.playing .play{display:none}
   /* product / devices: Valve's Steam Deck OLED press render and Apple's iPhone 17 Pro product bezel, with the
      game's own clips sitting exactly on their screens. The screen rectangles are measured from the PNGs. */
-  .devices{display:grid; grid-template-columns:1.75fr .5fr; gap:clamp(18px,3vw,48px); align-items:end}
+  .devices{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:clamp(18px,3vw,48px); align-items:end; justify-items:center}
+  .dev.deck{width:100%; justify-self:stretch}
+  .dev.box .frame{aspect-ratio:862/1516; width:min(240px,100%); margin:0 auto}
+  .dev.box .frame .shell{width:100%; height:auto; filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
+  .dev.box.sized .frame{width:auto; height:var(--ph)} .dev.box.sized .frame .shell{height:100%; width:auto}
   .dev{position:relative; display:flex; flex-direction:column; justify-content:flex-end}
   .dev .frame{position:relative}
   .dev.phone .frame{aspect-ratio:1350/2760; width:min(300px,100%); margin:0 auto}
@@ -129,6 +133,7 @@
   /* entrance: the Deck rises and settles, the phone drifts in from the right, then floats */
   .dev.rv{transform:translateY(60px) rotate(1.5deg); transition:opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1)}
   .dev.phone.rv{transform:translate(48px,30px) rotate(-3deg)}
+  .dev.box.rv{transform:translate(-48px,30px) rotate(3deg)}
   .dev.rv.in{transform:none}
   .dev.phone.rv.in .frame{animation:float 6s ease-in-out 1s infinite}
   @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
@@ -197,7 +202,7 @@
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
   .rv.in{opacity:1; transform:none}
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone.sized .frame{height:auto; width:min(280px,100%)} .dev.phone.sized .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone.sized .frame{height:auto; width:min(280px,100%)} .dev.phone.sized .frame .shell{width:100%; height:auto} .dev.box.sized .frame{height:auto; width:min(240px,100%)} .dev.box.sized .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
   @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
   @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
   /* print: the PDF version. Static, white, no video, each chapter on its own page. */
@@ -325,15 +330,19 @@
     <h2 class="rv" data-hit>One game. Every screen. One save.</h2>
     <hr class="rule">
     <div class="devices">
+      <div class="dev phone rv" data-hit>
+        <div class="frame"><div class="scr"><video src="press/sightline.mp4" poster="press/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline on iPhone"></video><img class="print-only" src="press/poster.jpg" alt=""></div>
+        <img class="shell" src="pitch/devices/iphone-17-pro.png" alt="iPhone 17 Pro" width="1350" height="2760" loading="lazy"></div>
+        <div class="lbl">iPhone · iPad · Android</div>
+      </div>
       <div class="dev deck rv" data-hit>
         <div class="frame"><div class="scr"><video src="pitch/clips/deck.mp4" poster="pitch/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline running on Steam Deck"></video><img class="print-only" src="pitch/clips/mirrors.jpg" alt=""></div>
         <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1500" height="651" loading="lazy"></div>
         <div class="lbl">Steam Deck · Steam · Windows · macOS</div>
       </div>
-      <div class="dev phone rv" data-hit>
-        <div class="frame"><div class="scr"><video src="press/sightline.mp4" poster="press/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline on iPhone"></video><img class="print-only" src="press/poster.jpg" alt=""></div>
-        <img class="shell" src="pitch/devices/iphone-17-pro.png" alt="iPhone 17 Pro" width="1350" height="2760" loading="lazy"></div>
-        <div class="lbl">iPhone · iPad · Android</div>
+      <div class="dev box rv" data-hit>
+        <div class="frame"><img class="shell" src="pitch/devices/switch-box.png" alt="Sightline retail box mock-up for Nintendo Switch" width="862" height="1516" loading="lazy"></div>
+        <div class="lbl">Console · potential</div>
       </div>
     </div>
     <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Steam</span><span>macOS</span><span>Steam Deck</span><span class="soon">Console · potential</span></div>
@@ -546,8 +555,8 @@
     else { a.href = 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Sightline — ' + a.textContent.trim()); a.classList.remove('solid'); a.classList.add('muted'); a.title = 'Sent on request'; if(a.closest('.actions')) a.textContent = a.textContent.trim() + ' · on request'; }
   });
   // ---- phone = exactly the Deck body's height, bottoms aligned (the Deck PNG carries 3.9% air above the body and 8.1% shadow below)
-  (function(){ var deck = document.querySelector('.dev.deck .shell'), phone = document.querySelector('.dev.phone'); if(!deck || !phone) return;
-    function size(){ if(innerWidth <= 980){ phone.classList.remove('sized'); phone.style.removeProperty('--ph'); phone.querySelector('.frame').style.marginBottom = ''; return; } var h = deck.getBoundingClientRect().height; if(!h) return; phone.classList.add('sized'); phone.style.setProperty('--ph', (h * 0.88) + 'px'); phone.querySelector('.frame').style.marginBottom = (h * 0.081) + 'px'; }
+  (function(){ var deck = document.querySelector('.dev.deck .shell'), sides = [].slice.call(document.querySelectorAll('.dev.phone, .dev.box')); if(!deck || !sides.length) return;   // phone (left) and box art (right) are both exactly the Deck body's height
+    function size(){ var h = deck.getBoundingClientRect().height; sides.forEach(function(el){ if(innerWidth <= 980 || !h){ el.classList.remove('sized'); el.style.removeProperty('--ph'); el.querySelector('.frame').style.marginBottom = ''; return; } el.classList.add('sized'); el.style.setProperty('--ph', (h * 0.88) + 'px'); el.querySelector('.frame').style.marginBottom = (h * 0.081) + 'px'; }); }
     size(); addEventListener('resize', size); deck.addEventListener('load', size); setTimeout(size, 600); })();
   // ---- trailer
   var v = document.getElementById('trailerVideo'), box = document.getElementById('trailerBox');
