@@ -15,7 +15,7 @@ window.PITCH = {
   },
 
   launch: 'Q4 2026',
-  budget: '',                                  /* development budget line for the scout panel; '' keeps the default "complete and self-funded … on request" wording */
+  budget: '',                                  /* development budget line for the scout panel; '' keeps the default "complete and self-funded" wording */
                              /* target launch, shown in "When will you be there?" — flexible with publishing strategy */
 
   /* Publisher-specific "Why you?" copy. Keys are what ?to= accepts. */
