@@ -138,6 +138,12 @@
   .feat{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
   .feat div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.4}
   .feat div b{display:block; font-family:var(--display); font-weight:800; font-size:16px; margin-bottom:6px}
+  /* technical: same boxes as .feat, three across; mono label on top */
+  .tech{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
+  .tech div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.45}
+  .tech div b{display:block; font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62); margin-bottom:8px}
+  .tech div strong{display:block; font-family:var(--display); font-weight:800; font-size:16px; margin-bottom:6px}
+  .tech .note{margin-top:14px; font-size:13.5px; color:rgba(255,255,255,.7)}
   /* screenshots */
   .shots{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.8vw,22px)}
   .shot{position:relative; transition:transform .35s cubic-bezier(.22,.61,.36,1)}
@@ -191,7 +197,7 @@
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
   .rv.in{opacity:1; transform:none}
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone.sized .frame{height:auto; width:min(280px,100%)} .dev.phone.sized .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone.sized .frame{height:auto; width:min(280px,100%)} .dev.phone.sized .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
   @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
   @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
   /* print: the PDF version. Static, white, no video, each chapter on its own page. */
@@ -380,6 +386,22 @@
         <p class="t">Sightline is substantially complete, cross-platform and extensively tested — but its public marketing launch is still ahead of it.</p>
         <p>The store pages, builds, achievements and trailer exist today. What hasn’t happened yet is the part a partner changes most.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- 6b · TECHNICAL -->
+  <section class="chapter" id="technical">
+    <div class="kicker rv">Technical</div>
+    <h2 class="rv" data-hit>One codebase. Native on every platform.</h2>
+    <hr class="rule">
+    <p class="sub rv" data-hit>Developed solo by Yumloop. The game is a single hand-written web codebase with no engine or framework, shipped byte-identical inside thin native shells on each platform.</p>
+    <div class="tech rv" data-hit>
+      <div><b>Core technology</b><strong>HTML5 · JavaScript · CSS</strong>No game engine. One shared codebase for every platform; current build v0.10.361.</div>
+      <div><b>Mobile</b><strong>Capacitor 6</strong>iOS 15+ (Capacitor iOS 6.2.1) and Android 5.1+ (Capacitor Android 6.2.2). Native Swift and Java plugins for Game Center, StoreKit 2, CloudKit, Google Play Games Services and Play Billing.</div>
+      <div><b>Desktop</b><strong>Electron 44</strong>Packaged with electron-builder 26. Steamworks via steamworks.js 0.4: achievements, leaderboards, Steam Cloud, Steam Input, rich presence. macOS notarized; Windows build runs on Steam Deck under Proton.</div>
+      <div><b>Source control</b><strong>Git · GitHub</strong>Private repository, single trunk, every release tagged. iOS built by Xcode Cloud; Steam uploads via SteamPipe; Android via the Play Developer API.</div>
+      <div><b>Online</b><strong>Cloudflare Workers + D1</strong>Small account service: silent sign-in through the platform’s own identity (Game Center, Steam), progress-never-decreases cloud sync, one-time link codes across ecosystems, in-app account deletion. Analytics via TelemetryDeck.</div>
+      <div><b>Platforms &amp; key systems</b><strong>iOS · Android · macOS · Windows · Steam · Steam Deck</strong>Cross-save · Cross-device progression · Global leaderboards · Achievements · Daily puzzles. Tested on iOS, Android, macOS, Steam and Steam Deck.</div>
     </div>
   </section>
 
