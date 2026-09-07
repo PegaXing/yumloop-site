@@ -120,7 +120,7 @@
      changed its width, which changed the Deck's column, which changed the Deck's height. That loop had no fixed
      point, and depending on when it ran it could leave the phone enormous and the Deck column collapsed to nothing,
      which is exactly how the Steam Deck went missing while its label stayed. */
-  .devices{display:grid; grid-template-columns:4891fr 23041fr 5686fr; gap:clamp(18px,3vw,48px); align-items:end; justify-items:stretch}
+  .devices{display:grid; grid-template-columns:minmax(0,4891fr) minmax(0,23041fr) minmax(0,5686fr); gap:clamp(18px,3vw,48px); align-items:end; justify-items:stretch}
   .dev.deck{width:100%}
   .dev.deck .frame{aspect-ratio:1500/651; width:100%}
   .dev.box .frame{aspect-ratio:862/1516; width:100%; margin:0 auto}
@@ -135,7 +135,7 @@
   .dev.deck .scr{left:24.21%; top:10.3%; width:51.68%; height:74.55%; z-index:2}              /* the OLED panel in the render (crop 300..2200 × 150..975 of Valve's 2500×980 PNG: body 182..908 + shadow) */
   .dev.phone{width:100%}
   .dev.phone .scr{left:5.33%; top:2.5%; width:89.33%; height:94.96%; border-radius:12% / 6%; z-index:0; background:#fbf8f1}   /* the bezel's full screen opening (measured from the PNG), behind its transparent cut-out */
-  .dev .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:16px; text-align:center}
+  .dev .lbl{min-width:0; overflow-wrap:anywhere; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:16px; text-align:center}
   /* entrance: the Deck rises and settles, the phone drifts in from the right, then floats */
   .dev.rv{transform:translateY(60px) rotate(1.5deg); transition:opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1)}
   .dev.phone.rv{transform:translate(48px,30px) rotate(-3deg)}
