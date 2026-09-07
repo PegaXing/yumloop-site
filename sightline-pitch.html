@@ -579,10 +579,18 @@
     });
     return any;
   }
-  addEventListener('scroll', function(){ if(sweep.t) return; sweep.t = setTimeout(function(){ sweep.t = 0; sweep(); }, 120); }, { passive: true });
+  // scroll is listened for on `document` with capture, not on `window`: a scroll inside a nested container does not
+  // reach window, and a page whose scroller is not the window would never sweep at all.
+  document.addEventListener('scroll', function(){ if(sweep.t) return; sweep.t = setTimeout(function(){ sweep.t = 0; sweep(); }, 120); }, { capture: true, passive: true });
   addEventListener('resize', sweep, { passive: true });
   addEventListener('load', function(){ setTimeout(sweep, 400); });
-  setTimeout(sweep, 1200); setTimeout(sweep, 3000);
+  // Poll briefly rather than relying on two fixed moments. The page runs a permanent physics loop, so the main
+  // thread can be busy enough that an observer callback or a single timer lands after the reader has already
+  // scrolled past. A few measurements a second for fifteen seconds costs nothing and cannot be missed.
+  var sweeps = 0, poll = setInterval(function(){ sweep(); if(++sweeps > 30) clearInterval(poll); }, 500);
+  // Last resort. Content that is still invisible after twenty seconds is a bug, and a missing Steam Deck is far
+  // worse than a skipped animation: show everything, whatever went wrong.
+  setTimeout(function(){ document.querySelectorAll('.rv:not(.in)').forEach(function(el){ el.classList.add('in'); }); }, 20000);
   var mo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; e.target.querySelectorAll('.bar i').forEach(function(b){ b.style.width = b.dataset.w; }); mo.unobserve(e.target); }); }, { threshold: .3 });
   document.querySelectorAll('.meters').forEach(function(m){ mo.observe(m); });
 
@@ -671,8 +679,12 @@
   function refreshColliders(){ colliders = []; document.querySelectorAll('[data-hit]').forEach(function(n){ if(n.closest('[hidden]')) return; var cs = getComputedStyle(n); if(cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) < .95 || (n.classList.contains('rv') && !n.classList.contains('in'))) return; var r = n.getBoundingClientRect(); if(r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight) colliders.push({ el: n, r: r }); }); colTs = performance.now(); }
   var heroEl = document.getElementById('top');
   function heroOnScreen(){ try { return !heroEl || heroEl.getBoundingClientRect().bottom > 0; } catch(_){ return true; } }   // tiles fall only over the hero; scrolling back up brings them back
-  function spawn(){ if(live.length >= MAX || document.hidden || !heroOnScreen()) return; var el = document.createElement('div'); el.className = 'fx-tile'; KINDS[(Math.random() * KINDS.length) | 0](el); var size = 38 + Math.random() * 16; el.style.width = size + 'px'; el.style.height = size + 'px'; document.body.appendChild(el); live.push({ el: el, s: size, x: 20 + Math.random() * (innerWidth - 40 - size), y: -size - 10, vx: (Math.random() - 0.5) * 60, vy: 0, rot: (Math.random() - 0.5) * 30, vr: (Math.random() - 0.5) * 60, last: performance.now(), bounced: {} }); }
+  function spawn(){ if(live.length >= MAX || document.hidden || !heroOnScreen()) return; var el = document.createElement('div'); el.className = 'fx-tile'; KINDS[(Math.random() * KINDS.length) | 0](el); var size = 38 + Math.random() * 16; el.style.width = size + 'px'; el.style.height = size + 'px'; document.body.appendChild(el); live.push({ el: el, s: size, x: 20 + Math.random() * (innerWidth - 40 - size), y: -size - 10, vx: (Math.random() - 0.5) * 60, vy: 0, rot: (Math.random() - 0.5) * 30, vr: (Math.random() - 0.5) * 60, last: performance.now(), bounced: {} }); start(); }   // a new tile restarts the loop the idle check stopped
   function frame(now){
+    // nothing is falling: do not measure the page, and do not keep asking for frames. The loop used to run for the
+    // life of the tab, forcing a layout for every collider eight times a second, which is enough to make a desktop
+    // machine feel sluggish and to delay the reveal callbacks that make sections visible in the first place.
+    if(!live.length){ running = false; return; }
     if(now - colTs > 120) refreshColliders();   // reveal transitions move elements: re-measure often so a tile only bounces on what is really there
     for(var i = live.length - 1; i >= 0; i--){ var t = live[i]; var dt = Math.min(0.033, (now - t.last) / 1000); t.last = now; t.vy += G * dt; t.x += t.vx * dt; t.y += t.vy * dt; t.rot += t.vr * dt;
       if(t.vy > 0){ for(var c = 0; c < colliders.length; c++){ var cc = colliders[c], r = cc.r, bx = t.x, by = t.y + t.s; if(by >= r.top && by <= r.top + Math.max(14, t.vy * dt + 8) && bx + t.s > r.left + 4 && bx < r.right - 4 && !t.bounced[c]){ t.bounced[c] = 1; t.vy = -t.vy * REST; t.vx += (Math.random() - 0.5) * 140; t.vr = (Math.random() - 0.5) * 260; t.y = r.top - t.s; cc.el.classList.remove('fx-bump'); void cc.el.offsetWidth; cc.el.classList.add('fx-bump'); break; } } }
@@ -680,8 +692,10 @@
       t.el.style.transform = 'translate(' + t.x.toFixed(1) + 'px,' + t.y.toFixed(1) + 'px) rotate(' + t.rot.toFixed(1) + 'deg)'; }
     requestAnimationFrame(frame);
   }
-  refreshColliders(); addEventListener('resize', refreshColliders); addEventListener('scroll', function(){ colTs = 0; }, { passive: true });
-  requestAnimationFrame(frame); setTimeout(spawn, 1200); setInterval(spawn, 3200);
+  var running = false;
+  function start(){ if(running) return; running = true; requestAnimationFrame(frame); }
+  refreshColliders(); addEventListener('resize', refreshColliders); document.addEventListener('scroll', function(){ colTs = 0; }, { capture: true, passive: true });
+  setTimeout(spawn, 1200); setInterval(spawn, 3200);
 })();
 </script>
 </body>
