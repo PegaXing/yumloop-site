@@ -113,17 +113,23 @@
   .trailer.playing .play{display:none}
   /* product / devices: Valve's Steam Deck OLED press render and Apple's iPhone 17 Pro product bezel, with the
      game's own clips sitting exactly on their screens. The screen rectangles are measured from the PNGs. */
-  .devices{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:clamp(18px,3vw,48px); align-items:end; justify-items:center}
-  .dev.deck{width:100%; justify-self:stretch}
-  .dev.box .frame{aspect-ratio:862/1516; width:min(240px,100%); margin:0 auto}
-  .dev.box .frame .shell{width:100%; height:auto; filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
-  .dev.box.sized .frame{width:auto; height:var(--ph)} .dev.box.sized .frame .shell{height:100%; width:auto}
+  /* All three devices are exactly the same height, and that is arithmetic rather than measurement. Each column is
+     given a fraction equal to that device's width-at-a-common-height (its aspect ratio), and each frame fills its
+     column at its own aspect ratio — so every frame resolves to width/ratio, which is the same number for all three.
+     This replaces a script that measured the Deck and then set the phone's height from it: the phone's new height
+     changed its width, which changed the Deck's column, which changed the Deck's height. That loop had no fixed
+     point, and depending on when it ran it could leave the phone enormous and the Deck column collapsed to nothing,
+     which is exactly how the Steam Deck went missing while its label stayed. */
+  .devices{display:grid; grid-template-columns:4891fr 23041fr 5686fr; gap:clamp(18px,3vw,48px); align-items:end; justify-items:stretch}
+  .dev.deck{width:100%}
+  .dev.deck .frame{aspect-ratio:1500/651; width:100%}
+  .dev.box .frame{aspect-ratio:862/1516; width:100%; margin:0 auto}
+  .dev.box .frame .shell{width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
   .dev{position:relative; display:flex; flex-direction:column; justify-content:flex-end}
   .dev .frame{position:relative}
-  .dev.phone .frame{aspect-ratio:1350/2760; width:min(300px,100%); margin:0 auto}
-  .dev.phone .frame .shell{width:100%; height:auto}
-  .dev.phone.sized .frame{width:auto; height:var(--ph)} .dev.phone.sized .frame .shell{height:100%; width:auto}
-  .dev .shell{position:relative; display:block; width:100%; height:auto; z-index:1; pointer-events:none}
+  .dev.phone .frame{aspect-ratio:1350/2760; width:100%; margin:0 auto}
+  .dev.phone .frame .shell{width:100%; height:100%; object-fit:contain}
+  .dev .shell{position:relative; display:block; width:100%; height:100%; object-fit:contain; z-index:1; pointer-events:none}
   .dev .scr{position:absolute; overflow:hidden; background:#000}
   .dev .scr video,.dev .scr img{width:100%; height:100%; object-fit:cover; display:block}
   .dev.deck .scr{left:24.21%; top:10.3%; width:51.68%; height:74.55%; z-index:2}              /* the OLED panel in the render (crop 300..2200 × 150..975 of Valve's 2500×980 PNG: body 182..908 + shadow) */
@@ -202,7 +208,7 @@
   /* reveal */
   .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
   .rv.in{opacity:1; transform:none}
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone.sized .frame{height:auto; width:min(280px,100%)} .dev.phone.sized .frame .shell{width:100%; height:auto} .dev.box.sized .frame{height:auto; width:min(240px,100%)} .dev.box.sized .frame .shell{width:100%; height:auto} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone .frame{width:min(280px,100%)} .dev.box .frame{width:min(240px,100%)} .dev.deck .frame{width:100%} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr; justify-items:center} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
   @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
   @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
   /* print: the PDF version. Static, white, no video, each chapter on its own page. */
@@ -555,9 +561,7 @@
     else { a.href = 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Sightline — ' + a.textContent.trim()); a.classList.remove('solid'); a.classList.add('muted'); a.title = 'Sent on request'; if(a.closest('.actions')) a.textContent = a.textContent.trim() + ' · on request'; }
   });
   // ---- phone = exactly the Deck body's height, bottoms aligned (the Deck PNG carries 3.9% air above the body and 8.1% shadow below)
-  (function(){ var deck = document.querySelector('.dev.deck .shell'), sides = [].slice.call(document.querySelectorAll('.dev.phone, .dev.box')); if(!deck || !sides.length) return;   // phone (left) and box art (right) are both exactly the Deck body's height
-    function size(){ var h = deck.getBoundingClientRect().height; sides.forEach(function(el){ if(innerWidth <= 980 || !h){ el.classList.remove('sized'); el.style.removeProperty('--ph'); el.querySelector('.frame').style.marginBottom = ''; return; } el.classList.add('sized'); el.style.setProperty('--ph', (h * 0.88) + 'px'); el.querySelector('.frame').style.marginBottom = (h * 0.081) + 'px'; }); }
-    size(); addEventListener('resize', size); deck.addEventListener('load', size); setTimeout(size, 600); })();
+  // (the device row sizes itself in CSS now — see .devices; the script that measured the Deck is gone)
   // ---- trailer
   var v = document.getElementById('trailerVideo'), box = document.getElementById('trailerBox');
   function playTrailer(){ try { v.play(); box.classList.add('playing'); } catch(_){} }
