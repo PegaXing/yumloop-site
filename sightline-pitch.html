@@ -332,16 +332,16 @@
     <div class="devices">
       <div class="dev phone rv" data-hit>
         <div class="frame"><div class="scr"><video src="press/sightline.mp4" poster="press/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline on iPhone"></video><img class="print-only" src="press/poster.jpg" alt=""></div>
-        <img class="shell" src="pitch/devices/iphone-17-pro.png" alt="iPhone 17 Pro" width="1350" height="2760" loading="lazy"></div>
+        <img class="shell" src="pitch/devices/iphone-17-pro.png" alt="iPhone 17 Pro" width="1350" height="2760"></div>
         <div class="lbl">iPhone · iPad · Android</div>
       </div>
       <div class="dev deck rv" data-hit>
         <div class="frame"><div class="scr"><video src="pitch/clips/deck.mp4" poster="pitch/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline running on Steam Deck"></video><img class="print-only" src="pitch/clips/mirrors.jpg" alt=""></div>
-        <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1500" height="651" loading="lazy"></div>
+        <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1500" height="651"></div>
         <div class="lbl">Steam Deck · Steam · Windows · macOS</div>
       </div>
       <div class="dev box rv" data-hit>
-        <div class="frame"><img class="shell" src="pitch/devices/switch-box.png" alt="Sightline retail box mock-up for Nintendo Switch" width="862" height="1516" loading="lazy"></div>
+        <div class="frame"><img class="shell" src="pitch/devices/switch-box.png" alt="Sightline retail box mock-up for Nintendo Switch" width="862" height="1516"></div>
         <div class="lbl">Switch · mock-up</div>
       </div>
     </div>
@@ -567,6 +567,22 @@
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var el = e.target; setTimeout(function(){ el.classList.add('in'); }, (Number(el.dataset.i) || 0) * 70); io.unobserve(el); }); }, { threshold: .12 });
   function watch(){ document.querySelectorAll('.rv:not(.in)').forEach(function(el, i){ if(el.dataset.w) return; el.dataset.w = 1; el.dataset.i = i % 6; io.observe(el); }); }
   watch();
+  // Safety net: everything on this page starts at opacity 0 and is revealed by the observer above, so if the observer
+  // ever fails to fire — a browser that throttles it, a section laid out after the callback, a restored scroll
+  // position — that content is simply invisible, which is how the device row went missing. This sweeps the same
+  // elements by measuring them directly, on scroll and on a timer, and reveals anything already on screen.
+  function sweep(){
+    var vh = innerHeight || document.documentElement.clientHeight, any = false;
+    document.querySelectorAll('.rv:not(.in)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.height && r.top < vh * 0.92 && r.bottom > 0) el.classList.add('in'); else any = true;
+    });
+    return any;
+  }
+  addEventListener('scroll', function(){ if(sweep.t) return; sweep.t = setTimeout(function(){ sweep.t = 0; sweep(); }, 120); }, { passive: true });
+  addEventListener('resize', sweep, { passive: true });
+  addEventListener('load', function(){ setTimeout(sweep, 400); });
+  setTimeout(sweep, 1200); setTimeout(sweep, 3000);
   var mo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; e.target.querySelectorAll('.bar i').forEach(function(b){ b.style.width = b.dataset.w; }); mo.unobserve(e.target); }); }, { threshold: .3 });
   document.querySelectorAll('.meters').forEach(function(m){ mo.observe(m); });
 
