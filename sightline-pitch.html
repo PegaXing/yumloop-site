@@ -114,6 +114,12 @@
   /* the trailer now opens the pitch: full content width, 16:9, nothing cropped */
   #trailer .trailer{aspect-ratio:16/9}
   #trailer .trailer video{object-fit:contain; background:#000}
+  /* the commercial hook: conversational, sized between the tagline and the body copy */
+  .hook{font-size:clamp(21px,2.15vw,31px); line-height:1.26; letter-spacing:-.01em; max-width:21ch;
+    margin:.55em 0 .7em; color:#fff; text-wrap:balance}
+  .hook .q{color:var(--gold)}
+  .punch{font-family:var(--mono); font-size:clamp(12px,1.05vw,14px); letter-spacing:.13em; text-transform:uppercase;
+    color:var(--gold); margin:1.05em 0 0}
   /* proof strip — one quiet line of scope, wraps on narrow screens */
   .proof{display:flex; flex-wrap:wrap; align-items:center; list-style:none; margin:clamp(16px,1.8vw,22px) 0 0; padding:0;
     font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.74)}
@@ -269,9 +275,9 @@
     <div>
       <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline">Sightline</div><span class="lp">Logic puzzle</span></div>
       <h1 class="rv" data-hit>Every number can see something.</h1>
-      <p class="lede rv" data-hit style="max-width:44ch">Sightline is a pure deduction puzzle game built around one simple twist: clues don’t tell you what’s next to them — <b>they tell you what they can see</b>.</p>
-      <p class="sub rv" data-hit>Read sightlines across the board, work out where the bombs must be, and reveal every safe tile. Walls, channels, mirrors, one-way arrows and portals transform that single rule across hundreds of puzzles — every one logically solvable, with no guessing.</p>
-      <p class="sub rv" data-hit style="margin-top:.75em; color:rgba(255,255,255,.72)">Substantially complete, playable now, and coming to PC and mobile, with console opportunities being explored.</p>
+      <p class="hook rv" data-hit>What if Minesweeper stopped looking next door and started looking <span class="q">across the whole board?</span></p>
+      <p class="sub rv" data-hit>Sightline is a fresh deduction game with the pick-up-and-play simplicity of the best daily puzzles. Every clue tells you how many bombs it can see in a direction. Follow the sightlines, piece together what the board is telling you, and find every safe tile.</p>
+      <p class="punch rv" data-hit>No guessing. No luck. Just one more level.</p>
       <div class="actions rv" data-hit>
         <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch the trailer</a>
         <a href="#play">Play the build</a>
@@ -338,6 +344,7 @@
           <div class="step" data-k="3">Reveal every safe tile.</div>
         </div>
         <p class="why" id="demoWhy">Not what is next to it. What it can see: the whole line, until something blocks it.</p>
+        <p class="sub rv" data-hit style="margin:14px 0 0; max-width:46ch">Built to scratch that same “I’ll just do one” itch as Sudoku, Minesweeper and the best modern daily puzzle games. Except you’ll probably do five.</p>
         <div class="ctl"><button type="button" id="demoReplay">Replay</button><button type="button" id="demoStep">Step</button></div>
         <p class="print-only" style="margin-top:14px;font-size:14px">The board above is the final state of a four-step example: a revealed tile shows edge numbers; a number counts the bombs visible along its line; a second tile that sees nothing rules out its whole row, which pins the bomb; every safe tile is revealed.</p>
       </div>
@@ -347,8 +354,9 @@
   <!-- 3 · DEPTH -->
   <section class="chapter" id="depth">
     <div class="kicker q rv">One rule, increasing depth</div>
-    <h2 class="rv" data-hit>The board changes. The rules don’t.</h2>
-    <p class="sub rv" data-hit style="margin:-6px 0 22px; max-width:none">Clips from the real game. Each feature and mechanic is highlighted below.</p>
+    <h2 class="rv" data-hit>Then Sightline starts messing with you.</h2>
+    <p class="lede rv" data-hit style="margin:-2px 0 14px; max-width:52ch">Walls block your view. Channels carry it. Mirrors bend it. One-way arrows change the rules. Portals send it somewhere else entirely. One simple idea keeps twisting into something new.</p>
+    <p class="sub rv" data-hit style="margin:0 0 22px; max-width:none; color:rgba(255,255,255,.7)">The board changes. The rules don’t. Every clip below is from the real game.</p>
     <hr class="rule">
     <div class="mechs">
       <figure class="mech rv" data-hit><div class="clip"><video src="pitch/clips/walls.mp4" poster="pitch/clips/walls.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline stopping at a wall"></video><img class="print-only" src="pitch/clips/walls.jpg" alt=""></div><div class="b"><div class="k">Level 5</div><div class="t">Walls</div><p>Sightlines stop dead at a wall and cannot see past it.</p></div></figure>
@@ -399,7 +407,7 @@
     </div>
     <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Steam</span><span>macOS</span><span>Steam Deck</span><span class="soon">Console · potential</span></div>
     <div class="feat rv" data-hit>
-      <div><b>400 levels</b>Eight board shapes, a structured progression that introduces each mechanic in its own moment.</div>
+      <div><b>400 levels</b>Seven board shapes, a structured progression that introduces each mechanic in its own moment.</div>
       <div><b>Daily puzzle</b>The same board for everyone that day, with streaks.</div>
       <div><b>Global leaderboards</b>Daily, time challenge and campaign boards across every platform.</div>
       <div><b>Cross-device progression</b>Link a phone to a PC or Deck once; the save follows the player.</div>
@@ -487,12 +495,12 @@
     <div class="who">
       <div class="card rv" data-hit>
         <p class="role">The company</p>
-        <p>Yumloop is a new independent games company founded by Yoni, a former Rockstar designer. Sightline is Yumloop’s first release.</p>
+        <p>Yumloop is a new independent games company founded by Yoni, a former designer at Rockstar North. Sightline is Yumloop’s first release.</p>
         <p>Yumloop is being built as a long-term independent games company focused on original games with strong, immediately understandable mechanical identities.</p>
       </div>
       <div class="card rv" data-hit>
         <p class="role">Yoni · Founder / Designer</p>
-        <p>Former Rockstar designer, with credits on Grand Theft Auto V, Red Dead Redemption 2 and Grand Theft Auto VI. Based in Scotland.</p>
+        <p>Former designer at Rockstar North, with credits on Grand Theft Auto V, Red Dead Redemption 2 and Grand Theft Auto VI. Based in Scotland.</p>
         <p>Created Sightline independently and brought it across every platform above.</p>
       </div>
     </div>
@@ -512,7 +520,7 @@
   <section class="chapter" id="needs">
     <h2 class="rv" data-hit>I’m looking for a partner who can make the opportunity bigger.</h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>Sightline’s core development has already been self-funded and is substantially complete, so I’m not primarily seeking financing to turn a prototype into a finished game.</p>
+    <p class="quote rv" data-hit>This isn’t a prototype. What I’m looking for isn’t someone to fund one. It’s the right partner to turn a finished, polished puzzle game into a much bigger launch.</p>
     <p class="quote rv" data-hit>I’m looking for a publishing partner who can materially increase Sightline’s potential through:</p>
     <div class="needs rv" data-hit><span>Launch strategy</span><span>Marketing</span><span>User acquisition</span><span>Platform relationships</span><span>PR &amp; creators</span><span>Localization</span><span>Release support &amp; QA</span><span>Console strategy &amp; porting</span><span>The right announcement</span></div>
     <p class="quote rv" data-hit>I’m looking for a partner whose involvement can meaningfully change its trajectory.</p>
