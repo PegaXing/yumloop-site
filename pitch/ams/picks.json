@@ -1,0 +1,63 @@
+[
+ {
+  "bucket": "plain",
+  "tag": "L5n5",
+  "difficulty": "Easy",
+  "title": "Core rule",
+  "note": "The × in the bottom-left corner sees no bombs along its row or its column, so both open at once. One of the tiles it reveals looks up an empty column and opens that as well, and from there two clues each see exactly two unknown tiles and read 2: both are bombs, and the rest follows."
+ },
+ {
+  "bucket": "plain",
+  "tag": "L5n17",
+  "difficulty": "Easy / Medium",
+  "title": "A longer chain",
+  "note": "One × opens a cross through the board. Then the 1s down its left flank each see a single tile and pin a bomb one at a time, a 1 near the bottom right looks down to find its bomb, and the last clue reads 2 along a column with exactly two tiles left."
+ },
+ {
+  "bucket": "wall",
+  "tag": "L7n13",
+  "difficulty": "Medium",
+  "title": "Walls",
+  "intro": "wall",
+  "note": "The opening clue looks down a clear column. Near the bottom, a 3 sees exactly three tiles to its left: all bombs. The wall beside the opening hides the top row from it, so the top-left corner has to be reached the long way round, up the left edge and then across."
+ },
+ {
+  "bucket": "mirror",
+  "tag": "L37",
+  "difficulty": "Medium",
+  "title": "Mirrors",
+  "intro": "mirror",
+  "note": "The opened column ends at a clue that sees three tiles to its left and reads 3: the whole top-left is bombs. Later the clue at the foot of the column second from the right looks up, meets the mirror and is bent to the right, clearing a tile that no straight line could reach."
+ },
+ {
+  "bucket": "oneway",
+  "tag": "L51n4",
+  "difficulty": "Medium / Hard",
+  "title": "One-way arrows",
+  "intro": "oneway",
+  "note": "The × opens the left column and, from it, the bottom row. Three clues then each see a single unknown tile and read 1, pinning three bombs in a row across the middle. The arrows let sight cross them only with the arrow, so the right-hand column is read from below, up its full length, rather than from the side."
+ },
+ {
+  "bucket": "portal",
+  "tag": "L76n42",
+  "difficulty": "Hard",
+  "title": "Portals",
+  "intro": "portal",
+  "note": "The opening × clears its column and the bottom-right corner. Then two 1-clues each look into a portal: one looks left, comes out of the paired portal travelling upwards and finds its bomb there; the other looks up into that portal and comes out travelling left to find the second. Two bombs, each visible only through the portals."
+ },
+ {
+  "bucket": "combo",
+  "tag": "L33n5",
+  "difficulty": "Hard",
+  "title": "Walls, mirrors and a channel",
+  "intro": "chan",
+  "note": "The clue just right of the opening looks up, is turned right by one mirror and up again by a second, and clears four tiles along a path with two corners. The channel to its right lets the opening clue see straight through to the far edge."
+ },
+ {
+  "bucket": "expert",
+  "tag": "L77n35",
+  "difficulty": "Expert",
+  "title": "Everything at once",
+  "note": "Every mechanic on the board does real work. The opening clue looks up into a portal and its sight comes out of the partner lower down. A 3 then looks left through the channel and finds three bombs in a row. One mirror turns a clue's look to the right, and from the other side turns another's down a column and out through the vertical channel. Only a seventh of the board is open at the start, and every step is forced."
+ }
+]
