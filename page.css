@@ -35,9 +35,9 @@ h1,h2{margin:0; font-weight:800; letter-spacing:-.03em; line-height:1.05; text-w
 
 /* masthead */
 .top{background:var(--blue); color:#fff; border-bottom:1px solid var(--rule-blue)}
-.top-in{display:flex; align-items:center; justify-content:space-between; gap:24px; height:58px}
+.top-in{display:flex; align-items:center; justify-content:space-between; gap:24px; height:76px}
 .top a{text-decoration:none}
-.top img{height:32px; width:auto}  /* v3 logo is the stacked lockup, not the wide wordmark */
+.top img{height:52px; width:auto}  /* v3 logo is the stacked lockup: it needs real height, not a wordmark's 15px */
 .top .back{color:rgba(255,255,255,.72); font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase}
 .top .back:hover{color:#fff}
 
@@ -96,7 +96,7 @@ strong{font-weight:600}
 /* footer */
 footer{background:var(--ink); color:rgba(255,255,255,.62); padding:32px 0; font-size:14px}
 .foot{display:flex; flex-wrap:wrap; gap:14px 30px; align-items:center; justify-content:space-between}
-footer img{height:26px; width:auto; opacity:.85}
+footer img{height:34px; width:auto; opacity:.85}
 footer a{color:rgba(255,255,255,.62); text-decoration:none}
 footer a:hover{color:#fff}
 .foot nav{display:flex; gap:24px; flex-wrap:wrap}

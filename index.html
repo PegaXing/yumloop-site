@@ -40,13 +40,30 @@
   img{max-width:100%; height:auto; display:block}
   :focus-visible{outline:2px solid #fff; outline-offset:4px}
 
+  /* --- top bar: studio mark on the left, the two actions on the right --- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    padding:clamp(16px,2.6vw,26px) clamp(20px,5vw,64px) 0;
+  }
+  .brand-link{display:block; line-height:0}
+  .brand{width:clamp(72px,8vw,104px)}
+  .topnav{display:flex; flex-shrink:0}
+  .topnav a{
+    display:inline-block; text-decoration:none; white-space:nowrap;
+    font-weight:600; font-size:clamp(13px,1.2vw,15px); letter-spacing:.01em;
+    padding:clamp(10px,1.1vw,13px) clamp(16px,1.9vw,26px); border:1px solid #fff;
+    transition:background .15s linear, color .15s linear;
+  }
+  .topnav a.solid{background:#fff; color:var(--blue); border-left:0}
+  .topnav a.solid:hover{background:transparent; color:#fff; border-left:1px solid #fff}
+  .topnav a.line{background:transparent; color:#fff}
+  .topnav a.line:hover{background:#fff; color:var(--blue)}
+
   .stage{
     flex:1;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:clamp(36px,6vw,72px) clamp(20px,5vw,64px) clamp(24px,4vw,48px);
+    text-align:center; padding:clamp(24px,4vw,56px) clamp(20px,5vw,64px) clamp(24px,4vw,48px);
   }
-
-  .brand{width:min(186px,44vw); margin-bottom:clamp(34px,5vw,60px)}
 
   /* --- Sightline block --- */
   .game{
@@ -60,7 +77,7 @@
      .42em letterspacing, uppercase, indent to optically centre the tracking. */
   .mark-heading{
     font-family:'Avenir Next','Avenir',Archivo,-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
-    font-weight:400; font-size:clamp(30px,3.6vw,46px); line-height:1;
+    font-weight:400; font-size:clamp(32px,4.4vw,56px); line-height:1;
     letter-spacing:.42em; text-indent:.42em; text-transform:uppercase;
     color:#fff; margin:0;
   }
@@ -70,38 +87,25 @@
     font-size:clamp(16px,2vw,27px); letter-spacing:.15em; line-height:1.32;
   }
   .soon span{color:var(--lilac); text-transform:none}
-  .board{width:clamp(220px,27vw,330px)}
+  .board{width:clamp(240px,30vw,380px)}
 
   @media (max-width:860px){
     .game{grid-template-columns:1fr; justify-items:center; gap:clamp(28px,6vw,44px)}
     .copy{text-align:center; max-width:none}
-    /* keep the studio wordmark reading larger than the game's */
-    .brand{width:min(164px,46vw); margin-bottom:clamp(34px,7vw,52px)}
-    .mark-heading{font-size:clamp(24px,7.2vw,34px)}
+    .mark-heading{font-size:clamp(26px,7.6vw,38px)}
     .board{width:min(290px,62vw)}
+  }
+  /* narrow phones: the bar keeps its shape (mark left, actions right), just tighter */
+  @media (max-width:430px){
+    .topbar{gap:12px; padding-top:14px}
+    .brand{width:60px}
+    .topnav a{font-size:12.5px; padding:9px 13px; letter-spacing:0}
   }
 
   .more{
     margin:clamp(34px,5vw,56px) 0 0;
     font-family:var(--mono); font-size:clamp(10px,1.1vw,12px); font-weight:500;
     letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.55);
-  }
-
-  /* --- actions --- */
-  .actions{display:flex; margin-top:clamp(30px,4vw,44px)}
-  .actions a{
-    display:inline-block; text-decoration:none;
-    font-weight:600; font-size:15.5px; letter-spacing:.01em;
-    padding:15px 34px; border:1px solid #fff;
-    transition:background .15s linear, color .15s linear;
-  }
-  .actions a.solid{background:#fff; color:var(--blue)}
-  .actions a.solid:hover{background:transparent; color:#fff}
-  .actions a.line{background:transparent; color:#fff; border-left:0}
-  .actions a.line:hover{background:#fff; color:var(--blue)}
-  @media (max-width:520px){
-    .actions{flex-direction:column; width:100%; max-width:320px}
-    .actions a.line{border-left:1px solid #fff; border-top:0}
   }
 
   /* --- footer --- */
@@ -119,9 +123,17 @@
 </head>
 <body>
 
-<main class="stage">
-  <img class="brand" src="yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892">
+<header class="topbar">
+  <a class="brand-link" href="/" aria-label="Yumloop home">
+    <img class="brand" src="yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892">
+  </a>
+  <nav class="topnav" aria-label="Contact">
+    <a class="line" href="mailto:yoni@yumloop.net?subject=Hello%20Yumloop">Contact</a>
+    <a class="solid" href="mailto:yoni@yumloop.net?subject=Launch%20note&amp;body=Let%20me%20know%20when%20Sightline%20is%20out.">Launch note</a>
+  </nav>
+</header>
 
+<main class="stage">
   <section class="game" aria-label="Sightline">
     <div class="copy">
       <h1 class="mark-heading">Sightline</h1>
@@ -134,11 +146,6 @@
   </section>
 
   <p class="more">And more games coming soon</p>
-
-  <div class="actions">
-    <a class="solid" href="mailto:yoni@yumloop.net?subject=Hello%20Yumloop">Contact</a>
-    <a class="line" href="mailto:yoni@yumloop.net?subject=Launch%20note&amp;body=Let%20me%20know%20when%20Sightline%20is%20out.">Launch note</a>
-  </div>
 </main>
 
 <nav class="foot" aria-label="Site">
@@ -196,7 +203,7 @@
   var colliders=[], colTs=0;
   function refreshColliders(){
     colliders=[];
-    document.querySelectorAll('.brand,.mark-heading,.soon,.board,.more,.actions a,.foot a').forEach(function(n){
+    document.querySelectorAll('.brand,.mark-heading,.soon,.board,.more,.topnav a,.foot a').forEach(function(n){
       var r=n.getBoundingClientRect();
       if(r.width>4 && r.height>4) colliders.push({el:n, r:r});
     });
