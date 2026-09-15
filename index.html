@@ -42,7 +42,8 @@
 
   /* --- top bar: studio mark on the left, the two actions on the right --- */
   .topbar{
-    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    /* flex-start, so the buttons' top edge sits on the lockup's top edge */
+    display:flex; align-items:flex-start; justify-content:space-between; gap:20px;
     padding:clamp(16px,2.6vw,26px) clamp(20px,5vw,64px) 0;
   }
   .brand-link{display:block; line-height:0}
@@ -78,7 +79,10 @@
   .mark-heading{
     font-family:'Avenir Next','Avenir',Archivo,-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
     font-weight:400; font-size:clamp(32px,4.4vw,56px); line-height:1;
-    letter-spacing:.42em; text-indent:.42em; text-transform:uppercase;
+    /* no text-indent here: left-aligned, the S must sit on the same edge as the line
+       below it. The indent is only for the centred (narrow) layout, where it optically
+       balances the trailing letterspace — see the max-width:860px block. */
+    letter-spacing:.42em; text-transform:uppercase;
     color:#fff; margin:0;
   }
   .rule{height:1px; background:rgba(255,255,255,.38); border:0; margin:clamp(18px,2.4vw,30px) 0}
@@ -92,7 +96,7 @@
   @media (max-width:860px){
     .game{grid-template-columns:1fr; justify-items:center; gap:clamp(28px,6vw,44px)}
     .copy{text-align:center; max-width:none}
-    .mark-heading{font-size:clamp(26px,7.6vw,38px)}
+    .mark-heading{font-size:clamp(26px,7.6vw,38px); text-indent:.42em}   /* centred here, so the tracking needs balancing */
     .board{width:min(290px,62vw)}
   }
   /* narrow phones: the bar keeps its shape (mark left, actions right), just tighter */
