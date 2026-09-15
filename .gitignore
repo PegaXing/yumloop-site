@@ -1,3 +1,7 @@
 _archive/
 .DS_Store
 .claude/
+
+# a stray PNG once got saved here as a file called 'assets', which collides with the Jekyll
+# theme's assets/ directory and fails every Pages build (Errno::EISDIR)
+/assets
