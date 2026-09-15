@@ -5,3 +5,8 @@ _archive/
 # a stray PNG once got saved here as a file called 'assets', which collides with the Jekyll
 # theme's assets/ directory and fails every Pages build (Errno::EISDIR)
 /assets
+pitch/ams/inspect/
+pitch/ams/candidates.json
+pitch/ams/sheet*.html
+pitch/ams/*.html
+pitch/ams/*.pdf
