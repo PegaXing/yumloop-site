@@ -30,7 +30,7 @@
   :focus-visible{outline:2px solid #fff; outline-offset:4px}
   .wrap{width:min(1120px, 100% - clamp(40px,8vw,120px)); margin:0 auto}
   header.top{display:flex; align-items:center; justify-content:space-between; padding:clamp(20px,3vw,34px) 0; gap:16px}
-  .brand{width:min(180px,40vw); margin-left:-10.4%; margin-left:calc(min(180px,40vw) * -0.104)}   /* the PNG's own left padding, so the Y sits on the column edge like everything below it */
+  .brand{width:min(88px,22vw)}   /* v3 logo is cropped tight, so the old negative margin (the file's own left padding) is gone */
   .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62)}
   .kicker.q{color:var(--lilac)}
   h1{font-family:var(--display); font-weight:800; font-size:clamp(38px,6.4vw,88px); line-height:.96; letter-spacing:-.02em; margin:.25em 0 .35em; text-wrap:balance}
@@ -266,7 +266,7 @@
 <body>
 <div class="wrap">
   <header class="top">
-    <a href="/" aria-label="Yumloop home"><img class="brand" src="yumloop-logo.png?v=2" alt="Yumloop" width="1400" height="509" data-hit></a>
+    <a href="/" aria-label="Yumloop home"><img class="brand" src="yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892" data-hit></a>
     <span class="kicker">Publisher pitch · Private</span>
   </header>
 
