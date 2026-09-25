@@ -35,11 +35,11 @@
   a{color:#fff}
   :focus-visible{outline:2px solid #fff; outline-offset:4px}
   .wrap{width:min(1120px, 100% - clamp(32px,8vw,120px)); margin:0 auto}
-  header.top{display:flex; align-items:center; justify-content:space-between; padding:clamp(20px,3vw,34px) 0; gap:16px}
+  header.top{display:flex; align-items:center; justify-content:space-between; padding:clamp(16px,2.2vw,26px) 0 clamp(4px,1vw,10px); gap:16px}
   .brand{width:min(88px,22vw)}
   .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62)}
   .kicker.q{color:var(--paper)}
-  h1{font-family:var(--display); font-weight:800; font-size:clamp(40px,6.6vw,92px); line-height:.95; letter-spacing:-.025em; margin:.2em 0 .35em; text-wrap:balance}
+  h1{font-family:var(--display); font-weight:800; font-size:clamp(40px,6.2vw,82px); line-height:.95; letter-spacing:-.025em; margin:.2em 0 .35em; text-wrap:balance}
   h1 .t{display:block}
   h1 .z{color:var(--paper)}
   h2{font-family:var(--display); font-weight:800; font-size:clamp(28px,4vw,54px); letter-spacing:-.018em; line-height:1.02; margin:.25em 0 .55em; text-wrap:balance}
@@ -67,8 +67,9 @@
   .chip{display:inline-flex; align-items:center; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--paper); border:1px dashed rgba(255,194,26,.6); padding:11px 14px}
 
   /* ---------- hero ---------- */
-  .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,5vw,72px); align-items:center; padding:clamp(10px,2vw,30px) 0 clamp(30px,4vw,60px)}
-  .lockup{margin:0 0 14px} .lockup img{width:min(430px,78%); filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))}
+  .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(16px,2.4vw,34px) clamp(24px,5vw,72px); align-items:center; padding:0 0 clamp(30px,4vw,60px)}
+  .lockup{margin:0 0 14px}
+  .hero .lockup{grid-column:1/-1; text-align:center; margin:0} .hero .lockup img{display:block; margin:0 auto; width:min(320px,60%)} .hero .lockup .lp{margin-top:10px} .lockup img{width:min(430px,78%); filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))}
   .lockup .lp{display:inline-block; margin-top:14px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
   .hook{font-size:clamp(20px,2.05vw,29px); line-height:1.28; letter-spacing:-.01em; max-width:24ch; margin:.5em 0 .7em; color:#fff; text-wrap:balance}
   .hook .q{color:var(--paper)}
@@ -374,7 +375,8 @@
   /* ---------- responsive ---------- */
   @media (max-width:980px){
     .ticks.t4{grid-template-columns:1fr 1fr} .needs.n3{grid-template-columns:repeat(3,1fr)} .pillars.p3{grid-template-columns:1fr 1fr 1fr}
-    .hero{grid-template-columns:1fr} .hand{width:min(340px,80%)}
+    .hero{grid-template-columns:1fr; text-align:center} .hand{width:min(340px,80%)}
+    .hero .lockup img{width:min(340px,62%)} .hero .hook,.hero .sub,.hero .punch{margin-left:auto; margin-right:auto} .hero .actions{justify-content:center}
     .rules{grid-template-columns:1fr} .demo{grid-template-columns:1fr}
     .scout{grid-template-columns:1fr 1fr} .mechs{grid-template-columns:1fr 1fr} .modes{grid-template-columns:1fr 1fr}
     .mode.feature{grid-template-columns:1fr} .mode.feature .shot{border-right:0; border-bottom:3px solid #000; aspect-ratio:16/9}
@@ -388,7 +390,7 @@
   }
   @media (max-width:600px){
     .ticks.t4{grid-template-columns:1fr 1fr} .needs.n3{grid-template-columns:1fr 1fr} .pillars.p3{grid-template-columns:1fr}
-    .hand{display:none}
+    .hand{display:none} .hero .lockup img{width:min(300px,76%)}
     .hero .actions{margin-top:18px}
     .proof{font-size:10.5px; letter-spacing:.12em} .proof li::after{margin:0 9px}
     .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .modes{grid-template-columns:1fr}
@@ -425,8 +427,8 @@
 
   <!-- 1 · HERO: what is this? -->
   <section class="hero" id="top">
+    <div class="lockup rv" data-hit><img src="rpr/img/logo.webp" width="1100" height="622" alt="Rock Paper Rumble"><br><span class="lp">Multiplayer party brawler</span></div>
     <div>
-      <div class="lockup rv" data-hit><img src="rpr/img/logo.webp" width="1100" height="622" alt="Rock Paper Rumble"><br><span class="lp">Multiplayer party brawler</span></div>
       <h1 class="rv" data-hit><span class="t">Three choices.</span><span class="t">Eight players.</span><span class="t z">Zero trust.</span></h1>
       <p class="hook rv" data-hit>A fighting game with no attack button. You pick Rock, Paper or Scissors, <span class="q">then you become the weapon.</span></p>
       <p class="sub rv" data-hit>Rock Paper Rumble turns the oldest game in the playground into a physical multiplayer arena. Bluff your hand. Read your friends. Get into position. When <span class="rumble">RUMBLE!</span> hits, chase what you beat and run from what beats you.</p>
