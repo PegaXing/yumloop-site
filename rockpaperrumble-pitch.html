@@ -69,6 +69,10 @@
   /* ---------- hero ---------- */
   .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(16px,2.4vw,34px) clamp(24px,5vw,72px); align-items:center; padding:0 0 clamp(30px,4vw,60px)}
   .lockup{margin:0 0 14px}
+  .hero .reel{grid-column:1/-1; width:min(960px,100%); margin:clamp(6px,1.2vw,14px) auto clamp(10px,2vw,24px)}
+  .reel .trailer{box-shadow:10px 10px 0 #000}
+  .reel .snd{position:absolute; right:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#fff; background:var(--blue); border:2px solid #000; box-shadow:4px 4px 0 #000; padding:9px 12px; cursor:pointer}
+  .reel .snd:hover{background:#fff; color:var(--blue)}
   .hero .lockup{grid-column:1/-1; text-align:center; margin:0} .hero .lockup img{display:block; margin:0 auto; width:min(320px,60%)} .hero .lockup .lp{margin-top:10px} .lockup img{width:min(430px,78%); filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))}
   .lockup .lp{display:inline-block; margin-top:14px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
   .hook{font-size:clamp(20px,2.05vw,29px); line-height:1.28; letter-spacing:-.01em; max-width:24ch; margin:.5em 0 .7em; color:#fff; text-wrap:balance}
@@ -428,6 +432,9 @@
   <!-- 1 · HERO: what is this? -->
   <section class="hero" id="top">
     <div class="lockup rv" data-hit><img src="rpr/img/logo.webp" width="1100" height="622" alt="Rock Paper Rumble"><br><span class="lp">Multiplayer party brawler</span></div>
+    <div class="reel rv" data-hit>
+      <div class="trailer"><video id="reelVid" src="rpr/reel.mp4" poster="rpr/reel-poster.jpg" muted autoplay loop playsinline preload="metadata" aria-label="Gameplay reel: all seven modes and four arenas, captured in-game"></video><button type="button" class="snd" id="reelSnd" aria-pressed="false">Sound on</button></div>
+    </div>
     <div>
       <h1 class="rv" data-hit><span class="t">Three choices.</span><span class="t">Eight players.</span><span class="t z">Zero trust.</span></h1>
       <p class="hook rv" data-hit>A fighting game with no attack button. You pick Rock, Paper or Scissors, <span class="q">then you become the weapon.</span></p>
@@ -835,6 +842,14 @@
     if(url){ a.href = url; if(/^https?:/.test(url)){ a.target = '_blank'; a.rel = 'noopener'; } }
     else if(k !== 'contact'){ a.href = 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Rock Paper Rumble — ' + a.textContent.trim()); a.classList.remove('solid'); a.classList.add('muted'); a.title = 'Sent on request'; a.textContent = a.textContent.trim() + ' · on request'; }
   });
+
+  // ---- the gameplay reel at the top: muted loop, a sound toggle, paused off-screen; reduced motion gets controls
+  (function(){
+    var v = document.getElementById('reelVid'), b = document.getElementById('reelSnd'); if(!v) return;
+    if(RM){ v.removeAttribute('autoplay'); v.pause(); v.controls = true; if(b) b.remove(); return; }
+    b.addEventListener('click', function(){ v.muted = !v.muted; if(!v.muted){ v.currentTime = 0; var p = v.play(); if(p && p.catch) p.catch(function(){}); } b.textContent = v.muted ? 'Sound on' : 'Sound off'; b.setAttribute('aria-pressed', String(!v.muted)); });
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var p = v.play(); if(p && p.catch) p.catch(function(){}); } else v.pause(); }); }, { threshold: .15 }).observe(v);
+  })();
 
   // ---- reveal on scroll (the Sightline page's observer + safety sweep)
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var el = e.target; setTimeout(function(){ el.classList.add('in'); }, (Number(el.dataset.i) || 0) * 70); io.unobserve(el); }); }, { threshold: .12 });
