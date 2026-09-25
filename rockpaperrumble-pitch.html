@@ -102,14 +102,21 @@
   .notes{margin-top:clamp(18px,2vw,26px); border:1px solid rgba(255,255,255,.26); padding:0 clamp(14px,1.6vw,18px)}
   .notes>summary{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.66); padding:14px 0; cursor:pointer}
   .notes>summary:hover{color:#fff}
-  .scout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:2px 0 16px} .scout div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14px; line-height:1.45; color:rgba(255,255,255,.9)} .scout div b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--paper); margin-bottom:8px}
 
   /* ---------- the one rule: a head-to-head that cycles through the three matchups ---------- */
+  .playfacts{font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; margin:clamp(18px,2vw,24px) 0 8px; color:rgba(255,255,255,.75)}
+  .chaos{margin-top:clamp(44px,6vw,80px)}
+  .pillars.p3{grid-template-columns:repeat(3,1fr)}
+  section.inv .pillars div{border-color:#c9cadb; color:#3a3c5a} section.inv .pillars div b{color:var(--ink)}
+  .feat .wide{grid-column:1/-1}
+  .ticks.t4{grid-template-columns:repeat(4,1fr); max-width:none}
+  .needs.n3{grid-template-columns:repeat(6,1fr)}
+  .marquee.static{-webkit-mask-image:none; mask-image:none} .marquee.static .row{animation:none; flex-wrap:wrap; width:auto}
   .rules{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,5vw,72px); align-items:center}
   .duel{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:clamp(12px,2.4vw,28px); width:min(460px,100%); margin:0 auto; padding:10px 0 56px}
   .dc{position:relative}
   .dc img{position:relative; z-index:1; display:block; width:100%; filter:drop-shadow(7px 8px 0 rgba(0,0,0,.9))}
-  .dc span{position:absolute; left:-20%; right:-20%; top:100%; margin-top:16px; text-align:center; font-family:var(--game); font-weight:800; font-size:clamp(16px,1.7vw,22px); letter-spacing:.04em; color:var(--ink)}
+  .dc span{position:absolute; left:-12%; right:-12%; top:100%; margin-top:16px; text-align:center; font-family:var(--game); font-weight:800; font-size:clamp(16px,1.7vw,22px); letter-spacing:.04em; color:var(--ink)}
   .dw{transform:rotate(-4deg)} .dl{transform:rotate(4deg)}
   .dl::after{content:""; position:absolute; left:50%; top:50%; width:150%; aspect-ratio:1; border-radius:50%; border:8px solid var(--wc,var(--rock)); transform:translate(-50%,-50%) scale(.2); opacity:0; pointer-events:none}
   .vs{font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#fff; background:var(--ink); border:3px solid #000; box-shadow:4px 4px 0 #000; padding:9px 11px; position:relative; z-index:2}
@@ -146,29 +153,9 @@
   .dots i{cursor:pointer; width:28px; height:7px}
 
   /* ---------- ? ? ? → ROCK PAPER SCISSORS → RUMBLE! (scroll-driven) ---------- */
-  .rs{padding:clamp(70px,9vw,120px) 0 clamp(90px,11vw,140px)}
   .rs::before{content:""; position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); background:var(--ink); z-index:-1}
-  .rs-stick{position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden}
-  .rs-flash{position:absolute; left:50%; top:0; bottom:0; width:100vw; transform:translateX(-50%); background:radial-gradient(60% 60% at 50% 50%, rgba(255,61,90,.55), rgba(255,61,90,0) 70%); opacity:0; transition:opacity .4s; pointer-events:none}
-  .rs.st2 .rs-flash{opacity:1}
-  .rs-row{display:flex; gap:clamp(14px,4vw,64px); align-items:flex-end; justify-content:center; position:relative; z-index:1}
-  .rs-slot{position:relative; width:clamp(92px,17vw,210px); aspect-ratio:260/350; perspective:900px}
-  .rs-slot .fl{position:absolute; inset:0; transform-style:preserve-3d; transition:transform .6s cubic-bezier(.3,1.3,.5,1)}
-  .rs-slot .fr,.rs-slot .bk{position:absolute; inset:0; backface-visibility:hidden; display:flex; align-items:center; justify-content:center}
-  .rs-slot .fr img{width:92%; animation:bob 2.4s ease-in-out infinite} .rs-slot:nth-child(2) .fr img{animation-delay:-.8s} .rs-slot:nth-child(3) .fr img{animation-delay:-1.6s}
   @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-10px) rotate(3deg)}}
-  .rs-slot .bk{transform:rotateY(180deg)} .rs-slot .bk img{width:100%; filter:drop-shadow(8px 9px 0 #000)}
-  .rs-slot.flip .fl{transform:rotateY(180deg)}
-  .rs-slot .w{position:absolute; left:50%; top:calc(100% + 14px); transform:translateX(-50%); font-family:var(--game); font-weight:800; font-size:clamp(16px,2.4vw,30px); letter-spacing:.04em; white-space:nowrap; opacity:0; transition:opacity .3s .25s}
-  .rs-slot.flip .w{opacity:1}
-  .rs-bang{position:absolute; left:50%; top:50%; width:min(820px,92vw); z-index:3; transform:translate(-50%,-50%) scale(.2) rotate(-8deg); opacity:0; transition:transform .5s cubic-bezier(.2,1.6,.4,1), opacity .2s}
-  .rs.st2 .rs-bang{transform:translate(-50%,-50%) scale(1) rotate(-2deg); opacity:1}
-  .rs.st2 .rs-row{animation:shake .45s}
   @keyframes shake{0%,100%{transform:none} 20%{transform:translate(-8px,4px)} 40%{transform:translate(7px,-5px)} 60%{transform:translate(-5px,3px)} 80%{transform:translate(3px,-2px)}}
-  .rs.st2 .rs-slot .bk img{filter:drop-shadow(8px 9px 0 #000) brightness(.75)}
-  .rs-cap{position:relative; z-index:1; margin-top:clamp(70px,9vw,110px); min-height:1.3em; font-family:var(--display); font-weight:800; font-size:clamp(20px,2.6vw,34px); letter-spacing:-.015em; text-align:center}
-  .rs-cap span{position:absolute; left:50%; transform:translateX(-50%); white-space:nowrap; opacity:0; transition:opacity .35s}
-  .rs.st0 .rs-cap .c0,.rs.st1 .rs-cap .c1,.rs.st2 .rs-cap .c2{opacity:1}
 
   /* ---------- the cycle / mechanic cards ---------- */
   .mechs{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,26px)}
@@ -287,10 +274,6 @@
 
   /* ---------- bots ---------- */
   .bots{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,60px); align-items:start}
-  .log{background:var(--ink); border:3px solid #000; box-shadow:10px 10px 0 #000; padding:clamp(16px,2vw,24px); font-family:var(--mono); font-size:clamp(11.5px,1vw,13px); line-height:1.75; color:rgba(255,255,255,.86)}
-  .log .h{font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:10px}
-  .log div{opacity:.25; transition:opacity .4s} .log div.on{opacity:1}
-  .log .k{color:var(--paper)} .log .g{color:#7ef0a8} .log .r{color:#ff8fb3}
   .diff{display:flex; gap:8px; margin-top:16px}
   .diff span{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:9px 12px; border:1px solid rgba(255,255,255,.6)}
   .ticks{list-style:none; margin:clamp(14px,2vw,20px) 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 18px}
@@ -320,12 +303,6 @@
   .callout p{margin:0; font-size:15.5px; color:#3a3c5a}
   .needs{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:clamp(18px,2.4vw,28px) 0}
   .needs span{font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; padding:12px 12px; border:1px solid rgba(255,255,255,.5); line-height:1.35}
-  .meters{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,40px); margin-top:clamp(22px,3vw,34px)}
-  .meter .l{font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-bottom:10px}
-  .meter .bar{height:18px; background:rgba(255,255,255,.14); box-shadow:inset 0 0 0 2px rgba(255,255,255,.5); position:relative; overflow:hidden}
-  .meter .bar i{position:absolute; inset:0; width:0; background:#fff; transition:width 1.1s cubic-bezier(.22,.61,.36,1)}
-  .meter .bar i.gold{background:var(--paper)}
-  .meter .v{font-family:var(--display); font-weight:800; font-size:22px; margin-top:8px}
   .buys{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); margin-top:clamp(24px,3vw,40px)}
   .buy{background:#fff; color:var(--ink); border:3px solid #000; box-shadow:7px 7px 0 #000; padding:18px 18px 16px; margin:0; position:relative}
   .buy .n{font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:#6b6d8a}
@@ -396,6 +373,7 @@
 
   /* ---------- responsive ---------- */
   @media (max-width:980px){
+    .ticks.t4{grid-template-columns:1fr 1fr} .needs.n3{grid-template-columns:repeat(3,1fr)} .pillars.p3{grid-template-columns:1fr 1fr 1fr}
     .hero{grid-template-columns:1fr} .hand{width:min(340px,80%)}
     .rules{grid-template-columns:1fr} .demo{grid-template-columns:1fr}
     .scout{grid-template-columns:1fr 1fr} .mechs{grid-template-columns:1fr 1fr} .modes{grid-template-columns:1fr 1fr}
@@ -409,6 +387,7 @@
     .who{grid-template-columns:1fr} .needs{grid-template-columns:repeat(3,1fr)}
   }
   @media (max-width:600px){
+    .ticks.t4{grid-template-columns:1fr 1fr} .needs.n3{grid-template-columns:1fr 1fr} .pillars.p3{grid-template-columns:1fr}
     .hand{display:none}
     .hero .actions{margin-top:18px}
     .proof{font-size:10.5px; letter-spacing:.12em} .proof li::after{margin:0 9px}
@@ -417,8 +396,8 @@
     .pillars{grid-template-columns:1fr} .roster{grid-template-columns:repeat(2,1fr)}
     .arenas{grid-template-columns:1fr} .seats{grid-template-columns:1fr 1fr}
     .feat{grid-template-columns:1fr} .ticks{grid-template-columns:1fr} .pups{grid-template-columns:1fr 1fr}
-    .checks{grid-template-columns:1fr} .buys{grid-template-columns:1fr} .tech{grid-template-columns:1fr} .grammar{grid-template-columns:1fr}
-    .needs{grid-template-columns:1fr 1fr} .meters{grid-template-columns:1fr} .also{grid-template-columns:1fr} .also div+div{border-left:0; border-top:1px solid #c9cadb}
+    .checks{grid-template-columns:1fr} .buys{grid-template-columns:1fr} .tech{grid-template-columns:1fr} .grammar{grid-template-columns:1fr 1fr 1fr; gap:10px} .gram .im{box-shadow:4px 4px 0 #000} .gram .im span{font-size:11px; left:5px; top:5px; padding:4px 6px 2px; border-width:2px} .gram .t{font-size:14px; margin-top:8px}
+    .needs{grid-template-columns:1fr 1fr} .also{grid-template-columns:1fr} .also div+div{border-left:0; border-top:1px solid #c9cadb}
     .rs-cap span{white-space:normal; width:90vw}
   }
   @media (prefers-reduced-motion: reduce){
@@ -483,15 +462,8 @@
       <a class="solid" href="#" data-link="buildWindows">Download Windows build</a>
       <span class="chip">Playable today · Closed-beta stage</span>
     </div>
-    <details class="notes rv" data-hit>
-      <summary>Build notes</summary>
-      <div class="scout">
-        <div><b>Playable build</b>Windows 64-bit. A controller is recommended; keyboard and mouse work too. Up to four controllers on one PC.</div>
-        <div><b>Fastest first match</b>Main menu → Play → pick a mode, a Rumbler and an arena. Bots fill the match, from 2 to 8 Rumblers. A short guided tutorial is offered the first time you press Play, and is always on the main menu.</div>
-        <div><b>Couch</b>In the menus, press A on any spare controller to join; a keyboard player joins with J. Everyone locks in their own Rumbler. Hold B to leave between matches.</div>
-        <div><b>Online</b>Online → Host Game and read out the four-character room code, or Quick Play. Every clip on this page is from the game; the art is proof-of-concept (see <a href="#art">art direction</a>).</div>
-      </div>
-    </details>
+    <p class="playfacts rv" data-hit>Windows 64-bit · Controller recommended</p>
+    <p class="sub rv" data-hit>Jump into any of the seven modes with bots, add up to four local players, or host an online lobby with a four-character room code. A guided tutorial is offered before your first match and lives on the main menu.</p>
   </section>
 
   <!-- 2 · I UNDERSTAND IT -->
@@ -513,7 +485,7 @@
           <button type="button" data-s="scissors"><b class="s">Scissors</b> beats <b class="p">Paper.</b></button>
           <button type="button" data-s="paper"><b class="p">Paper</b> beats <b class="r">Rock.</b></button>
         </div>
-        <p class="quote">Everyone on earth learned it before they could read.</p>
+        <p class="quote">You already know this part.</p>
         <p class="big">That’s the whole fight. <span class="q">Rock Paper Rumble doesn’t change the rule.</span> It changes everything that happens before the rule is applied.</p>
       </div>
     </div>
@@ -534,34 +506,21 @@
           <div class="step" data-t="0">Everyone’s hand is hidden.</div>
           <div class="step" data-t="3.2">Three. Two. One.</div>
           <div class="step" data-t="5.9"><span class="rumble">RUMBLE!</span></div>
-          <div class="step" data-t="6.6">Touch what you beat. Launch it.</div>
+          <div class="step" data-t="6.6">Chase what you beat.</div>
           <div class="step" data-t="13.5">Then everyone hides again.</div>
         </div>
         <div id="demoWhy">
-          <p class="why">Rock, Paper or Scissors, changed as often as you like. Every change shows above your head for a second, so everyone is watching everyone.</p>
-          <p class="why">Get close to what you think you beat. Stay away from whatever might beat you.</p>
-          <p class="why">Every hand is revealed and locked at once. Now everybody knows who should chase and who should run.</p>
-          <p class="why">Win the touch and they’re knocked out. Lose it and you are. The same hand? You bounce off each other.</p>
-          <p class="why">Five seconds later the hands go hidden, the next countdown starts, and everyone remembers what they saw.</p>
+          <p class="why">Every switch flashes above your head for one second.</p>
+          <p class="why">Get into position.</p>
+          <p class="why">Every hand locks and reveals.</p>
+          <p class="why">Run from what beats you.</p>
+          <p class="why">&nbsp;</p>
         </div>
         <div class="ctl"><span class="dots" id="dots"></span></div>
       </div>
     </div>
   </section>
 
-  <!-- 4 · OH, THAT LOOKS CHAOTIC: the scroll moment -->
-  <section class="rs st0" id="reveal" aria-label="Question marks turn into Rock, Paper and Scissors, then RUMBLE!">
-    <div class="rs-stick">
-      <div class="rs-flash"></div>
-      <div class="rs-row">
-        <div class="rs-slot" data-i="0"><div class="fl"><div class="fr"><img src="rpr/img/ui/bubble-question.webp" alt=""></div><div class="bk"><img src="rpr/img/ui/card-rock.webp" alt=""></div></div><div class="w" style="color:var(--rock)">ROCK</div></div>
-        <div class="rs-slot" data-i="1"><div class="fl"><div class="fr"><img src="rpr/img/ui/bubble-question.webp" alt=""></div><div class="bk"><img src="rpr/img/ui/card-paper.webp" alt=""></div></div><div class="w" style="color:var(--paper)">PAPER</div></div>
-        <div class="rs-slot" data-i="2"><div class="fl"><div class="fr"><img src="rpr/img/ui/bubble-question.webp" alt=""></div><div class="bk"><img src="rpr/img/ui/card-scissors.webp" alt=""></div></div><div class="w" style="color:var(--sciss)">SCISSORS</div></div>
-      </div>
-      <img class="rs-bang" src="rpr/img/ui/rumble-banner.webp" alt="RUMBLE!">
-      <div class="rs-cap"><span class="c0">Everybody is hiding something.</span><span class="c1">Then every hand locks.</span><span class="c2">Chase what you beat. Run from what beats you.</span></div>
-    </div>
-  </section>
 
   <!-- 4b · THE RUMBLE CYCLE -->
   <section class="chapter" id="cycle">
@@ -569,12 +528,12 @@
     <h2 class="rv" data-hit>Every twenty seconds, a mind game <span class="q">turns into a chase.</span></h2>
     <hr class="rule">
     <div class="mechs">
-      <figure class="mech m1 rv" data-hit><div class="clip"><span class="num">1</span><video data-src="rpr/clips/bluff.mp4" poster="rpr/clips/bluff.jpg" muted loop playsinline preload="none" aria-label="Rumblers moving and switching hands during the countdown"></video></div><div class="b"><div class="k">The countdown · 15 seconds</div><div class="t">BLUFF</div><p>Move, jump, dash, and switch your hand as often as you like. Every switch flashes above your head for a second. Everyone is watching everyone.</p></div></figure>
-      <figure class="mech m2 rv" data-hit><div class="clip"><span class="num">2</span><video data-src="rpr/clips/rumble.mp4" poster="rpr/clips/rumble.jpg" muted loop playsinline preload="none" aria-label="Eight hands revealed at once as RUMBLE starts"></video></div><div class="b"><div class="k">The reveal · 5 seconds</div><div class="t">RUMBLE!</div><p>Hands lock and every one is revealed at once. You beat them? Hunt. They beat you? Run. Same hand? CLASH: you bounce off each other.</p></div></figure>
-      <figure class="mech m3 rv" data-hit><div class="clip"><span class="num">3</span><video data-src="rpr/clips/knockout.mp4" poster="rpr/clips/knockout.jpg" muted loop playsinline preload="none" aria-label="A chase ending in a ragdoll knockout"></video></div><div class="b"><div class="k">Then again · all match long</div><div class="t">RESET</div><p>Someone goes flying and vanishes in a puff of smoke. Someone gets away by a whisker. The survivors start lying again, and the next countdown begins.</p></div></figure>
+      <figure class="mech m1 rv" data-hit><div class="clip"><span class="num">1</span><video data-src="rpr/clips/bluff.mp4" poster="rpr/clips/bluff.jpg" muted loop playsinline preload="none" aria-label="Rumblers moving and switching hands during the countdown"></video></div><div class="b"><div class="k">The countdown · 15 seconds</div><div class="t">BLUFF</div><p>Move. Jump. Dash. Switch whenever you like. Every switch flashes above your head for one second. Everybody is watching.</p></div></figure>
+      <figure class="mech m2 rv" data-hit><div class="clip"><span class="num">2</span><video data-src="rpr/clips/rumble.mp4" poster="rpr/clips/rumble.jpg" muted loop playsinline preload="none" aria-label="Eight hands revealed at once as RUMBLE starts"></video></div><div class="b"><div class="k">The reveal · 5 seconds</div><div class="t">RUMBLE!</div><p>Hands lock. Everything reveals. Beat them? Hunt. They beat you? Run. Same hand? CLASH.</p></div></figure>
+      <figure class="mech m3 rv" data-hit><div class="clip"><span class="num">3</span><video data-src="rpr/clips/knockout.mp4" poster="rpr/clips/knockout.jpg" muted loop playsinline preload="none" aria-label="A chase ending in a ragdoll knockout"></video></div><div class="b"><div class="k">Then again · all match long</div><div class="t">RESET</div><p>Someone goes flying. Someone escapes. The survivors start lying again.</p></div></figure>
     </div>
     <div class="closer rv" data-hit>
-      <p class="big">Every cycle writes a story. <span class="q">The next one starts twenty seconds later.</span></p>
+      <p class="big">Every cycle writes <span class="q">a story.</span></p>
     </div>
   </section>
 
@@ -583,55 +542,46 @@
     <div class="kicker q rv">Depth</div>
     <h2 class="rv" data-hit>Rock Paper Scissors isn’t the depth. <span class="q">The people are.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>On paper it’s a coin with three sides. In an arena it becomes a game of memory, nerve and timing, because every choice is made in public and everyone is choosing at the same time.</p>
+    <p class="quote rv" data-hit>The rule is simple. Reading seven other people at once isn’t. Every flash is information. Every movement might be a bluff.</p>
     <div class="reads rv" data-hit>
-      <div style="--dot:var(--rock)"><b>The flash</b><span>Switch in plain sight so they pick the counter. Then switch again.</span></div>
-      <div style="--dot:var(--paper)"><b>The late switch</b><span>Hold your real hand until the last possible second.</span></div>
-      <div style="--dot:var(--sciss)"><b>The poker face</b><span>You saw their switch. Don’t turn toward them. Not yet.</span></div>
-      <div style="--dot:var(--sciss)"><b>Memory</b><span>Four people switched in the last five seconds. To what?</span></div>
+      <div style="--dot:var(--rock)"><b>The flash</b><span>Show them a hand. Make them react. Change it.</span></div>
+      <div style="--dot:var(--paper)"><b>The late switch</b><span>Hide your real choice until the last possible second.</span></div>
+      <div style="--dot:var(--sciss)"><b>Memory</b><span>Four people switched. To what?</span></div>
       <div style="--dot:var(--rock)"><b>Distance</b><span>The right hand in the wrong place is still the wrong hand.</span></div>
       <div style="--dot:var(--paper)"><b>The chain</b><span>You’re chasing someone. Someone’s chasing you. Someone else is chasing them.</span></div>
-      <div style="--dot:var(--paper)"><b>The dash</b><span>Close the gap in a blink. Or open one.</span></div>
-      <div style="--dot:var(--sciss)"><b>The three-second alliance</b><span>Two of you want the same Rumbler gone. Until the reveal ends.</span></div>
-      <div style="--dot:var(--rock)"><b>The arena</b><span>A giant falling Rock, Paper or Scissors turns the safest route into the worst one.</span></div>
+      <div style="--dot:var(--sciss)"><b>The three-second alliance</b><span>You both want the same Rumbler gone. For now.</span></div>
+    </div>
+    <div class="chaos">
+      <p class="big rv" data-hit>The rules never change. <span class="q">The situation never stops changing.</span></p>
+      <p class="quote rv" data-hit>One rule everybody understands, applied by eight players at once, creates chaos that stays readable. When somebody gets launched, everyone knows exactly why, and whose fault it was.</p>
+      <div class="pillars p3 rv" data-hit>
+        <div><b>Party-game readability</b>Understood within a round.</div>
+        <div><b>Fighting-game mind games</b>Reads, conditioning and misdirection.</div>
+        <div><b>Couch energy</b>Designed to be shouted at the person sitting next to you.</div>
+      </div>
     </div>
   </section>
 
-  <!-- 5b · CHAOS WITH RULES -->
-  <section class="chapter" id="chaos">
-    <div class="kicker q rv">Chaos with rules</div>
-    <h2 class="rv" data-hit>The rules never change. <span class="q">The situation never stops changing.</span></h2>
-    <hr class="rule">
-    <p class="quote rv" data-hit>Plenty of party games get their laughs from randomness. Rock Paper Rumble gets them from decisions. When someone gets launched, everyone watching knows exactly why, and exactly whose fault it was.</p>
-    <p class="quote rv" data-hit>One rule everybody understands, applied by eight players at once, produces chaos that stays completely readable.</p>
-    <div class="pillars rv" data-hit>
-      <div><b>Party-game readability</b>Understood from across the room within a round.</div>
-      <div><b>Fighting-game mind games</b>Reads, conditioning, and the mix-up you didn’t see coming.</div>
-      <div><b>Couch energy</b>Designed to be shouted at the person sitting next to you.</div>
-      <div><b>Bluffing, not deduction</b>All the lying of a social game. None of the meetings.</div>
-      <div><b>Built to be watched</b>Every hand is visible at the moment it matters.</div>
-    </div>
-  </section>
 
   <!-- 5c · MODES -->
   <section class="chapter" id="modes">
     <div class="kicker q rv">Seven ways to Rumble</div>
     <h2 class="rv" data-hit>Same three hands. <span class="q">Seven different arguments.</span></h2>
     <hr class="rule">
-    <p class="sub rv" data-hit style="margin:-6px 0 clamp(20px,2.6vw,30px)">Every mode uses the same rule and the same controls. Each one changes what you’re fighting over. Every image is an in-game capture.</p>
+    <p class="sub rv" data-hit style="margin:-6px 0 clamp(20px,2.6vw,30px)">Same rule, same controls. Each mode changes what you’re fighting over.</p>
     <div class="modes">
       <figure class="mode rv" data-hit style="--mc:var(--rock)"><div class="shot"><img src="rpr/img/modes/ffa.webp" alt="Free For All on Sunny Meadow" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">First to 10 knockouts</div><div class="t">FREE FOR ALL</div><p>Everybody is a threat. Everybody is an opportunity.</p></div></figure>
-      <figure class="mode rv" data-hit style="--mc:#e0344f"><div class="shot"><img src="rpr/img/modes/team.webp" alt="Team Rumble on Magma Mayhem" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">Blue vs Red · up to 4v4</div><div class="t">TEAM RUMBLE</div><p>No friendly fire. Cover each other’s weak hands, then collapse on theirs.</p></div></figure>
-      <figure class="mode rv" data-hit style="--mc:#c88a00"><div class="shot"><img src="rpr/img/modes/koth.webp" alt="King of the Hill on Sunny Meadow" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">A moving hill · first to 30</div><div class="t">KING OF THE HILL</div><p>Only a Rumbler standing in it alone scores. Truces form instantly and last about three seconds.</p></div></figure>
+      <figure class="mode rv" data-hit style="--mc:#e0344f"><div class="shot"><img src="rpr/img/modes/team.webp" alt="Team Rumble on Magma Mayhem" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">Blue vs Red · up to 4v4</div><div class="t">TEAM RUMBLE</div><p>No friendly fire. Cover each other’s bad matchups, then collapse on theirs.</p></div></figure>
+      <figure class="mode rv" data-hit style="--mc:#c88a00"><div class="shot"><img src="rpr/img/modes/koth.webp" alt="King of the Hill on Sunny Meadow" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">A moving hill · first to 30</div><div class="t">KING OF THE HILL</div><p>Only a Rumbler alone in the hill scores. Truces form instantly and last about three seconds.</p></div></figure>
       <figure class="mode rv" data-hit style="--mc:#6a3fd6"><div class="shot"><img src="rpr/img/modes/elim.webp" alt="Elimination on Moonlit Meadow" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">One life · a shrinking ring</div><div class="t">ELIMINATION</div><p>Hiding works. Right up until the ring reaches you.</p></div></figure>
-      <figure class="mode rv" data-hit style="--mc:#e8590c"><div class="shot"><img src="rpr/img/modes/potato.webp" alt="Hot Potato on Magma Mayhem" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">12-second fuse · 3 lives</div><div class="t">HOT POTATO</div><p>Holding the bomb? Win a RUMBLE and it’s their problem. Lose to the holder and it’s yours, with three seconds added to the fuse.</p></div></figure>
+      <figure class="mode rv" data-hit style="--mc:#e8590c"><div class="shot"><img src="rpr/img/modes/potato.webp" alt="Hot Potato on Magma Mayhem" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">12-second fuse · 3 lives</div><div class="t">HOT POTATO</div><p>Holding the bomb? Win a RUMBLE and it becomes their problem.</p></div></figure>
       <figure class="mode rv" data-hit style="--mc:var(--sciss)"><div class="shot"><img src="rpr/img/modes/rush.webp" alt="Rumble Rush on Moonlit Meadow" loading="lazy" width="1280" height="720"></div><div class="b"><div class="k">3-second countdowns · 3 lives</div><div class="t">RUMBLE RUSH</div><p>Barely enough time to bluff. Plenty of time to panic.</p></div></figure>
       <figure class="mode feature rv" data-hit style="--mc:var(--blue)">
         <div class="shot"><img src="rpr/img/modes/floor.webp" alt="Rumble Floor: the meadow split into four coloured zones" loading="lazy" width="1280" height="720"></div>
         <div class="b">
           <div class="k">The floor plays too</div>
           <div class="t">RUMBLE FLOOR</div>
-          <p>The arena is split into zones that cycle Rock, Paper, Scissors. When the reveal ends, the ground plays its hand against everyone standing on it.</p>
+          <p>The arena itself plays Rock Paper Scissors. Stand on a hand that beats yours when RUMBLE ends and the floor knocks you out.</p>
           <div class="floor" id="floor" aria-hidden="true"><div><img src="rpr/img/ui/bubble-rock.webp" alt=""></div><div><img src="rpr/img/ui/bubble-rock.webp" alt=""></div><div><img src="rpr/img/ui/bubble-rock.webp" alt=""></div><div><img src="rpr/img/ui/bubble-rock.webp" alt=""></div></div>
           <div class="floorcap" id="floorcap">Zones cycle every 1.75 seconds</div>
           <p class="pk">Now you’re not just reading the players. You’re reading the floor.</p>
@@ -646,10 +596,10 @@
     <h2 class="rv" data-hit>Four playgrounds. <span class="q">Every one has an edge.</span></h2>
     <hr class="rule">
     <div class="arenas">
-      <figure class="atile rv" data-hit><video data-src="rpr/clips/meadow.mp4" poster="rpr/clips/meadow.jpg" muted loop playsinline preload="none" aria-label="Sunny Meadow gameplay"></video><span class="tag">Day</span><figcaption><div class="n">SUNNY MEADOW</div><div class="l">A floating island above the clouds. Fences with gaps in them, a tree to hide behind, and a long way down.</div></figcaption></figure>
-      <figure class="atile rv" data-hit><video data-src="rpr/clips/night.mp4" poster="rpr/clips/night.jpg" muted loop playsinline preload="none" aria-label="Moonlit Meadow gameplay"></video><span class="tag">Night</span><figcaption><div class="n">MOONLIT MEADOW</div><div class="l">The same battlefield after dark. Moonlight, stars and swarms of fireflies, and every Rumbler carries a soft light of their own.</div></figcaption></figure>
-      <figure class="atile rv" data-hit><video data-src="rpr/clips/lava.mp4" poster="rpr/clips/lava.jpg" muted loop playsinline preload="none" aria-label="Magma Mayhem gameplay"></video><span class="tag">Lava</span><figcaption><div class="n">MAGMA MAYHEM</div><div class="l">A volcanic citadel of platforms and bridges over a lava lake. There are very bad places to lose a RUMBLE. This is most of them.</div></figcaption></figure>
-      <figure class="atile rv" data-hit><video data-src="rpr/clips/sky.mp4" poster="rpr/clips/sky.jpg" muted loop playsinline preload="none" aria-label="Splash Rig gameplay"></video><span class="tag">Sea</span><figcaption><div class="n">SPLASH RIG</div><div class="l">Five industrial decks joined by bridges and rails, over a deep Unreal Engine ocean. A lot of water beneath you.</div></figcaption></figure>
+      <figure class="atile rv" data-hit><video data-src="rpr/clips/meadow.mp4" poster="rpr/clips/meadow.jpg" muted loop playsinline preload="none" aria-label="Sunny Meadow gameplay"></video><span class="tag">Day</span><figcaption><div class="n">SUNNY MEADOW</div><div class="l">A floating island above the clouds. Fences, flowers, one big tree, and a very long way down.</div></figcaption></figure>
+      <figure class="atile rv" data-hit><video data-src="rpr/clips/night.mp4" poster="rpr/clips/night.jpg" muted loop playsinline preload="none" aria-label="Moonlit Meadow gameplay"></video><span class="tag">Night</span><figcaption><div class="n">MOONLIT MEADOW</div><div class="l">The same battlefield after dark, under moonlight, stars and swarms of fireflies.</div></figcaption></figure>
+      <figure class="atile rv" data-hit><video data-src="rpr/clips/lava.mp4" poster="rpr/clips/lava.jpg" muted loop playsinline preload="none" aria-label="Magma Mayhem gameplay"></video><span class="tag">Lava</span><figcaption><div class="n">MAGMA MAYHEM</div><div class="l">Platforms and bridges over a lava lake. There are very bad places to lose a RUMBLE. This is most of them.</div></figcaption></figure>
+      <figure class="atile rv" data-hit><video data-src="rpr/clips/sky.mp4" poster="rpr/clips/sky.jpg" muted loop playsinline preload="none" aria-label="Splash Rig gameplay"></video><span class="tag">Sea</span><figcaption><div class="n">SPLASH RIG</div><div class="l">Five industrial decks above a deep ocean. Swimming is not one of your three choices.</div></figcaption></figure>
     </div>
   </section>
 
@@ -658,7 +608,7 @@
     <div class="kicker q rv">Meet the Rumblers</div>
     <h2 class="rv" data-hit>Six Rumblers. <span class="q">Zero stat sheets.</span></h2>
     <hr class="rule">
-    <p class="sub rv" data-hit>Every Rumbler plays identically, and that’s deliberate. In a game about reading people, nobody should lose to a hidden number. You pick a Rumbler for personality, and so your friends can find you in a crowded arena.</p>
+    <p class="sub rv" data-hit>Every Rumbler plays identically, deliberately. In a game about reading people, nobody should lose to a hidden stat. Pick the one you like, then make your friends regret theirs.</p>
     <div class="roster">
       <figure class="rum rv" data-hit><div class="im"><img src="rpr/img/chars/teddy.webp" alt="Teddy" loading="lazy" width="560" height="718"></div><div class="n">Teddy</div><div class="a">Bear</div><div class="l">Kind paws. Serious moves.</div></figure>
       <figure class="rum rv" data-hit><div class="im"><img src="rpr/img/chars/luna.webp" alt="Luna" loading="lazy" width="560" height="718"></div><div class="n">Luna</div><div class="a">Rabbit</div><div class="l">Fast paws. Faster thinking.</div></figure>
@@ -667,7 +617,6 @@
       <figure class="rum rv" data-hit><div class="im"><img src="rpr/img/chars/fen.webp" alt="Fen" loading="lazy" width="560" height="718"></div><div class="n">Fen</div><div class="a">Fox</div><div class="l">Sharp eyes. Sneaky moves.</div></figure>
       <figure class="rum rv" data-hit><div class="im"><img src="rpr/img/chars/whiskers.webp" alt="Whiskers" loading="lazy" width="560" height="718"></div><div class="n">Whiskers</div><div class="a">Cat</div><div class="l">Soft paws. Sharp instincts.</div></figure>
     </div>
-    <p class="note rv" data-hit>The current Rumblers set the tone and proved the concept. Their final designs are part of the production plan; see <a href="#art">art direction</a>.</p>
   </section>
 
   <!-- 6 · THIS IS A REAL GAME: couch -->
@@ -675,7 +624,7 @@
     <div class="kicker q rv">Local multiplayer</div>
     <h2 class="rv" data-hit>The couch is <span class="q">part of the design.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>Up to four players on one PC, sharing one screen and one camera. No split screen: everyone sees the whole arena, including everyone else’s mistakes.</p>
+    <p class="quote rv" data-hit>Up to four players share one screen and one camera. No split screen: everyone sees the whole arena, including everyone else’s mistakes.</p>
     <div class="seats rv" data-hit id="seats">
       <div class="seat on" style="--c:var(--p1)"><span class="jn">P1</span><span class="pt">P1</span><img class="face" src="rpr/img/chars/p-bear.webp" alt="Teddy"><span class="join"><img src="rpr/img/ui/g-pad_a.webp" alt="">Press to join</span><span class="dev">Controller</span></div>
       <div class="seat" style="--c:var(--p2)"><span class="jn">P2 joined!</span><span class="pt">P2</span><img class="face" src="rpr/img/chars/p-bunny.webp" alt="Luna"><span class="join"><img src="rpr/img/ui/g-pad_a.webp" alt="">Press to join</span><span class="dev">Keyboard</span></div>
@@ -683,11 +632,11 @@
       <div class="seat" style="--c:var(--p4)"><span class="jn">P4 joined!</span><span class="pt">P4</span><img class="face" src="rpr/img/chars/p-penguin.webp" alt="Pepper"><span class="join"><img src="rpr/img/ui/g-pad_a.webp" alt="">Press to join</span><span class="dev">Controller</span></div>
     </div>
     <ul class="couchlist rv" data-hit>
-      <li>Press a button to join</li><li>Everyone picks their own Rumbler</li><li>P1–P4 colours on rings, tags and scores</li><li>Prompts match each player’s controller</li><li>Shared results, instant rematch</li>
+      <li>Drop-in local joining</li><li>Everyone picks their own Rumbler</li><li>Shared results, instant rematch</li>
     </ul>
     <div style="margin-top:clamp(40px,5vw,70px)">
       <p class="big rv" data-hit>And then <span class="q">your couch can go online.</span></p>
-      <p class="quote rv" data-hit style="margin-top:.6em">Several players on one machine can enter an online lobby together. Two friends on one PC can take on another couch across the country, or bring all four seats into a bigger lobby, with bots filling whatever’s left.</p>
+      <p class="quote rv" data-hit style="margin-top:.6em">Several players on one machine can enter the same online lobby together. Two friends on one couch can take on another couch across the country, or bring all four seats into a bigger match.</p>
       <div class="net rv" data-hit aria-label="Diagram: two couches of two players each join one online lobby of eight, with two other online players and two bots.">
         <div class="nbox"><div class="h">Couch A · one PC</div><div class="fs"><span style="--c:var(--p1)"><img src="rpr/img/chars/p-bear.webp" alt="Teddy"><b>P1</b></span><span style="--c:var(--p2)"><img src="rpr/img/chars/p-bunny.webp" alt="Luna"><b>P2</b></span></div><div class="s">Two players, two controllers</div></div>
         <div class="wire"></div>
@@ -705,19 +654,17 @@
     <h2 class="rv" data-hit>Eight players. <span class="q">One room code.</span></h2>
     <hr class="rule">
     <div class="code-hero rv" data-hit><b>K7QX</b><span>Read it out.<br>Everyone’s in.</span></div>
-    <p class="sub rv" data-hit style="margin-top:18px">Online play runs on Epic Online Services: anonymous sign-in, no account to create, no port forwarding.</p>
+    <p class="sub rv" data-hit style="margin-top:18px">Built on Epic Online Services: no account to create, no port forwarding.</p>
     <div class="feat rv" data-hit>
-      <div><b>Quick Play</b>Finds a lobby with room for your whole couch, or opens one.</div>
-      <div><b>Room codes</b>Four characters with no look-alike letters, easy to read out.</div>
-      <div><b>Game browser</b>Open lobbies with host names and free slots.</div>
-      <div><b>Direct join</b>By code or IP address, with LAN when you want it.</div>
-      <div><b>Host controls</b>The host sets mode, arena, bot count and bot difficulty.</div>
-      <div><b>Bots fill the gaps</b>A lobby of three still plays as eight.</div>
-      <div><b>Drop-in, drop-out</b>Leavers are replaced by bots. New players take a bot’s place.</div>
-      <div><b>Vote, then go again</b>A mode vote, an arena vote, then straight into the next match together.</div>
-      <div><b>Couch + online</b>Up to eight humans, from any mix of machines.</div>
+      <div><b>Quick Play</b>Find a lobby or make one.</div>
+      <div><b>Room codes</b>Four characters. Easy to read aloud.</div>
+      <div><b>Game browser</b>See open matches and jump in.</div>
+      <div><b>Bots fill gaps</b>Three players can still play a full match.</div>
+      <div><b>Drop-in, drop-out</b>Bots replace leavers. New arrivals take a bot’s place.</div>
+      <div><b>Vote and go again</b>Pick the next mode and arena without breaking up the party.</div>
+      <div class="wide"><b>Couch + online</b>Any mix of local and remote players, up to eight humans.</div>
     </div>
-    <p class="note rv" data-hit>Today’s online play is player-hosted and peer-to-peer. There are no dedicated servers, matchmaking or host migration yet: choosing the right architecture for launch is part of the <a href="#production" style="color:#fff">production plan</a>.</p>
+    <p class="note rv" data-hit>Online play today is player-hosted and peer-to-peer. The launch architecture is part of the <a href="#production" style="color:#fff">production plan</a>.</p>
   </section>
 
   <!-- 6c · BOTS -->
@@ -725,26 +672,12 @@
     <div class="kicker q rv">Bots</div>
     <h2 class="rv" data-hit>They know what you showed them. <span class="q">Not what you’re hiding.</span></h2>
     <hr class="rule">
-    <div class="bots">
-      <div>
-        <p class="quote rv" data-hit>Bots never peek at hidden hands. They play from the same information a person has: the flashes they caught, the reveals they remember and where everyone is standing.</p>
-        <ul class="ticks rv" data-hit>
-          <li>Remember flashes, and trust old ones less</li><li>Counter what they remember</li><li>Bluff, and switch late</li><li>Chase what they beat, flee what beats them</li><li>Dash to close a gap or escape one</li><li>Step out of hazards and hostile floor</li><li>Play the objective in every mode</li><li>Go after Shields, Jammers and Wild Cards</li><li>Jump the gaps between platforms</li>
-        </ul>
-        <div class="diff rv" data-hit><span>Easy</span><span>Medium</span><span>Hard</span></div>
-        <p class="note rv" data-hit>One player gets a full, readable match in seconds, and an online lobby is never too empty to start.</p>
-      </div>
-      <div class="log rv" data-hit id="botlog" aria-label="A simplified illustration of a bot's reasoning during one countdown.">
-        <div class="h">A bot’s countdown, simplified</div>
-        <div>saw <span class="k">FEN</span> switch → <span class="k">ROCK</span> <span style="opacity:.6">(1.4 s ago)</span></div>
-        <div>saw <span class="k">TEDDY</span> switch → <span class="k">PAPER</span> <span style="opacity:.6">(0.6 s ago)</span></div>
-        <div>plan: counter Teddy → <span class="g">SCISSORS</span></div>
-        <div>late switch? keep it hidden until the lock</div>
-        <div>lock: <span class="g">SCISSORS</span></div>
-        <div>reveal: Teddy <span class="k">PAPER</span> → <span class="g">chase</span></div>
-        <div>reveal: Luna <span class="k">ROCK</span> → <span class="r">run</span></div>
-      </div>
-    </div>
+    <p class="quote rv" data-hit>Bots never peek at hidden hands. They play from the same information a human gets: the flashes they saw, the reveals they remember and where everybody is standing.</p>
+    <ul class="ticks t4 rv" data-hit>
+      <li>Remember stance flashes</li><li>Bluff and switch late</li><li>Chase winning matchups</li><li>Flee losing ones</li><li>Use power-ups</li><li>Avoid hazards</li><li>Play every mode’s objective</li>
+    </ul>
+    <div class="diff rv" data-hit><span>Easy</span><span>Medium</span><span>Hard</span></div>
+    <p class="note rv" data-hit>So one player can start a full match immediately, and an online lobby never has to feel empty.</p>
   </section>
 
   <!-- 6d · POWER-UPS -->
@@ -754,12 +687,11 @@
     <hr class="rule">
     <div class="pups">
       <figure class="pup rv" data-hit><div class="ic"><img src="rpr/img/ui/pu-shield.webp" alt="" width="160" height="172"></div><div class="t" style="color:var(--rock)">SHIELD</div><p>Lose once without losing.</p></figure>
-      <figure class="pup rv" data-hit><div class="ic"><img src="rpr/img/ui/pu-jammer.webp" alt="" width="160" height="160"></div><div class="t" style="color:#7a3fe0">JAMMER</div><p>Your switches and your reveal show as a question mark to everyone else. Eight seconds of perfect poker face.</p></figure>
-      <figure class="pup rv" data-hit><div class="ic"><img src="rpr/img/ui/pu-wildcard.webp" alt="" width="152" height="198"></div><div class="t" style="color:#e8590c">WILD CARD</div><p>Change your hand once after RUMBLE locks, when you’ve already seen everyone else’s. Deeply unfair. Entirely legal.</p></figure>
-      <figure class="pup rv" data-hit><div class="ic"><div class="ring" style="--rc:var(--p3)"></div></div><div class="t" style="color:#1f9d55">BIG RING</div><p>Your reach grows. Much harder to escape from.</p></figure>
-      <figure class="pup rv" data-hit><div class="ic"><div class="ring tiny" style="--rc:var(--sciss)"></div></div><div class="t" style="color:var(--sciss)">TINY RING</div><p>Harder to catch. Also harder to catch anyone.</p></figure>
+      <figure class="pup rv" data-hit><div class="ic"><img src="rpr/img/ui/pu-jammer.webp" alt="" width="160" height="160"></div><div class="t" style="color:#7a3fe0">JAMMER</div><p>Your hand stays hidden when everyone else’s reveals.</p></figure>
+      <figure class="pup rv" data-hit><div class="ic"><img src="rpr/img/ui/pu-wildcard.webp" alt="" width="152" height="198"></div><div class="t" style="color:#e8590c">WILD CARD</div><p>Change once after RUMBLE locks. Deeply unfair. Entirely legal.</p></figure>
+      <figure class="pup rv" data-hit><div class="ic"><div class="ring" style="--rc:var(--p3)"></div></div><div class="t" style="color:#1f9d55">BIG RING</div><p>Reach farther.</p></figure>
+      <figure class="pup rv" data-hit><div class="ic"><div class="ring tiny" style="--rc:var(--sciss)"></div></div><div class="t" style="color:var(--sciss)">TINY RING</div><p>Harder to catch. Harder to catch anyone.</p></figure>
     </div>
-    <p class="note rv" data-hit>Crates parachute in one at a time, so everybody sees who’s going for it.</p>
   </section>
 
   <!-- 7 · THEY'VE BUILT A LOT ALREADY -->
@@ -768,16 +700,11 @@
     <h2 class="rv" data-hit>The game works. <span class="q">Now make it a product.</span></h2>
     <hr class="rule">
     <div class="status">
-      <div>
-        <p class="quote rv" data-hit>Rock Paper Rumble isn’t a concept looking for its core loop. The loop is built, and it’s what people are already playing, on one couch, across two couches and online.</p>
-        <ul class="checks rv" data-hit>
-          <li>The complete RUMBLE mechanic</li><li>Seven playable modes</li><li>Four playable arenas</li><li>Six Rumblers</li><li>Bots with three difficulties</li><li>Four-player couch play</li><li>Couch + online parties</li><li>Epic Online Services</li><li>Quick Play, room codes, lobby browser</li><li>Custom games</li><li>Mode and arena voting</li><li>Guided tutorial</li><li>Settings, HUD scaling and reduced motion</li><li>Results and instant rematch</li><li>Power-ups and hazards</li><li>A polished match HUD</li>
-        </ul>
-      </div>
+      <p class="quote rv" data-hit>Rock Paper Rumble isn’t a concept searching for a game. The complete RUMBLE loop, seven modes, four arenas, six Rumblers, bots, couch multiplayer and online play are all in the build today.</p>
       <div class="callout rv" data-hit>
-        <p class="v">Version 0.1 · advanced prototype · closed-beta stage</p>
-        <p class="t">Solid enough to put in front of players. Not a commercial release, and not pretending to be.</p>
-        <p>The next phase is production, not proof: the design question has been answered by playing it.</p>
+        <p class="v">v0.1 · advanced prototype · closed beta</p>
+        <p class="t">Playable enough to put in front of people. Not a commercial release, and not pretending to be.</p>
+        <p>The core design is playable. The next phase is about turning that proof into a commercial product.</p>
       </div>
     </div>
   </section>
@@ -787,75 +714,57 @@
     <div class="kicker q rv">Art direction</div>
     <h2 class="rv" data-hit>The game is proven. <span class="q">Its final look is still open.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>To prove the design quickly, the current build uses AI-assisted placeholder art in places, across characters, UI illustration and environments. That was the right call for a prototype. It isn’t the plan for a commercial release.</p>
-    <p class="quote rv" data-hit>The commercial version gets a cohesive, original visual identity made by professional artists. The six Rumblers and today’s tone are a starting point, not sacred production assets.</p>
-    <div class="needs rv" data-hit><span>Character design &amp; final models</span><span>Environment art</span><span>Key art &amp; illustration</span><span>UI illustration &amp; icons</span><span>Animation polish</span><span>VFX polish</span><span>Branding treatment</span><span>Promotional art</span></div>
-    <p class="big rv" data-hit>The right partner isn’t being asked whether the game works. <span class="q">They get to help decide what it looks like.</span></p>
+    <p class="quote rv" data-hit>The prototype prioritised proving the game over producing final art. Some characters, UI illustration and environments currently use temporary or AI-assisted assets.</p>
+    <p class="quote rv" data-hit>A commercial release would replace them with a cohesive, fully original visual identity created by professional artists. Today’s Rumblers and overall tone set the direction; they don’t lock the final look.</p>
+    <div class="needs n3 rv" data-hit><span>Characters</span><span>Environments</span><span>UI</span><span>Animation</span><span>VFX</span><span>Key art</span></div>
+    <p class="big rv" data-hit>We proved the game first. <span class="q">Now the visual identity gets the same attention.</span></p>
   </section>
 
   <!-- 8 · I CAN SEE WHAT MONEY WOULD DO -->
   <section class="chapter" id="production">
     <div class="kicker q rv">The production opportunity</div>
-    <h2 class="rv" data-hit>The risky part is <span class="q">already playable.</span></h2>
+    <h2 class="rv" data-hit>The core game is <span class="q">already playable.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>The central mechanic works. The modes work. Couch play, online play and bots work. The front end and the match loop work.</p>
     <p class="quote rv" data-hit>What’s left is the step independent multiplayer games struggle to fund alone: turning a strong prototype into a polished commercial release.</p>
-    <div class="meters rv" data-hit>
-      <div class="meter"><div class="l">Gameplay maturity</div><div class="bar"><i data-w="84%"></i></div><div class="v">High</div></div>
-      <div class="meter"><div class="l">Production upside</div><div class="bar"><i class="gold" data-w="94%"></i></div><div class="v">High</div></div>
-    </div>
     <div class="buys">
-      <figure class="buy rv" data-hit style="--bc:var(--sciss)"><div class="n">01</div><div class="t">Original art production</div><p>Replace placeholder and AI-assisted assets with a bespoke, professionally made visual identity: characters, arenas, UI, key art.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--rock)"><div class="n">02</div><div class="t">Online infrastructure</div><p>A proper technical evaluation of launch architecture: dedicated servers, a scalable backend, matchmaking, server authority and host migration where needed, telemetry, reporting and moderation, deployment.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--paper)"><div class="n">03</div><div class="t">Content &amp; polish</div><p>More arenas and, potentially, more Rumblers and cosmetic content. Animation, VFX, audio, UI, accessibility, onboarding and performance.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--p3)"><div class="n">04</div><div class="t">Platform expansion</div><p>Steam first. Console versions with the right partner: certification, controller and platform requirements, and a cross-platform plan where it makes technical and commercial sense.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--lilac)"><div class="n">05</div><div class="t">QA &amp; multiplayer testing</div><p>Scale tests, hardware compatibility, network edge cases and certification passes.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--hot)"><div class="n">06</div><div class="t">Go-to-market</div><p>The reveal, trailers, creators, PR, events, community, wishlists and the launch itself.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--sciss)"><div class="n">01</div><div class="t">Original art</div><p>Build a cohesive final identity around the existing tone.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--rock)"><div class="n">02</div><div class="t">Online</div><p>Take today’s Epic Online Services multiplayer to launch-grade infrastructure.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--paper)"><div class="n">03</div><div class="t">Content &amp; polish</div><p>More arenas, animation, VFX, audio, accessibility and optimisation.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--p3)"><div class="n">04</div><div class="t">Platforms</div><p>Steam first, with console expansion where it makes sense.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--lilac)"><div class="n">05</div><div class="t">QA</div><p>Scale testing, hardware coverage and network edge cases.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--hot)"><div class="n">06</div><div class="t">Launch</div><p>Trailer, creators, PR, community and release.</p></figure>
     </div>
   </section>
 
   <!-- 9 · I CAN SEE WHY THIS COULD MARKET -->
-  <section class="chapter" id="market">
+  <section class="chapter inv" id="market">
     <div class="kicker q rv">Why it can market</div>
     <h2 class="rv" data-hit>The audience already <span class="q">knows how to play.</span></h2>
     <hr class="rule">
-    <p class="big rv" data-hit>Most multiplayer games have to teach the internet their rules. <span class="q">Rock Paper Rumble starts with rules the internet learned in the playground.</span></p>
-    <p class="quote rv" data-hit style="margin-top:.8em">That changes what a clip has to do. There’s no rules explainer before the funny part. The viewer gets the joke in the same second the players do.</p>
-    <div class="marquee rv" data-hit aria-label="Moments the game produces">
-      <div class="row"><span>The bait-and-switch</span><span>The last-second swap</span><span>The three-way chase</span><span>The read that paid off</span><span>The read that didn’t</span><span>The clash bounce</span><span>The Hot Potato handoff</span><span>Floor panic</span><span>Launched into the lava</span><span>The one that got away</span><span>Betrayed on the hill</span><span>“You SAW me switch!”</span>
-        <span>The bait-and-switch</span><span>The last-second swap</span><span>The three-way chase</span><span>The read that paid off</span><span>The read that didn’t</span><span>The clash bounce</span><span>The Hot Potato handoff</span><span>Floor panic</span><span>Launched into the lava</span><span>The one that got away</span><span>Betrayed on the hill</span><span>“You SAW me switch!”</span></div>
-      <div class="row b"><span>Wild Card, last second</span><span>Two Scissors, one Paper</span><span>The alliance that lasted a reveal</span><span>Jammed and smug</span><span>Into the sea</span><span>Chasing the chaser</span><span>The shield that saved a round</span><span>Last one standing</span><span>The ring closes</span><span>Rematch. Now.</span>
-        <span>Wild Card, last second</span><span>Two Scissors, one Paper</span><span>The alliance that lasted a reveal</span><span>Jammed and smug</span><span>Into the sea</span><span>Chasing the chaser</span><span>The shield that saved a round</span><span>Last one standing</span><span>The ring closes</span><span>Rematch. Now.</span></div>
+    <p class="big rv" data-hit>Most multiplayer games have to teach the internet their rules. <span class="q">Rock Paper Rumble starts with something people already understand.</span></p>
+    <p class="quote rv" data-hit style="margin-top:.8em">Hidden. Revealed. Resolved. Question marks create suspense. RUMBLE creates instant clarity. Then somebody goes flying.</p>
+    <div class="grammar">
+      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/bluff.jpg" alt="Before the reveal: question marks over every Rumbler" loading="lazy" width="1280" height="720"><span style="--gc:var(--ink)">?  ?  ?</span></div><div class="t">Suspense</div></figure>
+      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/rumble.jpg" alt="The reveal: every hand shown at once" loading="lazy" width="1280" height="720"><span style="--gc:var(--hot)">RUMBLE!</span></div><div class="t">Clarity</div></figure>
+      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/knockout.jpg" alt="The payoff: a knockout" loading="lazy" width="1280" height="720"><span style="--gc:var(--p3)">POOF</span></div><div class="t">Payoff</div></figure>
     </div>
-    <p class="note rv" data-hit>These aren’t projections, and there are no numbers here yet. They’re moments the design produces every few seconds, by construction.</p>
+    <div class="marquee static rv" data-hit aria-label="Moments the game produces"><div class="row"><span>The last-second switch</span><span>The three-way chase</span><span>The alliance that lasted one reveal</span><span>The Wild Card robbery</span><span>The Hot Potato handoff</span><span>Floor panic</span><span>Launched into lava</span><span>“YOU SAW ME SWITCH!”</span></div></div>
+    <p class="big rv" data-hit style="margin-top:clamp(28px,3.4vw,44px)">The joke doesn’t need explaining. <span class="q">The viewer sees the mistake at the same moment the players do.</span></p>
   </section>
 
-  <!-- 9b · WATCHABLE -->
-  <section class="chapter inv" id="watch">
-    <div class="kicker q rv">Spectator readability</div>
-    <h2 class="rv" data-hit>A game people can <span class="q">watch.</span></h2>
-    <hr class="rule">
-    <p class="quote rv" data-hit>Hidden, revealed, resolved. That grammar repeats every cycle, and each beat reads in a few seconds, without sound, from across a room or in a feed.</p>
-    <div class="grammar">
-      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/bluff.jpg" alt="Before the reveal: question marks over every Rumbler" loading="lazy" width="1280" height="720"><span style="--gc:var(--ink)">?  ?  ?</span></div><div class="t">Before: suspense</div><p>Question marks and flashes. Who’s lying, and who noticed?</p></figure>
-      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/rumble.jpg" alt="The reveal: every hand shown at once" loading="lazy" width="1280" height="720"><span style="--gc:var(--hot)">RUMBLE!</span></div><div class="t">The reveal: clarity</div><p>Every hand at once. Viewers instantly see who should chase and who should run.</p></figure>
-      <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/knockout.jpg" alt="The payoff: a knockout" loading="lazy" width="1280" height="720"><span style="--gc:var(--p3)">POOF</span></div><div class="t">After: payoff</div><p>Someone flies. Everyone watching already knows who made the terrible mistake.</p></figure>
-    </div>
-  </section>
 
   <!-- 9c · TECHNICAL -->
   <section class="chapter" id="technical">
     <div class="kicker rv">Technical</div>
     <h2 class="rv" data-hit>Built in Unreal Engine 5. <span class="q">Built for a crowd.</span></h2>
     <hr class="rule">
-    <p class="sub rv" data-hit>Developed by Yumloop in C++ on Unreal Engine 5.5.</p>
     <div class="tech rv" data-hit>
-      <div><b>Engine</b><strong>Unreal Engine 5.5 · C++</strong>DX12, Lumen lighting, and Unreal’s Water system under Splash Rig.</div>
-      <div><b>Multiplayer</b><strong>Epic Online Services</strong>Anonymous sign-in, peer-to-peer relay with no port forwarding, LAN and direct-IP fallback. Room codes, Quick Play, lobby browser. Up to 8 humans online; combined local and online parties.</div>
-      <div><b>Local</b><strong>Up to four on one PC</strong>Shared-screen camera, per-player device routing across controllers, keyboard and mouse, controller-aware prompts, join from the menus, controller reconnect.</div>
-      <div><b>AI</b><strong>Bots · three difficulties</strong>Play from human-visible information only. Objective-aware in every mode, including platform gaps and hazards.</div>
-      <div><b>Current platform</b><strong>Windows 64-bit</strong>Private build distribution for testing. No store release yet.</div>
-      <div><b>Status</b><strong>v0.1 · closed-beta stage</strong>An advanced prototype: every system on this page is in the build today.</div>
+      <div><b>Engine</b><strong>Unreal Engine 5.5 · C++</strong>DX12, Lumen, Unreal Water.</div>
+      <div><b>Online</b><strong>Epic Online Services · up to 8</strong>Peer-to-peer relay, LAN and direct-IP fallback.</div>
+      <div><b>Local</b><strong>Up to 4 on one PC</strong>Shared camera, controller-aware prompts, reconnect.</div>
+      <div><b>Parties</b><strong>Mixed local + online</strong>Couches join lobbies together.</div>
+      <div><b>AI</b><strong>Bots · three difficulties</strong>Human-visible information only.</div>
+      <div><b>Platform</b><strong>Windows build today</strong>v0.1 · closed-beta stage.</div>
     </div>
   </section>
 
@@ -878,8 +787,8 @@
     <p class="big rv" data-hit style="margin-top:clamp(30px,4vw,50px)">Different games. <span class="q">Same philosophy.</span></p>
     <p class="quote rv" data-hit>Start with one idea people understand immediately. Then find out how far it can go.</p>
     <div class="also rv" data-hit>
-      <div><div class="k">Also at Yumloop</div><div class="t">Sightline</div><p>A substantially complete logic puzzle game, approaching launch. Small, elegant, systemic.</p><a href="/sightline-pitch">Sightline pitch →</a></div>
-      <div><div class="k">This page</div><div class="t">Rock Paper Rumble</div><p>A larger social multiplayer game built around one extremely readable mechanic, looking for the right production path.</p></div>
+      <div><div class="k">Also at Yumloop</div><div class="t">Sightline</div><p>Pure deduction. Approaching launch.</p><a href="/sightline-pitch">Sightline pitch →</a></div>
+      <div><div class="k">This page</div><div class="t">Rock Paper Rumble</div><p>Social multiplayer. Playable now.</p></div>
     </div>
   </section>
 
@@ -888,20 +797,19 @@
     <div class="kicker q rv">What I’m looking for</div>
     <h2 class="rv" data-hit>I’m looking for the partner who takes it from playable <span class="q">to undeniable.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>I’m not looking for someone to fund an idea. The idea exists. The game exists. People can play it today.</p>
-    <p class="quote rv" data-hit>I’m looking for a partner who can materially help with some combination of:</p>
-    <div class="needs rv" data-hit><span>Project financing</span><span>Publishing</span><span>Original art production</span><span>Multiplayer infrastructure</span><span>Production support</span><span>QA</span><span>Console development</span><span>Marketing</span><span>User acquisition</span><span>Creator strategy</span><span>Community</span><span>Platform relationships</span><span>Launch strategy</span></div>
-    <p class="quote rv" data-hit>The structure is open: publisher, investor, project financier or strategic partner.</p>
-    <p class="big rv" data-hit style="margin-top:.8em">The question isn’t whether Rock Paper Rumble can be built. <span class="q">It’s how big it gets.</span></p>
+    <p class="quote rv" data-hit>I’m not looking for someone to fund an idea. The game exists. You can play it today.</p>
+    <p class="quote rv" data-hit>I’m looking for the right partner across production, original art, online infrastructure, platforms, QA, marketing and launch.</p>
+    <p class="quote rv" data-hit>The structure is open: publishing, project financing, investment or strategic partnership.</p>
   </section>
 
   <!-- CLOSE -->
   <section class="close chapter" id="close">
     <div class="lockup rv" data-hit><img src="rpr/img/logo.webp" width="1100" height="622" alt="Rock Paper Rumble"><span class="lp">Multiplayer party brawler</span></div>
     <h2 class="rv" data-hit>Three choices. Eight players. <span class="q">One very loud room.</span></h2>
-    <p class="sub rv" data-hit style="margin:0 auto">Rock Paper Rumble is playable today and the core game is built. I’m looking for the right partner to turn it into the commercial multiplayer game it can become.</p>
+    <p class="sub rv" data-hit style="margin:0 auto">Rock Paper Rumble is playable today and the core game is built. Play it. Then let’s talk about where it goes next.</p>
     <div class="actions rv" data-hit>
       <a class="solid" href="#" data-link="buildWindows">Play the build</a>
+      <a href="#demo">Watch a round</a>
       <a href="mailto:yoni@yumloop.net?subject=Rock%20Paper%20Rumble" data-link="contact">Contact Yoni</a>
     </div>
     <div class="contact rv" data-hit>
