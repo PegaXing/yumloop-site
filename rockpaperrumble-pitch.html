@@ -295,6 +295,7 @@
   .pup p{margin:0; font-size:14px; line-height:1.45; color:#3a3c5a}
 
   /* ---------- status / production ---------- */
+  .status.status1{grid-template-columns:minmax(0,640px)}
   .status{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,60px); align-items:start}
   .checks{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 18px}
   .checks li{font-size:14.5px; line-height:1.4; padding-left:26px; position:relative; color:rgba(255,255,255,.9)}
@@ -470,7 +471,7 @@
       <span class="chip">Playable today · Closed-beta stage</span>
     </div>
     <p class="playfacts rv" data-hit>Windows 64-bit · Controller recommended</p>
-    <p class="sub rv" data-hit>Jump into any of the seven modes with bots, add up to four local players, or host an online lobby with a four-character room code. A guided tutorial is offered before your first match and lives on the main menu.</p>
+    <p class="sub rv" data-hit>Any of the seven modes with bots, up to four players on one PC, or an online lobby by room code. A guided tutorial is built in.</p>
   </section>
 
   <!-- 2 · I UNDERSTAND IT -->
@@ -560,7 +561,7 @@
     </div>
     <div class="chaos">
       <p class="big rv" data-hit>The rules never change. <span class="q">The situation never stops changing.</span></p>
-      <p class="quote rv" data-hit>One rule everybody understands, applied by eight people at once, creates chaos that stays readable. When somebody gets launched, everyone knows exactly why, and usually whose fault it was.</p>
+      <p class="quote rv" data-hit>One rule, eight people at once: chaos that stays readable. When somebody gets launched, everyone knows exactly why, and usually whose fault it was.</p>
       <div class="pillars p3 rv" data-hit>
         <div><b>Party-game readability</b>Understood within a round.</div>
         <div><b>Fighting-game mind games</b>Reads, conditioning and misdirection.</div>
@@ -642,13 +643,13 @@
     </ul>
     <div style="margin-top:clamp(40px,5vw,70px)">
       <p class="big rv" data-hit>And then <span class="q">your couch can go online.</span></p>
-      <p class="quote rv" data-hit style="margin-top:.6em">Multiple players on one machine can enter the same online lobby together. Two friends on one couch can play another couch across the country, or bring all four seats into a larger match.</p>
+      <p class="quote rv" data-hit style="margin-top:.6em">Two friends on one couch can play another couch across the country, or bring all four seats into a larger online match.</p>
       <div class="net rv" data-hit aria-label="Diagram: two couches of two players each join one online lobby of eight, with two other online players and two bots.">
-        <div class="nbox"><div class="h">Couch A · one PC</div><div class="fs"><span style="--c:var(--p1)"><img src="rpr/img/chars/p-bear.webp" alt="Teddy"><b>P1</b></span><span style="--c:var(--p2)"><img src="rpr/img/chars/p-bunny.webp" alt="Luna"><b>P2</b></span></div><div class="s">Two players, two controllers</div></div>
+        <div class="nbox"><div class="h">Couch A · one PC</div><div class="fs"><span style="--c:var(--p1)"><img src="rpr/img/chars/p-bear.webp" alt="Teddy"><b>P1</b></span><span style="--c:var(--p2)"><img src="rpr/img/chars/p-bunny.webp" alt="Luna"><b>P2</b></span></div></div>
         <div class="wire"></div>
         <div class="nbox lobby"><div class="h">Online lobby</div><div class="code">K7QX</div><div class="slots"><i class="a">Couch A</i><i class="a2">Couch A</i><i class="b">Couch B</i><i class="b2">Couch B</i><i class="o">Online</i><i class="o">Online</i><i class="bot">Bot</i><i class="bot">Bot</i></div></div>
         <div class="wire r"></div>
-        <div class="nbox"><div class="h">Couch B · one PC</div><div class="fs"><span style="--c:var(--p3)"><img src="rpr/img/chars/p-fox.webp" alt="Fen"><b>P1</b></span><span style="--c:var(--p4)"><img src="rpr/img/chars/p-penguin.webp" alt="Pepper"><b>P2</b></span></div><div class="s">Two players, two controllers</div></div>
+        <div class="nbox"><div class="h">Couch B · one PC</div><div class="fs"><span style="--c:var(--p3)"><img src="rpr/img/chars/p-fox.webp" alt="Fen"><b>P1</b></span><span style="--c:var(--p4)"><img src="rpr/img/chars/p-penguin.webp" alt="Pepper"><b>P2</b></span></div></div>
       </div>
       <p class="big rv" data-hit style="margin-top:clamp(28px,3.4vw,44px)">Couch multiplayer didn’t disappear. <span class="q">The couches just got connected.</span></p>
     </div>
@@ -664,10 +665,9 @@
       <div><b>Quick Play</b>Find a lobby or make one.</div>
       <div><b>Room codes</b>Four characters. Easy to read aloud.</div>
       <div><b>Game browser</b>See open matches and jump in.</div>
-      <div><b>Bots fill gaps</b>Three players can still have a full match.</div>
       <div><b>Drop-in, drop-out</b>Bots replace leavers. New arrivals take a bot’s place.</div>
       <div><b>Vote and go again</b>Pick the next mode and arena without breaking the party.</div>
-      <div class="wide"><b>Couch + online</b>Any mix of local and remote players, up to eight humans.</div>
+      <div><b>Couch + online</b>Any mix of local and remote players, up to eight humans.</div>
     </div>
     <p class="note rv" data-hit>Online play today is player-hosted and peer-to-peer.</p>
   </section>
@@ -704,12 +704,10 @@
     <div class="kicker q rv">Development status</div>
     <h2 class="rv" data-hit>The game works. <span class="q">Now make it a product.</span></h2>
     <hr class="rule">
-    <div class="status">
-      <p class="quote rv" data-hit>Rock Paper Rumble isn’t a concept searching for a game. The complete RUMBLE loop, seven modes, four arenas, six Rumblers, bots, couch multiplayer and online play are all in the build today.</p>
+    <div class="status status1">
       <div class="callout rv" data-hit>
         <p class="v">v0.1 · advanced prototype · closed beta</p>
-        <p class="t">Playable enough to put in front of people. Not a commercial release, and not pretending to be.</p>
-        <p>The core design is playable. The next phase is about turning that proof into a commercial product.</p>
+        <p class="t">Ready for players. Not a commercial release, and not pretending to be.</p>
       </div>
     </div>
   </section>
@@ -717,26 +715,25 @@
   <!-- 7b · ART -->
   <section class="chapter inv" id="art">
     <div class="kicker q rv">Art direction</div>
-    <h2 class="rv" data-hit>The game is playable. <span class="q">Its final look is still open.</span></h2>
+    <h2 class="rv" data-hit>The core is proven. <span class="q">Its final look is still open.</span></h2>
     <hr class="rule">
-    <p class="quote rv" data-hit>The prototype prioritised proving the game over producing final art. Some characters, UI illustration and environments currently use temporary or AI-assisted assets.</p>
-    <p class="quote rv" data-hit>A commercial release would replace them with a cohesive, fully original visual identity created by professional artists. Today’s Rumblers and overall tone set the direction; they don’t lock the final look.</p>
+    <p class="quote rv" data-hit>Some characters, UI illustration and environments use temporary or AI-assisted assets.</p>
+    <p class="quote rv" data-hit>A commercial release replaces them with a fully original identity from professional artists. Today’s Rumblers set the tone, not the final look.</p>
     <div class="needs n3 rv" data-hit><span>Characters</span><span>Environments</span><span>UI</span><span>Animation</span><span>VFX</span><span>Key art</span></div>
-    <p class="big rv" data-hit>We proved the game first. <span class="q">Now the visual identity gets the same attention.</span></p>
   </section>
 
   <!-- 8 · I CAN SEE WHAT MONEY WOULD DO -->
   <section class="chapter" id="production">
     <div class="kicker q rv">The production opportunity</div>
-    <h2 class="rv" data-hit>The core game is <span class="q">already playable.</span></h2>
+    <h2 class="rv" data-hit>Where the next stage <span class="q">goes.</span></h2>
     <hr class="rule">
     <p class="quote rv" data-hit>What’s left is the step between a strong independent prototype and a polished commercial release.</p>
     <div class="buys">
-      <figure class="buy rv" data-hit style="--bc:var(--sciss)"><div class="n">01</div><div class="t">Original art</div><p>Build a cohesive final identity around the existing tone.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--rock)"><div class="n">02</div><div class="t">Online</div><p>Take today’s working EOS multiplayer to launch-grade infrastructure.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--sciss)"><div class="n">01</div><div class="t">Original art</div><p>A cohesive, fully original identity.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--rock)"><div class="n">02</div><div class="t">Online</div><p>Today’s working EOS multiplayer, taken to launch grade.</p></figure>
       <figure class="buy rv" data-hit style="--bc:var(--paper)"><div class="n">03</div><div class="t">Content &amp; polish</div><p>More arenas, animation, VFX, audio, accessibility and optimisation.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--p3)"><div class="n">04</div><div class="t">Platforms</div><p>Steam first, with console expansion where it makes sense.</p></figure>
-      <figure class="buy rv" data-hit style="--bc:var(--lilac)"><div class="n">05</div><div class="t">QA</div><p>Scale testing, hardware coverage and network edge cases.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--p3)"><div class="n">04</div><div class="t">Platforms</div><p>Steam first, then console where it makes sense.</p></figure>
+      <figure class="buy rv" data-hit style="--bc:var(--lilac)"><div class="n">05</div><div class="t">QA</div><p>Scale, hardware and network testing.</p></figure>
       <figure class="buy rv" data-hit style="--bc:var(--hot)"><div class="n">06</div><div class="t">Launch</div><p>Trailer, creators, PR, community and release.</p></figure>
     </div>
   </section>
@@ -747,7 +744,7 @@
     <h2 class="rv" data-hit>The audience already <span class="q">knows how to play.</span></h2>
     <hr class="rule">
     <p class="big rv" data-hit>Most multiplayer games have to teach the internet their rules. <span class="q">Rock Paper Rumble starts with something people already understand.</span></p>
-    <p class="quote rv" data-hit style="margin-top:.8em">Hidden. Revealed. Resolved. Question marks create suspense. RUMBLE creates instant clarity. Then somebody goes flying.</p>
+    <p class="quote rv" data-hit style="margin-top:.8em">Hidden. Revealed. Resolved. Then somebody goes flying.</p>
     <div class="grammar">
       <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/bluff.jpg" alt="Before the reveal: question marks over every Rumbler" loading="lazy" width="1280" height="720"><span style="--gc:var(--ink)">?  ?  ?</span></div><div class="t">Suspense</div></figure>
       <figure class="gram rv" data-hit><div class="im"><img src="rpr/clips/rumble.jpg" alt="The reveal: every hand shown at once" loading="lazy" width="1280" height="720"><span style="--gc:var(--hot)">RUMBLE!</span></div><div class="t">Clarity</div></figure>
@@ -791,7 +788,7 @@
     <p class="quote rv" data-hit>Start with one idea people understand immediately. Then find out how far it can go.</p>
     <div class="also rv" data-hit>
       <div><div class="k">Also at Yumloop</div><div class="t">Sightline</div><p>Pure deduction. Approaching launch.</p><a href="/sightline-pitch">Sightline pitch →</a></div>
-      <div><div class="k">This page</div><div class="t">Rock Paper Rumble</div><p>Social multiplayer. Playable now.</p></div>
+      <div><div class="k">This page</div><div class="t">Rock Paper Rumble</div><p>Social multiplayer. In closed beta.</p></div>
     </div>
   </section>
 
@@ -809,7 +806,7 @@
   <section class="close chapter" id="close">
     <div class="lockup rv" data-hit><img src="rpr/img/logo.webp" width="1100" height="622" alt="Rock Paper Rumble"><span class="lp">Multiplayer party brawler</span></div>
     <h2 class="rv" data-hit>Three choices. Eight players. <span class="q">One very loud room.</span></h2>
-    <p class="sub rv" data-hit style="margin:0 auto">Rock Paper Rumble is playable today. Play it. Then let’s talk about where it goes next.</p>
+    <p class="sub rv" data-hit style="margin:0 auto">Play it. Then let’s talk about where it goes next.</p>
     <div class="actions rv" data-hit>
       <a class="solid" href="#" data-link="buildWindows">Play the build</a>
       <a href="#demo">Watch gameplay</a>
