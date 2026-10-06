@@ -30,7 +30,7 @@
   <div class="head col">
     <span class="lab">Privacy</span>
     <h1>What we collect, and what we don't.</h1>
-    <p class="stamp">Last updated 15 September 2026 · Applies to Yumloop games and yumloop.net</p>
+    <p class="stamp">Last updated 6 October 2026 · Applies to Yumloop games and yumloop.net</p>
   </div>
 </div>
 
@@ -40,7 +40,7 @@
 
     <section>
       <h2>The short version</h2>
-      <p>Yumloop is one person. There is no sign-up form, no email address and no password to invent, and nothing here is sold or handed to advertisers. Your game progress lives on your device, backed up to your own iCloud, Google account or Steam Cloud. A small Yumloop account keyed to your Game Center, Google Play Games or Steam identity keeps the shared Daily leaderboard, and, with Sightline+ (or on Steam), a copy of your save so it can follow you between an iPhone, an Android phone and a Steam Deck. The only thing you can type into it is an optional display name, and you can delete it at any time from inside the game. A small amount of anonymous usage data tells me which parts of a game people actually play, and that's the extent of it.</p>
+      <p>Yumloop is one person. There is no sign-up form, no email address and no password to invent, and nothing here is sold or handed to advertisers. Your game progress lives on your device, backed up to your own iCloud, Google account or Steam Cloud. A small Yumloop account keyed to your Game Center, Google Play Games or Steam identity keeps the shared Daily leaderboard, and, with Sightline+ (or on Steam), a copy of your save so it can follow you between an iPhone, an Android phone and a Steam Deck. The only thing you can type into it is an optional display name, and you can delete it at any time from inside the game. If you play Sightline's online Elimination mode, that display name is shown to the other players in your match, and the match itself is forgotten minutes after it ends. A small amount of anonymous usage data tells me which parts of a game people actually play, and that's the extent of it.</p>
     </section>
 
     <section>
@@ -64,6 +64,14 @@
           <p>Everyone gets the same Daily Sightline, and its leaderboard is shared across iPhone, Android and Steam. When you finish one, your completion time and the display name you chose are sent to the Yumloop account service described below so they can appear on that day's board. On iPhone your time is also posted to Game Center's leaderboard under Apple's privacy policy. No email, real name or device identifier goes with it, and skipping the daily means nothing is sent.</p>
         </div>
         <div>
+          <span class="lab">Multiplayer (Elimination)</span>
+          <p>Sightline's online mode runs each match on the same Yumloop account service. While you play, it receives your display name, which kind of device you're on (iPhone or iPad, Android, or Steam), and your moves: the tiles you reveal, the boards you clear and the bomb that knocks you out, so it can keep every player's board in step and decide who wins. The other players in your match see your display name, your device type, how far you've got and where you finished, and once you're out you can watch another player's board live, as they can watch yours. There is no text or voice chat. A private room is found by a short code you choose to share, and a room link opens a page on the same service that only shows that code. Everything about a match is deleted ten minutes after it ends, and a room invitation expires after ten minutes; no IP address is kept.</p>
+        </div>
+        <div>
+          <span class="lab">Friends from Game Center, Google Play Games and Steam</span>
+          <p>When you tap <strong>Invite friends</strong> in a multiplayer room, Sightline asks your platform for your friends list (on iPhone, only if you've allowed it to see your Game Center friends) and sends those friends' player IDs, the same pseudonymous IDs described under <em>Yumloop account</em>, to the account service. It checks which of them already have a Yumloop account and adds those to your friends list in the game, and you to theirs, so you can invite each other. IDs that don't match anyone are discarded, not stored. Nothing else about your friends is sent, and deleting your account removes these links on both sides.</p>
+        </div>
+        <div>
           <span class="lab">Purchases</span>
           <p>Any in-app purchase is processed entirely by Apple or Google Play. I never see your card details, billing address, Apple ID or Google account. The store shares only whether a purchase was completed, which is what unlocks the content on your device.</p>
         </div>
@@ -85,11 +93,11 @@
         </div>
         <div>
           <span class="lab">Yumloop account (cross-device sync)</span>
-          <p>Sightline uses a small account service I run on Cloudflare. It is keyed to a pseudonymous identity from the platform you're on — a Game Center player ID that Apple issues for this game alone, a Google Play Games player ID, or your 64-bit Steam ID, each proven to me by Apple, Google or Valve rather than typed by you. For every player it can hold your Daily completion times, the display name you choose to show beside them, and the friend code and friends list you build inside the game. With Sightline+ on iPhone or Android, or on Steam where it is included, it also holds your compressed save (levels, stars, streaks, statistics and settings — nothing that identifies you) and the time it was last updated, so progress can follow you between devices. No email, real name, IP address or device details are kept. Saves only ever move forward, so a linked device can never overwrite a newer save with an older one. Linking two devices uses a short code or QR that expires after a few minutes and works once; on iPhone the camera is used only while you're on the <strong>Scan a code</strong> screen, and nothing from it is stored or uploaded. <strong>Settings → Account → Delete account</strong> removes everything the service holds about you immediately; the older <em>save code</em> transfer via dpaste.com has been retired and issues no new codes.</p>
+          <p>Sightline uses a small account service I run on Cloudflare. It is keyed to a pseudonymous identity from the platform you're on — a Game Center player ID that Apple issues for this game alone, a Google Play Games player ID, or your 64-bit Steam ID, each proven to me by Apple, Google or Valve rather than typed by you. For every player it can hold your Daily completion times, the display name you choose to show beside them, and the friend code and friends list you build inside the game, including friends found through your platform as described above. With Sightline+ on iPhone or Android, or on Steam where it is included, it also holds your compressed save (levels, stars, streaks, statistics and settings — nothing that identifies you) and the time it was last updated, so progress can follow you between devices. No email, real name, IP address or device details are kept. Saves only ever move forward, so a linked device can never overwrite a newer save with an older one. Linking two devices uses a short code or QR that expires after a few minutes and works once; on iPhone the camera is used only while you're on the <strong>Scan a code</strong> screen, and nothing from it is stored or uploaded. <strong>Settings → Account → Delete account</strong> removes everything the service holds about you immediately; the older <em>save code</em> transfer via dpaste.com has been retired and issues no new codes.</p>
         </div>
         <div>
           <span class="lab">Steam</span>
-          <p>On Steam, friends, leaderboards, achievements and the cloud backup of your save are handled by Valve under <a href="https://store.steampowered.com/privacy_agreement/" rel="noopener">Steam's privacy policy</a>; the Steam version (Windows, Mac and Steam Deck) sends the same anonymous usage events as the iPhone version to TelemetryDeck, tagged with the platform they came from. The only identifier is a one-way hash of your Steam ID, so the same person on a Steam Deck and a PC counts once and the hash can never be turned back into an ID.</p>
+          <p>On Steam, friends, multiplayer invitations, leaderboards, achievements and the cloud backup of your save are handled by Valve under <a href="https://store.steampowered.com/privacy_agreement/" rel="noopener">Steam's privacy policy</a>; the Steam version (Windows, Mac and Steam Deck) sends the same anonymous usage events as the iPhone version to TelemetryDeck, tagged with the platform they came from. The only identifier is a one-way hash of your Steam ID, so the same person on a Steam Deck and a PC counts once and the hash can never be turned back into an ID.</p>
         </div>
       </div>
     </section>
@@ -112,7 +120,7 @@
 
     <section>
       <h2>Children</h2>
-      <p>Yumloop games are not directed at children under 13, and I don't knowingly collect personal information from them. There is nothing in a Yumloop game that asks a player for personal information at all. If you believe a child has sent me something through email or a feedback form, write to me and I'll delete it.</p>
+      <p>Yumloop games are not directed at children under 13, and I don't knowingly collect personal information from them. There is nothing in a Yumloop game that asks a player for personal information at all, and online play has no chat: other players only ever see the display name you chose. If you believe a child has sent me something through email or a feedback form, write to me and I'll delete it.</p>
     </section>
 
     <section>
