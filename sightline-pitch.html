@@ -101,6 +101,9 @@
   .mech{background:#fff; color:var(--ink); border:3px solid #000; box-shadow:8px 8px 0 #000; overflow:hidden}
   .mech .clip{aspect-ratio:560/597; border-bottom:3px solid #000; background:#f2f2ff; overflow:hidden} .mech .clip video,.mech .clip img{width:100%; height:100%; object-fit:cover}
   .mech .b{padding:16px 18px 18px}
+  /* wide clips (Grand Levels, Elimination): the game's own 16:9 screen, two to a row */
+  .mechs.wide{grid-template-columns:repeat(2,1fr)} .mech.wide .clip{aspect-ratio:16/9}
+  @media (max-width:760px){ .mechs.wide{grid-template-columns:1fr} }
   .mech .b .t{font-family:var(--display); font-weight:800; font-size:19px; margin:0 0 6px}
   .mech .b p{margin:0; font-size:14.5px; line-height:1.45; color:#3a3c5a}
   .mech .b .k{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:#6b6d8a; margin-bottom:8px}
@@ -297,11 +300,11 @@
     </div>
     <img class="print-only" src="pitch/trailer-poster.jpg" alt="Sightline trailer still" style="border:3px solid #000">
     <ul class="proof rv" data-hit>
-      <li>400 levels</li>
-      <li>8 board shapes</li>
+      <li>700 levels</li>
+      <li>16-player multiplayer</li>
+      <li>Cross-platform play</li>
       <li>Daily puzzle</li>
       <li>Global leaderboards</li>
-      <li>Cross-device progression</li>
       <li>PC + mobile</li>
     </ul>
   </section>
@@ -320,7 +323,8 @@
       <div class="scout">
 
       <div><b>Playable build</b>Standalone, no store client: <a href="#" data-link="build">macOS</a> (notarized) and <a href="#" data-link="buildWindows">Windows</a> (unsigned: on first open choose More info, then Run anyway). Opens straight into the game; no intro to skip. Windowed or fullscreen; mouse, keyboard and controller. Controls listed in Settings.</div>
-      <div><b>Checkpoints</b>Settings → <em>Explore mechanics</em> jumps to the level that introduces each mechanic (Walls, Channels, Purple tiles, Mirrors, One-way arrows, Portals) or to any of the 400 levels.</div>
+      <div><b>Checkpoints</b>Settings → <em>Explore mechanics</em> jumps to the level that introduces each mechanic (Walls, Channels, Purple tiles, Mirrors, One-way arrows, Portals) or to any of the 400 levels. <em>Grand Levels</em> on the menu opens the second campaign of 300 large boards.</div>
+      <div><b>Multiplayer</b>Menu → <em>Multiplayer</em>. Join a quick match, or create a room and share its five-letter code to play together. You appear as “Guest”; matches are live and cross-platform, so you may meet players on iPhone, iPad, Android and Steam.</div>
       <div><b>Video</b>The 48-second trailer above doubles as a playthrough of the mechanics, and every clip on this page is captured from the real game.</div>
       <div><b>Budget</b><span id="budgetLine">Development to a releasable PC 1.0 is substantially complete and self-funded.</span></div>
       </div>
@@ -368,7 +372,13 @@
     </div>
     <div class="closer rv" data-hit>
       <p class="big">The language stays simple. The deductions don’t.</p>
-      <p class="sub">Every puzzle remains logically solvable. All 400 are verified by the solver before they ship.</p>
+      <p class="sub">Every puzzle remains logically solvable. All 700 are verified by the solver before they ship, and so is every multiplayer board.</p>
+    </div>
+    <div class="kicker q rv" style="margin-top:clamp(34px,4vw,56px)">Bigger boards. More players.</div>
+    <hr class="rule">
+    <div class="mechs wide">
+      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch/clips/grand.mp4" poster="pitch/clips/grand.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline bending through mirrors and portals around Grand Level 300"></video><img class="print-only" src="pitch/clips/grand.jpg" alt=""></div><div class="b"><div class="k">300 levels</div><div class="t">Grand Levels</div><p>A second campaign of large boards drawn as pictures, for big screens: mazes, castles, islands, constellations.</p></div></figure>
+      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch/clips/mp-end.mp4" poster="pitch/clips/mp-end.jpg" autoplay muted loop playsinline preload="metadata" aria-label="The last knock-out of an eight-player match and the result"></video><img class="print-only" src="pitch/clips/mp-end.jpg" alt=""></div><div class="b"><div class="k">2 to 16 players</div><div class="t">Elimination</div><p>Everyone plays the same boards at once. One mistake and you’re out; last one standing wins. Cross-platform.</p></div></figure>
     </div>
   </section>
 
@@ -407,7 +417,9 @@
     </div>
     <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Steam</span><span>macOS</span><span>Steam Deck</span><span class="soon">Console · potential</span></div>
     <div class="feat rv" data-hit>
-      <div><b>400 levels</b>Eight board shapes, a structured progression that introduces each mechanic in its own moment.</div>
+      <div><b>700 levels</b>400 main levels across eight board shapes, introducing each mechanic in its own moment, plus 300 Grand Levels: large boards drawn as pictures, for big screens.</div>
+      <div><b>Multiplayer: Elimination</b>Up to 16 players on the same boards at once. One mistake and you’re out; last one standing wins. Quick match or private rooms with five-letter codes.</div>
+      <div><b>Cross-platform play</b>iPhone, iPad, Android, PC, Mac and Steam Deck players share matches and rooms, with invites from Steam, Game Center and Play Games friends.</div>
       <div><b>Daily puzzle</b>The same board for everyone that day, with streaks.</div>
       <div><b>Global leaderboards</b>Daily, time challenge and campaign boards across every platform.</div>
       <div><b>Cross-device progression</b>Link a phone to a PC or Deck once; the save follows the player.</div>
@@ -422,12 +434,15 @@
   <section class="tight" id="screens">
     <div class="kicker rv">On the desk</div>
     <div class="shots">
+      <figure class="shot rv" data-hit><img src="pitch/steam-grand-300.jpg" alt="Grand Level 300, a sightline bending around the frame" loading="lazy" width="1600" height="900"></figure>
+      <figure class="shot rv" data-hit><img src="pitch/steam-mp-match.jpg" alt="An eight-player Elimination match, a player knocked out" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch/steam-2.jpg" alt="Circular board" loading="lazy" width="1600" height="900"></figure>
+      <figure class="shot rv" data-hit><img src="pitch/steam-grand-163.jpg" alt="A maze-shaped Grand Level" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch/steam-3.jpg" alt="Triangular board" loading="lazy" width="1600" height="900"></figure>
+      <figure class="shot rv" data-hit><img src="pitch/steam-mp-room.jpg" alt="A private multiplayer room with its five-letter code" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch/steam-4.jpg" alt="Heart-shaped board" loading="lazy" width="1600" height="900"></figure>
-      <figure class="shot rv" data-hit><img src="pitch/steam-5.jpg" alt="Diamond board" loading="lazy" width="1600" height="900"></figure>
+      <figure class="shot rv" data-hit><img src="pitch/steam-mp-win.jpg" alt="The result of an Elimination match" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch/steam-7.jpg" alt="Scattered islands board" loading="lazy" width="1600" height="900"></figure>
-      <figure class="shot rv" data-hit><img src="pitch/steam-8.jpg" alt="Main menu" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="kicker rv" style="margin-top:clamp(26px,3vw,40px)">In the hand</div>
     <div class="shots mobile" style="margin-top:14px">
@@ -466,12 +481,12 @@
     <hr class="rule">
     <p class="sub rv" data-hit>Developed solo by Yumloop. The game is a single hand-written web codebase with no engine or framework, shipped byte-identical inside thin native shells on each platform.</p>
     <div class="tech rv" data-hit>
-      <div><b>Core technology</b><strong>HTML5 · JavaScript · CSS</strong>No game engine. One shared codebase for every platform; current build v0.10.397.</div>
+      <div><b>Core technology</b><strong>HTML5 · JavaScript · CSS</strong>No game engine. One shared codebase for every platform; current build v0.10.409.</div>
       <div><b>Mobile</b><strong>Capacitor 6</strong>iOS 15+ (Capacitor iOS 6.2.1) and Android 5.1+ (Capacitor Android 6.2.2). Native Swift and Java plugins for Game Center, StoreKit 2, CloudKit, Google Play Games Services and Play Billing.</div>
       <div><b>Desktop</b><strong>Electron 44</strong>Packaged with electron-builder 26. Steamworks via steamworks.js 0.4: achievements, leaderboards, Steam Cloud, Steam Input, rich presence. macOS notarized; Windows build runs on Steam Deck under Proton.</div>
       <div><b>Source control</b><strong>Git · GitHub</strong>Private repository, single trunk, every release tagged. iOS built by Xcode Cloud; Steam uploads via SteamPipe; Android via the Play Developer API.</div>
-      <div><b>Online</b><strong>Cloudflare Workers + D1</strong>Small account service: silent sign-in through the platform’s own identity (Game Center, Steam), progress-never-decreases cloud sync, one-time link codes across ecosystems, in-app account deletion. Analytics via TelemetryDeck.</div>
-      <div><b>Platforms &amp; key systems</b><strong>iOS · Android · macOS · Windows · Steam · Steam Deck</strong>Cross-save · Cross-device progression · Global leaderboards · Achievements · Daily puzzles. Tested on iOS, Android, macOS, Steam and Steam Deck.</div>
+      <div><b>Online</b><strong>Cloudflare Workers + D1</strong>Small account service: silent sign-in through the platform’s own identity (Game Center, Steam), progress-never-decreases cloud sync, one-time link codes across ecosystems, in-app account deletion. Real-time multiplayer on Durable Objects (hibernating WebSockets): the server holds the boards and checks every move. Analytics via TelemetryDeck.</div>
+      <div><b>Platforms &amp; key systems</b><strong>iOS · Android · macOS · Windows · Steam · Steam Deck</strong>Cross-platform multiplayer · Cross-save · Cross-device progression · Global leaderboards · Achievements · Daily puzzles. Tested on iOS, Android, macOS, Steam and Steam Deck.</div>
     </div>
   </section>
 
