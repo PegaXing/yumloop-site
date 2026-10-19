@@ -324,7 +324,7 @@
 
       <div><b>Playable build</b>Standalone, no store client: <a href="#" data-link="build">macOS</a> (notarized) and <a href="#" data-link="buildWindows">Windows</a> (unsigned: on first open choose More info, then Run anyway). Opens straight into the game; no intro to skip. Windowed or fullscreen; mouse, keyboard and controller. Controls listed in Settings.</div>
       <div><b>Checkpoints</b>Settings → <em>Explore mechanics</em> jumps to the level that introduces each mechanic (Walls, Channels, Purple tiles, Mirrors, One-way arrows, Portals) or to any of the 400 levels. <em>Grand Levels</em> on the menu opens the second campaign of 300 large boards.</div>
-      <div><b>Multiplayer</b>Menu → <em>Multiplayer</em>. Join a quick match, or create a room and share its five-letter code to play together. You appear as “Guest”; matches are live and cross-platform, so you may meet players on iPhone, iPad, Android and Steam.</div>
+      <div><b>Multiplayer</b>Menu → <em>Multiplayer</em>. Join a quick match, or create a room and share its five-letter code to play together. You appear as “Guest”; matches are live and cross-platform, so you may meet players on iPhone, iPad, Android, PC, Mac and Steam Deck.</div>
       <div><b>Video</b>The 48-second trailer above doubles as a playthrough of the mechanics, and every clip on this page is captured from the real game.</div>
       <div><b>Budget</b><span id="budgetLine">Development to a releasable PC 1.0 is substantially complete and self-funded.</span></div>
       </div>
@@ -418,12 +418,12 @@
     <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Steam</span><span>macOS</span><span>Steam Deck</span><span class="soon">Console · potential</span></div>
     <div class="feat rv" data-hit>
       <div><b>700 levels</b>400 main levels across eight board shapes, introducing each mechanic in its own moment, plus 300 Grand Levels: large boards drawn as pictures, made for larger screens (iPad, PC, Mac and Steam Deck, and console in future).</div>
-      <div><b>Multiplayer: Elimination</b>On every device, phones included. Up to 16 players on the same boards at once. One mistake and you’re out; last one standing wins. Quick match or private rooms with five-letter codes.</div>
+      <div><b>Multiplayer: Elimination</b>On every device, phones included. Up to 16 players on the same boards at once. One mistake and you’re out; last one standing wins. Quick match or private rooms with five-letter codes, plus Grand matches on the large boards for Steam and iPad players.</div>
       <div><b>Cross-platform play</b>iPhone, iPad, Android, PC, Mac and Steam Deck players share the same matches and rooms, with invites from Steam, Game Center and Play Games friends.</div>
       <div><b>Daily puzzle</b>The same board for everyone that day, with streaks.</div>
       <div><b>Global leaderboards</b>Daily, time challenge and campaign boards across every platform.</div>
-      <div><b>Cross-device progression</b>Link a phone to a PC or Deck once; the save follows the player.</div>
-      <div><b>Cross-save</b>One account service behind iOS, Android and Steam identities.</div>
+      <div><b>Cross-save</b>Saves sync automatically through the player’s own platform account (Game Center, Google Play Games or Steam) on every device signed in to it.</div>
+      <div><b>Cross-device progression</b>A one-time link code joins different ecosystems (say an Android phone and a Steam Deck); from then on one save follows the player everywhere.</div>
       <div><b>Online systems</b>Friends, friend codes, shared Daily results.</div>
       <div><b>Large content pool</b>Campaign, Daily, Time Challenge, a glossary that fills in as mechanics are met.</div>
       <div><b>Platform-native input</b>Touch, mouse, keyboard, controller, Deck gyro; colour-blind palettes; reduced motion.</div>
@@ -485,7 +485,7 @@
       <div><b>Mobile</b><strong>Capacitor 6</strong>iOS 15+ (Capacitor iOS 6.2.1) and Android 5.1+ (Capacitor Android 6.2.2). Native Swift and Java plugins for Game Center, StoreKit 2, CloudKit, Google Play Games Services and Play Billing.</div>
       <div><b>Desktop</b><strong>Electron 44</strong>Packaged with electron-builder 26. Steamworks via steamworks.js 0.4: achievements, leaderboards, Steam Cloud, Steam Input, rich presence. macOS notarized; Windows build runs on Steam Deck under Proton.</div>
       <div><b>Source control</b><strong>Git · GitHub</strong>Private repository, single trunk, every release tagged. iOS built by Xcode Cloud; Steam uploads via SteamPipe; Android via the Play Developer API.</div>
-      <div><b>Online</b><strong>Cloudflare Workers + D1</strong>Small account service: silent sign-in through the platform’s own identity (Game Center, Steam), progress-never-decreases cloud sync, one-time link codes across ecosystems, in-app account deletion. Real-time multiplayer on Durable Objects (hibernating WebSockets): the server holds the boards and checks every move. Analytics via TelemetryDeck.</div>
+      <div><b>Online</b><strong>Cloudflare Workers + D1</strong>Small account service: silent sign-in through the platform’s own identity (Game Center, Google Play Games, Steam), progress-never-decreases cloud sync, one-time link codes across ecosystems, in-app account deletion. Real-time multiplayer on Durable Objects (hibernating WebSockets): the server holds the boards and checks every move. Analytics via TelemetryDeck.</div>
       <div><b>Platforms &amp; key systems</b><strong>iOS · Android · macOS · Windows · Steam · Steam Deck</strong>Cross-platform multiplayer · Cross-save · Cross-device progression · Global leaderboards · Achievements · Daily puzzles. Tested on iOS, Android, macOS, Steam and Steam Deck.</div>
     </div>
   </section>
