@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /sightline-pitch.html
 Disallow: /pitch/
+Disallow: /sightline3d-pitch.html
+Disallow: /pitch3d/
 
 Sitemap: https://yumloop.net/sitemap.xml
