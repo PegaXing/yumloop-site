@@ -175,6 +175,8 @@
   .feat{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
   .feat div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.4}
   .feat div b{display:block; font-family:var(--display); font-weight:800; font-size:16px; margin-bottom:6px}
+  .feat.side{grid-template-columns:1fr 1fr; margin-top:0; align-content:start}   /* beside a clip: two across */
+  @media (max-width:600px){ .feat.side{grid-template-columns:1fr} }
   /* technical: same boxes as .feat, three across; mono label on top */
   .tech{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
   .tech div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.45}
@@ -225,6 +227,7 @@
   section.inv h2,section.inv .big{color:var(--ink)} section.inv .quote,section.inv .sub,section.inv .card p,section.inv .checks li{color:#2b2d4a}
   section.inv .rule{background:#c9cadb} section.inv .card{border-color:#c9cadb} section.inv .card .role{color:var(--blue)}
   section.inv .checks li::before{background:#fff; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .checks li::after{border-color:var(--blue)}
+  section.inv .callout .needs{grid-template-columns:1fr 1fr; margin-bottom:0} section.inv .callout .needs span{color:#fff!important; border-color:rgba(255,255,255,.55)!important}
   section.inv .callout{background:var(--blue); color:#fff; border-color:#000} section.inv .callout .t{color:#fff} section.inv .callout p{color:rgba(255,255,255,.85)}
   section.inv .needs span{border-color:var(--blue); color:var(--blue)}
   section.inv .meter .l{color:#6b6d8a} section.inv .meter .bar{background:#eceefc; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .meter .bar i{background:var(--blue)} section.inv .meter .v{color:var(--ink)}
@@ -289,7 +292,7 @@
 <div class="wrap">
   <header class="top">
     <a href="/" aria-label="Yumloop home"><img class="brand" src="yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892" data-hit></a>
-    <span class="kicker">Publisher pitch · Private</span>
+    <span class="kicker">Sequel preview · Private</span>
   </header>
 
   <!-- 1 · HERO -->
@@ -297,12 +300,12 @@
     <div>
       <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline 3D">Sightline<span class="cube3">3D</span></div><span class="lp">Logic puzzle</span></div>
       <h1 class="rv" data-hit>Same rules. Another dimension.</h1>
-      <p class="hook rv" data-hit>Sightline asked what a clue could <em>see</em>. Sightline 3D asks what happens when <span class="q">the board isn’t flat.</span></p>
-      <p class="sub rv" data-hit>Every clue still counts the bombs it can see in a direction. Now the board is a shape: a sightline runs over the edge of a face and on round the solid, so the clue you need may be on a side you can’t see yet. Turn it, read it, find every safe tile.</p>
+      <p class="hook rv" data-hit>The next Sightline, <span class="q">already playable.</span></p>
+      <p class="sub rv" data-hit>Sightline’s deduction, carried onto solid shapes. A clue sees over the edge of its face and round the corner, so the answer can sit on a side you haven’t turned to yet.</p>
       <p class="punch rv" data-hit>No guessing. No luck. Every side.</p>
       <div class="actions rv" data-hit>
-        <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch it play</a>
-        <a href="#brand">Sightline, the series</a>
+        <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch the trailer</a>
+        <a href="#new">What’s new</a>
       </div>
     </div>
     <div class="rv" data-hit>
@@ -310,122 +313,81 @@
     </div>
   </section>
 
-  <!-- 2 · SEE IT -->
+  <!-- 2 · TRAILER -->
   <section class="tight" id="trailer">
-    <div class="kicker rv" data-hit>Trailer · real play, captured from the game</div>
+    <div class="kicker rv" data-hit>Trailer · captured from the game</div>
     <div class="trailer rv" data-hit id="trailerBox">
       <video id="trailerVideo" src="pitch3d/trailer.mp4" poster="pitch3d/trailer.jpg" preload="metadata" playsinline controls aria-label="Sightline 3D trailer"></video>
       <button type="button" class="play" id="trailerPlay" aria-label="Play"><span>Play</span></button>
     </div>
     <img class="print-only" src="pitch3d/trailer.jpg" alt="Sightline 3D trailer still" style="border:3px solid #000">
-    <ul class="proof rv" data-hit>
-      <li>401 levels</li>
-      <li>16-player Elimination</li>
-      <li>Cross-platform play</li>
-      <li>Daily puzzle</li>
-      <li>Global leaderboards</li>
-            <li>PC + mobile</li>
-    </ul>
   </section>
 
-  <!-- 4 · THE RULE -->
-  <section class="chapter" id="what">
-    <h2 class="rv" data-hit>One rule. Read it in seconds.</h2>
-    <hr class="rule">
-    <div class="demo">
-      <div class="rv" data-hit>
-        <div class="demoWrap"><div class="board" id="demoBoard" style="--n:5" aria-label="Animated example: a revealed tile shows edge numbers; each number counts the bombs visible in that direction; combining two clues pins a bomb; every safe tile is revealed."></div>
-        <div class="legend"><span><i style="background:#fff"></i>revealed</span><span><i style="background:var(--cell)"></i>unknown</span><span><i style="background:var(--red)"></i>bomb</span><span><i style="background:var(--blue)"></i>sightline</span><span><i style="background:#fff;box-shadow:inset 0 0 0 2px #000"></i>× sees nothing</span></div></div>
-      </div>
-      <div class="cap rv" data-hit>
-        <div id="demoSteps">
-          <div class="step" data-k="0">A revealed tile shows numbers on its edges.</div>
-          <div class="step" data-k="1">Numbers tell you how many bombs they can see.</div>
-          <div class="step" data-k="2">Combine what you know.</div>
-          <div class="step" data-k="3">Reveal every safe tile.</div>
-        </div>
-        <p class="why" id="demoWhy">Not what is next to it. What it can see: the whole line, until something blocks it.</p>
-        <div class="ctl"><button type="button" id="demoReplay">Replay</button><button type="button" id="demoStep">Step</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 · THE TURN -->
+  <!-- 3 · THE FOLD -->
   <section class="chapter" id="dimension">
     <div class="kicker q rv">The new dimension</div>
-    <h2 class="rv" data-hit>Then the board stops being flat.</h2>
-    <p class="lede rv" data-hit style="max-width:52ch">The rule doesn’t change. The board does: it folds up into a solid, and a sightline that reaches the edge of a face carries on over it, round the corner, onto the next side.</p>
+    <h2 class="rv" data-hit>Then the board folds.</h2>
+    <p class="lede rv" data-hit style="max-width:50ch">It opens on a flat board, just like the first game. Then the board closes into a cube, and a line that reaches an edge keeps going, onto the next face.</p>
     <hr class="rule">
     <div class="mechs wide">
-      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/fold.mp4" poster="pitch3d/clips/fold.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Level 2: a flat board folds itself into a cube"></video><img class="print-only" src="pitch3d/clips/fold.jpg" alt=""></div><div class="b"><div class="k">Level 2</div><div class="t">The fold</div><p>The first shape arrives as a flat board, like the first game’s, and folds itself into a cube in front of you.</p></div></figure>
-      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/deck.mp4" poster="pitch3d/clips/deck.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A shape being solved, turned to each side"></video><img class="print-only" src="pitch3d/clips/deck.jpg" alt=""></div><div class="b"><div class="k">Every level</div><div class="t">Turn it, read it</div><p>Players turn the shape freely and square it up to any side. The clue that settles a tile can sit on a face they haven’t looked at yet.</p></div></figure>
+      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/fold.mp4" poster="pitch3d/clips/fold.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Level 2: a flat board folds itself into a cube"></video><img class="print-only" src="pitch3d/clips/fold.jpg" alt=""></div><div class="b"><div class="k">Level 2</div><div class="t">The fold</div><p>The flat board folds itself into a cube in front of you.</p></div></figure>
+      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/deck.mp4" poster="pitch3d/clips/deck.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A shape being solved, turned to each side"></video><img class="print-only" src="pitch3d/clips/deck.jpg" alt=""></div><div class="b"><div class="k">Every level</div><div class="t">Turn it, read it</div><p>The clue that settles a tile can be on a face you haven’t looked at yet.</p></div></figure>
     </div>
   </section>
 
-  <!-- 6 · DEPTH -->
-  <section class="chapter" id="depth">
-    <div class="kicker q rv">One rule, increasing depth</div>
-    <h2 class="rv" data-hit>Then it starts messing with you, on every side.</h2>
-    <p class="lede rv" data-hit style="margin:-2px 0 14px; max-width:56ch">Walls block your view. Turn buttons twist a row of the shape like a Rubik’s cube, and the numbers change with it. Channels carry sight, mirrors bend it, one-way arrows choose its direction, portals send it to the far side of the shape.</p>
-    <p class="sub rv" data-hit style="margin:0 0 22px; max-width:none; color:rgba(255,255,255,.7)">Every clip below is the real game, with the assist beam lighting the line a number counts.</p>
+  <!-- 4 · WHAT'S NEW -->
+  <section class="chapter" id="new">
+    <div class="kicker q rv">What it adds</div>
+    <h2 class="rv" data-hit>New ways to think, on every side.</h2>
     <hr class="rule">
-    <div class="mechs four">
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/edge.mp4" poster="pitch3d/clips/edge.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline running over the edge of a face"></video><img class="print-only" src="pitch3d/clips/edge.jpg" alt=""></div><div class="b"><div class="k">From level 2</div><div class="t">Over the edge</div><p>Sightlines run over the edge of a face and on round the shape. Round a ring, a tile can see the same bomb from both sides.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/buttons.mp4" poster="pitch3d/clips/buttons.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A turn button turning a row of the shape"></video><img class="print-only" src="pitch3d/clips/buttons.jpg" alt=""></div><div class="b"><div class="k">From level 5</div><div class="t">Turn buttons</div><p>A button turns its row, tiles and bombs with it, so the numbers change. Press again and it turns back. With two, the order matters.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/channels.mp4" poster="pitch3d/clips/channels.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline passing along a channel"></video><img class="print-only" src="pitch3d/clips/channels.jpg" alt=""></div><div class="b"><div class="k">From level 12</div><div class="t">Channels</div><p>Sight passes through along the arrows, either way, and is blocked from the side.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/purple.mp4" poster="pitch3d/clips/purple.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A purple tile counting its neighbours"></video><img class="print-only" src="pitch3d/clips/purple.jpg" alt=""></div><div class="b"><div class="k">From level 32</div><div class="t">Purple tiles</div><p>Count the bombs in the eight tiles around them, corners included. Other sightlines pass straight over.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/mirrors.mp4" poster="pitch3d/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline bending at a mirror"></video><img class="print-only" src="pitch3d/clips/mirrors.jpg" alt=""></div><div class="b"><div class="k">From level 42</div><div class="t">Mirrors</div><p>Turn a sightline 90°. The bomb it finds counts for the tile that looked.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/oneway.mp4" poster="pitch3d/clips/oneway.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline passing a one-way arrow"></video><img class="print-only" src="pitch3d/clips/oneway.jpg" alt=""></div><div class="b"><div class="k">From level 52</div><div class="t">One-way arrows</div><p>Let a sightline through only the way they point. Any other way, they block like a wall.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/portals.mp4" poster="pitch3d/clips/portals.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline entering one portal and leaving the other"></video><img class="print-only" src="pitch3d/clips/portals.jpg" alt=""></div><div class="b"><div class="k">From level 62</div><div class="t">Portals</div><p>A pair of one colour: a line that goes into one comes out of the other, anywhere on the shape.</p></div></figure>
-      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/grandsq.mp4" poster="pitch3d/clips/grandsq.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A large picture-shape level"></video><img class="print-only" src="pitch3d/clips/grandsq.jpg" alt=""></div><div class="b"><div class="k">Levels 2–401</div><div class="t">Picture shapes</div><p>Ducks, cathedrals, phoenixes and spaceships: 400 shapes, every one built and checked to solve by logic alone.</p></div></figure>
+    <div class="mechs">
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/edge.mp4" poster="pitch3d/clips/edge.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A sightline running over the edge of a face"></video><img class="print-only" src="pitch3d/clips/edge.jpg" alt=""></div><div class="b"><div class="k">Level 2</div><div class="t">Over the edge</div><p>Lines wrap round the shape. Round a ring, one tile can see the same bomb from both sides.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/buttons.mp4" poster="pitch3d/clips/buttons.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A turn button turning a row of the shape"></video><img class="print-only" src="pitch3d/clips/buttons.jpg" alt=""></div><div class="b"><div class="k">Level 5</div><div class="t">Turn buttons</div><p>Twist a row like a Rubik’s cube, bombs and all, and every number it touches changes. With two, the order matters.</p></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/islands.mp4" poster="pitch3d/clips/islands.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Floating islands linked by portals"></video><img class="print-only" src="pitch3d/clips/islands.jpg" alt=""></div><div class="b"><div class="k">Level 72</div><div class="t">Islands</div><p>Separate shapes floating apart, solved as one puzzle through portals.</p></div></figure>
     </div>
     <div class="closer rv" data-hit>
-      <p class="big">The language stays simple. The deductions get deep.</p>
-      <p class="sub">Every level is generated and verified by a solver before it ships: never a guess, and with turn buttons, every order of presses checked, not just the best one.</p>
-    </div>
-    <div class="kicker q rv" style="margin-top:clamp(34px,4vw,56px)">Bigger shapes. More players.</div>
-    <hr class="rule">
-    <div class="mechs wide">
-      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/grand.mp4" poster="pitch3d/clips/grand.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cathedral, one of the largest shapes"></video><img class="print-only" src="pitch3d/clips/grand.jpg" alt=""></div><div class="b"><div class="k">16 chapters · up to 320 tiles a shape</div><div class="t">A campaign that grows</div><p>Sixteen chapters of 25, every kind of shape mixed in each, building from a 2×2 cube to cathedrals and helixes of 300 tiles and more.</p></div></figure>
-      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/islands.mp4" poster="pitch3d/clips/islands.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Three floating islands linked by portals"></video><img class="print-only" src="pitch3d/clips/islands.jpg" alt=""></div><div class="b"><div class="k">From level 72</div><div class="t">Islands</div><p>Several shapes floating apart, solved as one puzzle: portals carry sightlines from one island to the next.</p></div></figure>
+      <p class="big">401 levels in sixteen chapters, from a 2×2 cube to ducks, cathedrals and spaceships of 320 tiles.</p>
+      <p class="sub">Every one checked by a solver, every order of button presses included: never a guess.</p>
     </div>
   </section>
 
-  <!-- 7 · ONLINE -->
+  <!-- 5 · FAMILIAR PIECES -->
+  <section class="chapter" id="depth">
+    <div class="kicker q rv">What carries over</div>
+    <h2 class="rv" data-hit>Familiar pieces. New angles.</h2>
+    <p class="lede rv" data-hit style="margin:-2px 0 22px; max-width:54ch">Everything Sightline players have learned comes with them, and now it works round corners. Each piece gets its own lesson level.</p>
+    <hr class="rule">
+    <div class="mechs">
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/channels.mp4" poster="pitch3d/clips/channels.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightlines passing along channels"></video><img class="print-only" src="pitch3d/clips/channels.jpg" alt=""></div><div class="b"><div class="k">Level 12</div><div class="t">Channels</div></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/purple.mp4" poster="pitch3d/clips/purple.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Purple tiles counting their neighbours"></video><img class="print-only" src="pitch3d/clips/purple.jpg" alt=""></div><div class="b"><div class="k">Level 32</div><div class="t">Purple tiles</div></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/mirrors.mp4" poster="pitch3d/clips/mirrors.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightlines bending at mirrors"></video><img class="print-only" src="pitch3d/clips/mirrors.jpg" alt=""></div><div class="b"><div class="k">Level 42</div><div class="t">Mirrors</div></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/oneway.mp4" poster="pitch3d/clips/oneway.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightlines passing one-way arrows"></video><img class="print-only" src="pitch3d/clips/oneway.jpg" alt=""></div><div class="b"><div class="k">Level 52</div><div class="t">One-way arrows</div></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/portals.mp4" poster="pitch3d/clips/portals.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightlines entering one portal and leaving the other"></video><img class="print-only" src="pitch3d/clips/portals.jpg" alt=""></div><div class="b"><div class="k">Level 62</div><div class="t">Portals</div></div></figure>
+      <figure class="mech rv" data-hit><div class="clip"><video src="pitch3d/clips/grand.mp4" poster="pitch3d/clips/grand.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cathedral, one of the largest shapes, with every mechanic"></video><img class="print-only" src="pitch3d/clips/grand.jpg" alt=""></div><div class="b"><div class="k">Late game</div><div class="t">All at once</div></div></figure>
+    </div>
+  </section>
+
+  <!-- 6 · MODES -->
   <section class="chapter" id="online">
-    <div class="kicker q rv">Online</div>
+    <div class="kicker q rv">Solve alone. Compete together.</div>
     <h2 class="rv" data-hit>16 players. One mistake and you’re out.</h2>
     <hr class="rule">
-    <div class="feat rv" data-hit>
-      <div><b>Elimination</b>2 to 16 players get the same ten shapes at the same moment. A bomb knocks you out; clearing a shape deals you the next, harder one. Last one standing wins, or the first to clear the tenth.</div>
-      <div><b>Any device, same match</b>iPhone, iPad, Android and PC in one match. Quick match, or a private room with a five-letter code. Knocked-out players can spectate.</div>
-      <div><b>The Daily</b>One new shape every day, the same for everyone in the world. A bomb costs time, not the run. Streaks, and a global time board.</div>
-      <div><b>Global leaderboards</b>Daily time, Time Challenge, score, stars and levels, Global or just your friends, across every platform.</div>
+    <div class="mechs wide">
+      <figure class="mech wide rv" data-hit><div class="clip"><video src="pitch3d/clips/elim.mp4" poster="pitch3d/clips/elim.jpg" autoplay muted loop playsinline preload="metadata" aria-label="An Elimination match: players knocked out one by one, then the win"></video><img class="print-only" src="pitch3d/clips/elim.jpg" alt=""></div><div class="b"><div class="k">Elimination · 2 to 16 players</div><div class="t">Last one standing</div><p>Everyone gets the same ten shapes at once. Hit a bomb and you’re out; clear a shape and the next, harder one arrives.</p></div></figure>
+      <div class="feat side rv" data-hit>
+        <div><b>Play anyone</b>Quick match, or a private room with a five-letter code. Phones, tablets and PCs in the same match.</div>
+        <div><b>The Daily</b>One new shape a day, the same for everyone, with streaks and a world time board.</div>
+        <div><b>Time Challenge</b>Thirty shapes against the clock.</div>
+        <div><b>Leaderboards</b>Global or friends only, across every platform.</div>
+      </div>
     </div>
   </section>
 
-  <!-- 8 · BRAND -->
-  <section class="chapter inv" id="brand">
-    <div class="kicker q rv">Sightline, the series</div>
-    <h2 class="rv" data-hit>Two games. One rule. The start of a brand.</h2>
-    <hr class="rule">
-    <div class="pair rv" data-hit>
-      <figure><img src="pitch/steam-1.jpg" alt="Sightline, the first game: a flat board" loading="lazy"><figcaption><b>Sightline</b> · the flat board · 700 levels · built, launching</figcaption></figure>
-      <figure><img src="pitch3d/shot-1.jpg" alt="Sightline 3D: the same rule on a shape" loading="lazy"><figcaption><b>Sightline 3D</b> · the same rule, on every side · 401 levels · in development</figcaption></figure>
-    </div>
-    <p class="quote rv" data-hit>Sightline was built around one idea: a clue counts what it can see. Sightline 3D proves that idea travels. It reads the same in seconds, and opens a second, different game.</p>
-    <div class="who rv" data-hit>
-      <div class="card"><p class="role">One identity</p><p>The same rule, the same name, the same flat colour, tiles, type and sounds. A player of either game knows the other on sight.</p></div>
-      <div class="card"><p class="role">Shared systems</p><p>Both games share the same proven building blocks: the Daily, Elimination, global leaderboards, platform sign-in and cross-device saves. Each new game starts with them.</p></div>
-      <div class="card"><p class="role">One audience</p><p>Every Sightline player is the first audience for Sightline 3D, and the other way round. Each launch markets the other, and the back catalogue keeps selling.</p></div>
-      <div class="card"><p class="role">Room to grow</p><p>The rule is the asset, not one game. A partner signing Sightline today signs a series, with a sequel already playable.</p></div>
-    </div>
-  </section>
-
-  <!-- 9 · PRODUCT -->
-  <section class="chapter" id="product">
-    <div class="kicker q rv">The product</div>
-    <h2 class="rv" data-hit>One game. Phone, tablet and PC.</h2>
+  <!-- 7 · PLATFORMS -->
+  <section class="chapter inv" id="product">
+    <div class="kicker q rv">Platforms</div>
+    <h2 class="rv" data-hit>Everywhere Sightline is.</h2>
+    <p class="lede rv" data-hit style="max-width:54ch">iPhone, iPad, Android and PC on Steam, the same platforms as the first game, running at a smooth 60fps with touch, mouse and controller.</p>
     <hr class="rule">
     <div class="devices two">
       <div class="dev phone rv" data-hit>
@@ -436,19 +398,8 @@
       <div class="dev deck rv" data-hit>
         <div class="frame"><div class="scr"><video src="pitch3d/clips/deck.mp4" poster="pitch3d/clips/deck.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Sightline 3D on a handheld PC"></video><img class="print-only" src="pitch3d/clips/deck.jpg" alt=""></div>
         <img class="shell" src="pitch/devices/steam-deck-oled.png" alt="Steam Deck OLED" width="1500" height="651"></div>
-        <div class="lbl">Windows · Steam · Steam Deck controls</div>
+        <div class="lbl">Windows · Steam · Steam Deck</div>
       </div>
-    </div>
-    <div class="platgrid rv" data-hit><span>iOS</span><span>Android</span><span>Windows</span><span>Steam</span><span class="soon">macOS · potential</span><span class="soon">Console · potential</span></div>
-    <div class="feat rv" data-hit>
-      <div><b>401 levels</b>A flat first board, the fold, then 399 picture-shapes across 16 chapters, each mechanic introduced with its own lesson.</div>
-      <div><b>Elimination</b>Up to 16 players on every device, quick match or private rooms, spectating when you’re out.</div>
-      <div><b>Daily + Time Challenge</b>A new shape every day for everyone, and 30 timed challenges.</div>
-      <div><b>Global leaderboards</b>Eight boards, Global and Friends, across every platform.</div>
-      <div><b>100 achievements</b>Defined for Game Center, Google Play Games and Steam, with their own artwork.</div>
-      <div><b>Saves that follow you</b>Progress attaches to the player’s Game Center or Play Games account and syncs to the cloud.</div>
-      <div><b>Made to be read</b>An assist beam lights what a number counts; a compass lifts hidden fixtures into view; colour-blind palettes; reduced motion.</div>
-      <div><b>Platform-native input</b>Touch, mouse, keyboard (every key rebindable) and controller, with a full controller layout for handheld PCs.</div>
     </div>
   </section>
 
@@ -462,9 +413,6 @@
       <figure class="shot rv" data-hit><img src="pitch3d/shot-4.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch3d/shot-5.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
       <figure class="shot rv" data-hit><img src="pitch3d/shot-6.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
-      <figure class="shot rv" data-hit><img src="pitch3d/shot-7.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
-      <figure class="shot rv" data-hit><img src="pitch3d/shot-8.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
-      <figure class="shot rv" data-hit><img src="pitch3d/shot-9.jpg" alt="Sightline 3D screenshot" loading="lazy" width="1600" height="900"></figure>
     </div>
     <div class="kicker rv" style="margin-top:clamp(26px,3vw,40px)">In the hand</div>
     <div class="shots mobile" style="margin-top:14px">
@@ -474,102 +422,17 @@
       <figure class="shot rv" data-hit><img src="pitch3d/phone-4.jpg" width="600" height="1300" alt="Sightline 3D on a phone" loading="lazy"></figure>
       <figure class="shot rv" data-hit><img src="pitch3d/phone-5.jpg" width="600" height="1300" alt="Sightline 3D on a phone" loading="lazy"></figure>
     </div>
-    <p class="sub rv" data-hit style="margin-top:22px">GIFs of every mechanic clip, for email and store pages: <a href="pitch3d/gifs/">pitch3d/gifs</a>.</p>
-  </section>
-
-  <!-- STATUS -->
-  <section class="chapter inv" id="status">
-    <div class="kicker q rv">Development status</div>
-    <h2 class="rv" data-hit>Playable today. Built on a shipped foundation.</h2>
-    <hr class="rule">
-    <div class="status">
-      <div>
-        <p class="quote rv" data-hit>Sightline 3D is in active development and already in testers’ hands on iPhone, iPad, Android and Windows. All 401 levels are built and solver-verified, and Elimination, the Daily, leaderboards and achievements are live.</p>
-        <ul class="checks rv" data-hit>
-          <li>Full campaign, 401 levels</li><li>Lessons for every mechanic</li><li>Elimination multiplayer</li><li>Daily + Time Challenge</li><li>Leaderboards + achievements</li><li>Platform sign-in + cloud saves</li><li>TestFlight + Play testing</li><li>Windows build</li>
-        </ul>
-      </div>
-      <div class="callout rv" data-hit>
-        <p class="t">The online backbone is the same proven design as Sightline’s, rebuilt for the 3D game.</p>
-        <p>Accounts, cloud saves, leaderboards and Elimination follow the first game’s design, on their own servers. What is left is polish, platform release work and the launch itself.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECHNICAL -->
-  <section class="chapter" id="technical">
-    <div class="kicker rv">Technical</div>
-    <h2 class="rv" data-hit>One codebase. Native on every platform.</h2>
-    <hr class="rule">
-    <p class="sub rv" data-hit>Developed solo by Yumloop. One hand-written web codebase, shipped inside thin native shells, the same way Sightline ships.</p>
-    <div class="tech rv" data-hit>
-      <div><b>Core technology</b><strong>three.js · cannon-es · JavaScript</strong>WebGL rendering with three.js, real physics for the win and bomb moments with cannon-es. No engine; the whole game is one self-contained file that runs offline.</div>
-      <div><b>Mobile</b><strong>Capacitor 6</strong>iOS (built and sent to TestFlight by Xcode Cloud) and Android (Play testing). Native plugins for Game Center, Google Play Games, haptics and notifications.</div>
-      <div><b>Desktop</b><strong>Electron 44 + steamworks.js</strong>Windows build with the Steam overlay and achievements, full controller support and a handheld-PC controller layout.</div>
-      <div><b>Online</b><strong>Cloudflare Workers, D1 + Durable Objects</strong>Its own account service: platform sign-in, cloud saves, leaderboards, friend codes, and real-time Elimination where the server holds the boards and checks every move.</div>
-      <div><b>Levels</b><strong>Generated, then proven</strong>A level generator and solver build every shape and reject any that would need a guess, including every order of turn-button presses.</div>
-      <div><b>Platforms</b><strong>iOS · Android · Windows · Steam</strong>Cross-platform multiplayer · cloud saves · global leaderboards · 100 achievements · Daily puzzles.</div>
-    </div>
-  </section>
-
-  <!-- OPPORTUNITY -->
-  <section class="chapter" id="opportunity">
-    <div class="kicker q rv">The opportunity</div>
-    <h2 class="rv" data-hit>A sequel that arrives with its audience’s first game.</h2>
-    <hr class="rule">
-    <p class="quote rv" data-hit>Neither game has had a public marketing campaign yet. That leaves the whole plan open: Sightline’s launch, Sightline 3D’s reveal, and how the two feed each other.</p>
-    <div class="meters rv" data-hit>
-      <div class="meter"><div class="l">Product maturity</div><div class="bar"><i data-w="78%" style="--w:78%"></i></div><div class="v">Playable, in testing</div></div>
-      <div class="meter"><div class="l">Marketing runway</div><div class="bar"><i class="gold" data-w="96%" style="--w:96%"></i></div><div class="v">High</div></div>
-    </div>
-  </section>
-
-  <!-- WHO -->
-  <section class="chapter inv" id="who">
-    <h2 class="rv" data-hit>Yumloop.</h2>
-    <hr class="rule">
-    <div class="who">
-      <div class="card rv" data-hit>
-        <p class="role">The company</p>
-        <p>Yumloop is an independent games company founded by Yoni, a former designer at Rockstar North. Sightline is its first game and Sightline 3D its second.</p>
-        <p>Yumloop makes original games with strong, immediately understandable mechanical identities.</p>
-      </div>
-      <div class="card rv" data-hit>
-        <p class="role">Yoni · Founder / Designer</p>
-        <p>Former designer at Rockstar North, with credits on Grand Theft Auto V, Red Dead Redemption 2 and Grand Theft Auto VI. Based in Scotland.</p>
-        <p>Created both Sightline games independently, across every platform above.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEEDS -->
-  <section class="chapter" id="needs">
-    <h2 class="rv" data-hit>I’m looking for a partner for the series.</h2>
-    <hr class="rule">
-    <p class="quote rv" data-hit>Sightline is finished. Sightline 3D is playable. I’m looking for a publishing partner who can launch them as one family of games and grow the audience across both:</p>
-    <div class="needs rv" data-hit><span>Launch strategy</span><span>Marketing</span><span>User acquisition</span><span>Platform relationships</span><span>PR &amp; creators</span><span>Localization</span><span>Release support &amp; QA</span><span>Console strategy &amp; porting</span><span>The right announcement</span></div>
-    <p class="big rv" data-hit>Target launch: <span id="launchDate">set with the right partner</span>.</p>
-  </section>
-
-  <!-- WHY YOU -->
-  <section class="chapter inv" id="whyyou">
-    <h2 class="rv" data-hit>Why I’m writing to <span data-pub-name>you</span>.</h2>
-    <hr class="rule">
-    <div id="whyyouCopy">
-      <p class="quote rv" data-hit>I’m approaching publishers who bring mechanically distinctive independent games to market and treat a clear idea as the asset.</p>
-      <p class="quote rv" data-hit>Sightline’s strength is one simple rule that keeps opening up. Sightline 3D shows how far it goes. I’m looking for a partner who sees that as a series worth building.</p>
-    </div>
+    <p class="sub rv" data-hit style="margin-top:22px">GIFs of every mechanic: <a href="pitch3d/gifs/">pitch3d/gifs</a>.</p>
   </section>
 
   <!-- CLOSE -->
   <section class="close chapter" id="close">
     <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline 3D">Sightline<span class="cube3">3D</span></div><span class="lp">Logic puzzle</span></div>
-    <h2 class="rv" data-hit>Same rules. Another dimension.</h2>
-    <p class="sub rv" data-hit style="margin:0 auto">I’d love to hear what you think.</p>
+    <h2 class="rv" data-hit>Worth a look alongside Sightline?</h2>
+    <p class="sub rv" data-hit style="margin:0 auto;max-width:52ch">Sightline 3D is playable today. If it feels like the natural next step for the series, I’d love to talk it through.</p>
     <div class="actions rv" data-hit>
-      <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch it play</a>
-      <a href="sightline-pitch.html" data-link="sightline">The first game: Sightline</a>
-      <a href="mailto:yoni@yumloop.net?subject=Sightline%203D" data-link="contact">Contact</a>
+      <a class="solid" href="mailto:yoni@yumloop.net?subject=Sightline%203D" data-link="contact">Get in touch</a>
+      <a href="#trailer" data-link="trailer">Watch the trailer</a>
     </div>
     <div class="contact rv" data-hit>
       <b>Yoni</b>Founder / Designer · Yumloop<br>
@@ -609,7 +472,7 @@
   var pub = (P.publishers || {})[to];
   if(pub && pub.why && pub.why.length){   // a named variant replaces the generic copy; the default page names nobody
     document.querySelectorAll('[data-pub-name]').forEach(function(n){ n.textContent = pub.name; });
-    var box = document.getElementById('whyyouCopy'); box.innerHTML = ''; pub.why.forEach(function(t){ var p = document.createElement('p'); p.className = 'quote rv'; p.setAttribute('data-hit', ''); p.textContent = t; box.appendChild(p); });
+    var box = document.getElementById('whyyouCopy'); if(box){ box.innerHTML = ''; pub.why.forEach(function(t){ var p = document.createElement('p'); p.className = 'quote rv'; p.setAttribute('data-hit', ''); p.textContent = t; box.appendChild(p); }); }
   }
   if(P.launch) document.getElementById('launchDate').textContent = P.launch;
   if(P.budget) document.getElementById('budgetLine').textContent = P.budget;
