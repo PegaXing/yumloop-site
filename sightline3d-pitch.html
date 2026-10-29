@@ -302,7 +302,6 @@
       <p class="punch rv" data-hit>No guessing. No luck. Every side.</p>
       <div class="actions rv" data-hit>
         <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch it play</a>
-        <a href="#play">Play the build</a>
         <a href="#brand">Sightline, the series</a>
       </div>
     </div>
@@ -327,26 +326,6 @@
       <li>Global leaderboards</li>
             <li>PC + mobile</li>
     </ul>
-  </section>
-
-  <!-- 3 · PLAY IT -->
-  <section class="tight" id="play">
-    <div class="kicker rv" data-hit>Play it</div>
-    <h2 class="rv" data-hit>Play the build.</h2>
-    <div class="actions rv" data-hit>
-      <a class="solid" href="#" data-link="buildWindows">Windows build</a>
-      <a href="mailto:yoni@yumloop.net" data-link="storeBuilds" title="Available on request: opens an email to Yumloop">TestFlight · Google Play invite</a>
-      <span class="chip">In development · playable today</span>
-    </div>
-    <details class="notes rv" data-hit open>
-      <summary>Build notes</summary>
-      <div class="scout">
-        <div><b>Builds</b>iPhone and iPad through TestFlight, Android through Google Play testing, and a Windows build (mouse, keyboard and controller). All are sent on request.</div>
-        <div><b>Where to look</b>Level 2 folds the first flat board into a cube. Turn buttons arrive at level 5, then channels, purple tiles, mirrors, one-way arrows and portals, each with its own lesson, and floating islands linked by portals at level 72.</div>
-        <div><b>Multiplayer</b>Menu → <em>Elimination</em>. Quick match, or make a room and share its five-letter code. iPhone, iPad, Android and PC all play in the same matches.</div>
-        <div><b>Video</b>Every clip on this page is the real game, captured from the build.</div>
-      </div>
-    </details>
   </section>
 
   <!-- 4 · THE RULE -->
@@ -586,10 +565,9 @@
   <section class="close chapter" id="close">
     <div class="lockup rv" data-hit><div class="wm" aria-label="Sightline 3D">Sightline<span class="cube3">3D</span></div><span class="lp">Logic puzzle</span></div>
     <h2 class="rv" data-hit>Same rules. Another dimension.</h2>
-    <p class="sub rv" data-hit style="margin:0 auto">Sightline 3D is playable now. I’d love to hear what you think.</p>
+    <p class="sub rv" data-hit style="margin:0 auto">I’d love to hear what you think.</p>
     <div class="actions rv" data-hit>
       <a class="solid" href="#trailer" data-link="trailer"><span class="ic"></span>Watch it play</a>
-      <a href="mailto:yoni@yumloop.net" data-link="storeBuilds" title="Available on request: opens an email to Yumloop">TestFlight · Play · Windows build</a>
       <a href="sightline-pitch.html" data-link="sightline">The first game: Sightline</a>
       <a href="mailto:yoni@yumloop.net?subject=Sightline%203D" data-link="contact">Contact</a>
     </div>
@@ -755,7 +733,6 @@
     function(el){ el.innerHTML = '<div class="clue"><span class="r">1</span></div>'; },
     function(el){ el.innerHTML = '<div class="clue"><span class="d">2</span></div>'; },
     function(el){ el.classList.add('wall'); },
-    function(el){ el.classList.add('chan'); el.innerHTML = chanSvg(); },
     function(el){ el.classList.add('nbr'); el.innerHTML = '<div class="n">1</div>'; },
     function(el){ el.classList.add('bomb'); },
     function(el){ },
