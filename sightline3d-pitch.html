@@ -625,7 +625,7 @@
       var below = 1e9; for(var c2 = 0; c2 < colliders.length; c2++){ var r2 = colliders[c2].r; if(t.x + t.s > r2.left && t.x < r2.right && r2.top >= t.y + t.s - 2) below = Math.min(below, r2.top - (t.y + t.s)); }
       var h = Math.min(600, below), k = 1 - h / 600;
       t.el.style.transform = 'translate(' + t.x.toFixed(1) + 'px,' + t.y.toFixed(1) + 'px)';
-      t.el.style.filter = 'drop-shadow(' + (4 + h * .05).toFixed(1) + 'px ' + (8 + h * .12).toFixed(1) + 'px ' + (2 + h * .04).toFixed(1) + 'px rgba(0,0,0,' + (.14 + .3 * k).toFixed(2) + '))';
+      t.el.style.filter = 'drop-shadow(' + (3 + h * .025).toFixed(1) + 'px ' + (6 + h * .045).toFixed(1) + 'px ' + (2 + h * .018).toFixed(1) + 'px rgba(0,0,0,' + (.1 + .32 * k).toFixed(2) + '))';
       t.cube.style.transform = 'rotateX(' + t.rx.toFixed(1) + 'deg) rotateY(' + t.ry.toFixed(1) + 'deg) rotateZ(' + t.rz.toFixed(1) + 'deg)'; }
     requestAnimationFrame(frame);
   }
