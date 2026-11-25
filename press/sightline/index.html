@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sightline Press &amp; Creator Kit · Yumloop</title>
+<meta name="description" content="Press and creator kit for Sightline, a logic puzzle where every clue counts the bombs it can see. Trailers, screenshots, logos, factsheet and early-access requests.">
+<link rel="canonical" href="https://yumloop.net/press/sightline/">
+<meta name="theme-color" content="#140FD7">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Yumloop">
+<meta property="og:url" content="https://yumloop.net/press/sightline/">
+<meta property="og:title" content="Sightline · Press &amp; Creator Kit">
+<meta property="og:description" content="Every clue has a point of view. Trailers, screenshots, logos, factsheet and free early access for press and creators.">
+<meta property="og:image" content="https://yumloop.net/press/sightline/media/Sightline_Key-Art_Logo_3840x2160_preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://yumloop.net/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://yumloop.net/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=JetBrains+Mono:wght@500&family=Nunito+Sans:wght@400;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<script>window.PRESS_ENDPOINT = 'https://yumloop-press.yumloop.workers.dev/api/request';</script>
+<style>
+  :root{ --blue:#140FD7; --lilac:#BFA6FD; --gold:#F5B301; --red:#ff2e2e; --chan:#0040f7; --nbr:#a040d8; --mirror:#f2b78f; --cell:#c9caff; --ink:#06062B;
+         --sans:Archivo,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; --display:Sora,var(--sans) }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip}
+  body{margin:0; min-height:100svh; background:var(--blue); color:#fff; font-family:var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  img,video{max-width:100%; height:auto; display:block}
+  a{color:#fff}
+  :focus-visible{outline:2px solid #fff; outline-offset:4px}
+  .wrap{width:min(1120px, 100% - clamp(40px,8vw,120px)); margin:0 auto}
+  header.top{display:flex; align-items:center; justify-content:space-between; padding:clamp(20px,3vw,34px) 0; gap:16px}
+  .brand{width:min(88px,22vw)}   /* v3 logo is cropped tight, so the old negative margin (the file's own left padding) is gone */
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62)}
+  .kicker.q{color:var(--lilac)}
+  h1{font-family:var(--display); font-weight:800; font-size:clamp(38px,6.4vw,88px); line-height:.96; letter-spacing:-.02em; margin:.25em 0 .35em; text-wrap:balance}
+  h2{font-family:var(--display); font-weight:800; font-size:clamp(28px,3.8vw,50px); letter-spacing:-.015em; line-height:1.02; margin:.25em 0 .55em; text-wrap:balance}
+  h2 .q{color:var(--lilac)}
+  h3{font-family:var(--display); font-weight:800; font-size:clamp(18px,1.8vw,22px); margin:0 0 8px}
+  p{line-height:1.5}
+  .lede{font-size:clamp(18px,1.7vw,24px); line-height:1.42; max-width:36ch; margin:0 0 .8em}
+  .lede b{font-weight:600; color:var(--gold)}
+  .sub{font-size:clamp(15px,1.25vw,18px); color:rgba(255,255,255,.86); max-width:56ch; margin:0}
+  .big{font-family:var(--display); font-weight:800; font-size:clamp(22px,2.6vw,34px); line-height:1.15; letter-spacing:-.015em; max-width:26ch; margin:.3em 0}
+  .quote{font-size:clamp(17px,1.5vw,21px); line-height:1.5; max-width:60ch; margin:0 0 1em; color:rgba(255,255,255,.92)}
+  .rule{height:1px; background:rgba(255,255,255,.28); border:0; margin:0 0 clamp(22px,3vw,36px)}
+  section{padding:clamp(34px,5vw,80px) 0; position:relative}
+  section.tight{padding-top:clamp(18px,2.4vw,36px)}
+  /* actions (quiet, not commercial CTAs) */
+  .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(20px,2.6vw,30px)}
+  .actions a{display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; padding:13px 18px; border:1px solid rgba(255,255,255,.7); transition:background .15s linear, color .15s linear}
+  .actions a:hover{background:#fff; color:var(--blue)}
+  .actions a.solid{background:#fff; color:var(--blue)} .actions a.solid:hover{background:transparent; color:#fff}
+  .actions a .ic{width:10px; height:10px; border-left:6px solid currentColor; border-top:5px solid transparent; border-bottom:5px solid transparent; border-right:0; display:inline-block}
+  .actions a.muted{color:rgba(255,255,255,.7); border-style:dashed}
+  /* hero */
+  .hero{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(20px,3vw,44px) 0 clamp(30px,4vw,60px)}
+  .lockup{width:min(520px,100%); margin:0 0 18px} .lockup .wm{font-family:'Nunito Sans',Archivo,sans-serif; font-weight:400; font-size:clamp(30px,5vw,66px); line-height:1; letter-spacing:.42em; text-indent:0; margin-left:-.06em; text-transform:uppercase; color:#fff; white-space:nowrap}   /* the game's main-menu wordmark, verbatim styling */ .lockup .lp{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#fff; border:2px solid #fff; padding:6px 12px}
+  .close .lockup{margin:0 auto 10px; text-align:center; width:auto} .close .lockup .wm{text-indent:.42em; margin-left:0}
+  .scout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px} .scout div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14px; line-height:1.45; color:rgba(255,255,255,.9)} .scout div b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--lilac); margin-bottom:8px}
+  /* mini board (mechanic demo + decorative boards) */
+  .board{--n:5; --t:56px; display:grid; grid-template-columns:repeat(var(--n),var(--t)); grid-auto-rows:var(--t); gap:0; position:relative; margin:0 auto; width:max-content; background:#000; padding:3px; box-shadow:10px 10px 0 #000}
+  .cell{position:relative; background:var(--cell); box-shadow:inset 0 0 0 3px #000; font-family:var(--display); font-weight:800; color:#111; transition:background .35s ease, transform .35s ease}
+  .cell.open{background:#fff}
+  .cell.bomb{background:var(--red)} .cell.bomb::after{content:""; position:absolute; inset:31%; background:#000; border-radius:50%}
+  .cell.wall{background:repeating-linear-gradient(45deg,#000 0,#000 6px,#444 6px,#444 12px)}
+  .cell.chan{background:var(--chan)} .cell.chan svg{position:absolute; inset:0; width:100%; height:100%; fill:none; stroke:#fff; stroke-width:8; stroke-linecap:round; stroke-linejoin:round}
+  .cell.mirror{background:var(--mirror)} .cell.mirror::after{content:""; position:absolute; left:50%; top:50%; width:74%; height:5px; background:#000; transform:translate(-50%,-50%) rotate(-45deg)}
+  .cell.nbr{background:var(--nbr); color:#fff}
+  .cell.flag{background:#fff} .cell.flag::after{content:""; position:absolute; inset:28%; background:var(--gold); clip-path:polygon(20% 0,100% 30%,20% 60%,20% 100%,0 100%,0 0)}
+  .cell .e{position:absolute; font-size:calc(var(--t)*.31); line-height:1; opacity:0; transform:scale(.6); transition:opacity .25s ease, transform .25s cubic-bezier(.22,.61,.36,1)}
+  .cell .e.r{right:9%; top:50%; transform:translate(0,-50%) scale(.6)} .cell .e.l{left:9%; top:50%; transform:translate(0,-50%) scale(.6)}
+  .cell .e.d{bottom:7%; left:50%; transform:translate(-50%,0) scale(.6)} .cell .e.u{top:7%; left:50%; transform:translate(-50%,0) scale(.6)}
+  .cell.open .e{opacity:1} .cell.open .e.r,.cell.open .e.l{transform:translate(0,-50%) scale(1)} .cell.open .e.d,.cell.open .e.u{transform:translate(-50%,0) scale(1)}
+  .cell .e.hot{color:var(--blue); text-shadow:0 0 0 var(--blue)}
+  .cell .z{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s} .cell.open .z{opacity:1} .cell .z i{width:34%; height:34%; position:relative} .cell .z i::before,.cell .z i::after{content:""; position:absolute; left:50%; top:50%; width:100%; height:3px; background:#8a8aa6; transform:translate(-50%,-50%) rotate(45deg)} .cell .z i::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .cell.nbr .n{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:calc(var(--t)*.42); color:#fff}
+  .cell .eye{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+  .cell .eye i{width:44%; height:26%; border:3px solid var(--blue); border-radius:50%; position:relative} .cell .eye i::after{content:""; position:absolute; left:50%; top:50%; width:40%; height:75%; background:var(--blue); border-radius:50%; transform:translate(-50%,-50%)}
+  .beam{position:absolute; background:rgba(20,15,215,.55); box-shadow:0 0 0 2px rgba(20,15,215,.25), 0 0 18px rgba(20,15,215,.5); transform-origin:left center; transform:scaleX(0); transition:transform .55s cubic-bezier(.22,.61,.36,1), opacity .3s; pointer-events:none; z-index:2}
+  .beam.v{transform-origin:center top; transform:scaleY(0)}
+  .beam.on{transform:scaleX(1)} .beam.v.on{transform:scaleY(1)}
+  .beam.off{opacity:0}
+  .cell.pulse{animation:cellPulse .5s ease}
+  @keyframes cellPulse{0%{transform:scale(1)} 40%{transform:scale(1.08)} 100%{transform:scale(1)}}
+  .demo{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,64px); align-items:center}
+  .demo .cap{min-height:5.2em}
+  #demoSteps{display:grid} #demoSteps .step{grid-area:1/1}   /* the four headings share one cell, so the visible one never moves */
+  .demo .cap .step{font-family:var(--display); font-weight:800; font-size:clamp(22px,2.6vw,34px); line-height:1.12; letter-spacing:-.015em; margin:0 0 .35em; opacity:0; transform:translateY(8px); transition:opacity .35s, transform .35s}
+  .demo .cap .step.show{opacity:1; transform:none}
+  .demo .cap .why{font-size:15.5px; color:rgba(255,255,255,.82); margin:0; min-height:3.2em}
+  .demo .ctl{display:flex; gap:10px; margin-top:18px}
+  .demo .ctl button{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); padding:10px 14px; cursor:pointer}
+  .demo .ctl button:hover{background:#fff; color:var(--blue)}
+  .demoWrap{width:max-content; max-width:100%; margin:0 auto}
+  .legend{display:flex; gap:10px 16px; flex-wrap:wrap; justify-content:center; margin-top:18px; width:0; min-width:100%}   /* width:0 keeps the key from widening the wrapper: it wraps to the board's width, centred */
+  .legend span{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.7)}
+  .legend i{width:16px; height:16px; box-shadow:inset 0 0 0 2px #000; display:inline-block}
+  /* mechanics */
+  .mechs{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,26px)}
+  .mech{background:#fff; color:var(--ink); border:3px solid #000; box-shadow:8px 8px 0 #000; overflow:hidden}
+  .mech .clip{aspect-ratio:560/597; border-bottom:3px solid #000; background:#f2f2ff; overflow:hidden} .mech .clip video,.mech .clip img{width:100%; height:100%; object-fit:cover}
+  .mech .b{padding:16px 18px 18px}
+  /* wide clips (Grand Levels, Elimination): the game's own 16:9 screen, two to a row */
+  .mechs.wide{grid-template-columns:repeat(2,1fr)} .mech.wide .clip{aspect-ratio:16/9}
+  @media (max-width:760px){ .mechs.wide{grid-template-columns:1fr} }
+  .mech .b .t{font-family:var(--display); font-weight:800; font-size:19px; margin:0 0 6px}
+  .mech .b p{margin:0; font-size:14.5px; line-height:1.45; color:#3a3c5a}
+  .mech .b .k{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:#6b6d8a; margin-bottom:8px}
+  .closer{margin-top:clamp(26px,3.4vw,44px)}
+  /* trailer */
+  .trailer{border:3px solid #000; box-shadow:12px 12px 0 #000; background:#000; aspect-ratio:16/9; position:relative}
+  .trailer video{width:100%; height:100%; object-fit:cover}
+  .trailer .play{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(6,6,43,.18); cursor:pointer; border:0; padding:0}
+  .trailer .play span{font-family:var(--mono); font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#fff; background:var(--blue); border:3px solid #000; box-shadow:6px 6px 0 #000; padding:16px 24px}
+  .trailer.playing .play{display:none}
+  /* the trailer now opens the pitch: full content width, 16:9, nothing cropped */
+  #trailer .trailer{aspect-ratio:16/9}
+  #trailer .trailer video{object-fit:contain; background:#000}
+  /* the commercial hook: conversational, sized between the tagline and the body copy */
+  .hook{font-size:clamp(21px,2.15vw,31px); line-height:1.26; letter-spacing:-.01em; max-width:21ch;
+    margin:.55em 0 .7em; color:#fff; text-wrap:balance}
+  .hook .q{color:var(--gold)}
+  .punch{font-family:var(--mono); font-size:clamp(12px,1.05vw,14px); letter-spacing:.13em; text-transform:uppercase;
+    color:var(--gold); margin:1.05em 0 0}
+  /* proof strip — one quiet line of scope, wraps on narrow screens */
+  .proof{display:flex; flex-wrap:wrap; align-items:center; list-style:none; margin:clamp(16px,1.8vw,22px) 0 0; padding:0;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.74)}
+  .proof li{padding:5px 0}
+  .proof li::after{content:'·'; color:var(--gold); margin:0 13px}
+  .proof li:last-child::after{content:''; margin:0}
+  /* build notes — everything a reviewer needs, without competing with the pitch above it */
+  .notes{margin-top:clamp(18px,2vw,26px); border:1px solid rgba(255,255,255,.26); padding:0 clamp(14px,1.6vw,18px)}
+  .notes>summary{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+    color:rgba(255,255,255,.66); padding:14px 0; cursor:pointer}
+  .notes>summary:hover{color:#fff}
+  .notes .scout{margin:2px 0 16px}
+  .chip{display:inline-flex; align-items:center; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold); border:1px dashed rgba(245,179,1,.55); padding:11px 14px}
+  /* product / devices: Valve's Steam Deck OLED press render and Apple's iPhone 17 Pro product bezel, with the
+     game's own clips sitting exactly on their screens. The screen rectangles are measured from the PNGs. */
+  /* All three devices are exactly the same height, and that is arithmetic rather than measurement. Each column is
+     given a fraction equal to that device's width-at-a-common-height (its aspect ratio), and each frame fills its
+     column at its own aspect ratio — so every frame resolves to width/ratio, which is the same number for all three.
+     This replaces a script that measured the Deck and then set the phone's height from it: the phone's new height
+     changed its width, which changed the Deck's column, which changed the Deck's height. That loop had no fixed
+     point, and depending on when it ran it could leave the phone enormous and the Deck column collapsed to nothing,
+     which is exactly how the Steam Deck went missing while its label stayed. */
+  .devices{display:grid; grid-template-columns:minmax(0,4891fr) minmax(0,23041fr) minmax(0,5686fr); gap:clamp(18px,3vw,48px); align-items:end; justify-items:stretch}
+  .dev.deck{width:100%}
+  .dev.deck .frame{aspect-ratio:1500/651; width:100%}
+  .dev.box .frame{aspect-ratio:862/1516; width:100%; margin:0 auto}
+  .dev.box .frame .shell{width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
+  .dev{position:relative; display:flex; flex-direction:column; justify-content:flex-end}
+  .dev .frame{position:relative}
+  .dev.phone .frame{aspect-ratio:1350/2760; width:100%; margin:0 auto}
+  .dev.phone .frame .shell{width:100%; height:100%; object-fit:contain}
+  .dev .shell{position:relative; display:block; width:100%; height:100%; object-fit:contain; z-index:1; pointer-events:none}
+  .dev .scr{position:absolute; overflow:hidden; background:#000}
+  .dev .scr video,.dev .scr img{width:100%; height:100%; object-fit:cover; display:block}
+  .dev.deck .scr{left:24.21%; top:10.3%; width:51.68%; height:74.55%; z-index:2}              /* the OLED panel in the render (crop 300..2200 × 150..975 of Valve's 2500×980 PNG: body 182..908 + shadow) */
+  .dev.phone{width:100%}
+  .dev.phone .scr{left:5.33%; top:2.5%; width:89.33%; height:94.96%; border-radius:12% / 6%; z-index:0; background:#fbf8f1}   /* the bezel's full screen opening (measured from the PNG), behind its transparent cut-out */
+  .dev .lbl{min-width:0; overflow-wrap:anywhere; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:16px; text-align:center}
+  /* entrance: the Deck rises and settles, the phone drifts in from the right, then floats */
+  .dev.rv{transform:translateY(60px) rotate(1.5deg); transition:opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1)}
+  .dev.phone.rv{transform:translate(48px,30px) rotate(-3deg)}
+  .dev.box.rv{transform:translate(-48px,30px) rotate(3deg)}
+  .dev.rv.in{transform:none}
+  .dev.phone.rv.in .frame{animation:float 6s ease-in-out 1s infinite}
+  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
+  .platgrid{display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-top:clamp(22px,3vw,34px)}
+  .platgrid span{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:12px 10px; border:1px solid rgba(255,255,255,.6); text-align:center}
+  .platgrid span.soon{color:var(--lilac); border-color:var(--lilac); border-style:dashed}
+  .feat{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
+  .feat div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.4}
+  .feat div b{display:block; font-family:var(--display); font-weight:800; font-size:16px; margin-bottom:6px}
+  /* technical: same boxes as .feat, three across; mono label on top */
+  .tech{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:clamp(22px,3vw,34px)}
+  .tech div{border:1px solid rgba(255,255,255,.35); padding:16px 16px 14px; font-size:14.5px; line-height:1.45}
+  .tech div b{display:block; font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62); margin-bottom:8px}
+  .tech div strong{display:block; font-family:var(--display); font-weight:800; font-size:16px; margin-bottom:6px}
+  .tech .note{margin-top:14px; font-size:13.5px; color:rgba(255,255,255,.7)}
+  /* screenshots */
+  .shots{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.8vw,22px)}
+  .shot{position:relative; transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+  .shot img{border:3px solid #000; box-shadow:7px 7px 0 #000; background:#fff}
+  .shot:hover{transform:translateY(-8px) rotate(-.8deg) scale(1.02)}
+  .shots.mobile{grid-template-columns:repeat(5,1fr)}
+  /* status */
+  .status{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,60px); align-items:start}
+  .checks{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 18px}
+  .checks li{font-size:14.5px; line-height:1.4; padding-left:26px; position:relative; color:rgba(255,255,255,.9)}
+  .checks li::before{content:""; position:absolute; left:0; top:4px; width:14px; height:14px; background:#fff; box-shadow:inset 0 0 0 2px #000}
+  .checks li::after{content:""; position:absolute; left:4px; top:5px; width:5px; height:9px; border:solid var(--blue); border-width:0 3px 3px 0; transform:rotate(40deg)}
+  .callout{background:#fff; color:var(--ink); border:3px solid #000; box-shadow:10px 10px 0 #000; padding:clamp(20px,2.6vw,32px)}
+  .callout .t{font-family:var(--display); font-weight:800; font-size:clamp(20px,2.2vw,28px); line-height:1.15; letter-spacing:-.015em; margin:0 0 10px}
+  .callout p{margin:0; font-size:15.5px; color:#3a3c5a}
+  .meters{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,40px); margin-top:clamp(22px,3vw,34px)}
+  .meter .l{font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-bottom:10px}
+  .meter .bar{height:18px; background:rgba(255,255,255,.14); box-shadow:inset 0 0 0 2px rgba(255,255,255,.5); position:relative; overflow:hidden}
+  .meter .bar i{position:absolute; inset:0; width:0; background:#fff; transition:width 1.1s cubic-bezier(.22,.61,.36,1)}
+  .meter .bar i.gold{background:var(--gold)}
+  .meter .v{font-family:var(--display); font-weight:800; font-size:22px; margin-top:8px}
+  /* who */
+  .who{display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,48px)}
+  .card{border:1px solid rgba(255,255,255,.35); padding:22px 22px 20px}
+  .card p{margin:0 0 10px; font-size:15px; color:rgba(255,255,255,.9)} .card p:last-child{margin:0}
+  .card .role{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--lilac); margin:0 0 10px}
+  /* needs */
+  .needs{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:clamp(18px,2.4vw,28px) 0}
+  .needs span{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:12px 12px; border:1px solid rgba(255,255,255,.5)}
+  /* close */
+  .close{text-align:center; padding-top:clamp(50px,8vw,120px)}
+  .close .lockup{margin:0 auto 10px}
+  .close .actions{justify-content:center}
+  .contact{margin-top:clamp(26px,3.4vw,44px); font-size:15px; line-height:1.6}
+  .contact b{font-family:var(--display); font-weight:800; font-size:18px; display:block}
+  footer{display:flex; justify-content:center; gap:26px; flex-wrap:wrap; padding:clamp(30px,5vw,60px) 0 30px}
+  footer a{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); text-decoration:none}
+  footer a:hover{color:#fff}
+  /* inverted chapters: white ground, ink text, blue accents (full-bleed from inside the centred column) */
+  section.inv{color:var(--ink)} section.inv::before{content:""; position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); background:#fff; z-index:-1}   /* full-bleed white ground painted behind the column; layout untouched */
+  section.inv .kicker{color:#6b6d8a} section.inv .kicker.q{color:var(--blue)}
+  section.inv h2,section.inv .big{color:var(--ink)} section.inv .quote,section.inv .sub,section.inv .card p,section.inv .checks li{color:#2b2d4a}
+  section.inv .rule{background:#c9cadb} section.inv .card{border-color:#c9cadb} section.inv .card .role{color:var(--blue)}
+  section.inv .checks li::before{background:#fff; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .checks li::after{border-color:var(--blue)}
+  section.inv .callout{background:var(--blue); color:#fff; border-color:#000} section.inv .callout .t{color:#fff} section.inv .callout p{color:rgba(255,255,255,.85)}
+  section.inv .needs span{border-color:var(--blue); color:var(--blue)}
+  section.inv .meter .l{color:#6b6d8a} section.inv .meter .bar{background:#eceefc; box-shadow:inset 0 0 0 2px var(--ink)} section.inv .meter .bar i{background:var(--blue)} section.inv .meter .v{color:var(--ink)}
+  section.inv a{color:var(--blue)}
+  
+  @media print{ section.inv::before{display:none} }
+  /* reveal */
+  .rv{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1)}
+  .rv.in{opacity:1; transform:none}
+  @media (max-width:980px){ .hero{grid-template-columns:1fr} .scout{grid-template-columns:1fr 1fr} .dev.phone .frame{width:min(280px,100%)} .dev.box .frame{width:min(240px,100%)} .dev.deck .frame{width:100%} .demo{grid-template-columns:1fr} .devices{grid-template-columns:1fr; justify-items:center} .platgrid{grid-template-columns:repeat(3,1fr)} .feat{grid-template-columns:1fr 1fr} .tech{grid-template-columns:1fr} .status{grid-template-columns:1fr} .who{grid-template-columns:1fr} .mechs{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(3,1fr)} .needs{grid-template-columns:1fr 1fr} }
+  /* mobile: the trailer is the pitch, so it must arrive inside the first screen — the decorative hero board
+     demonstrates the same idea the trailer demonstrates better, and it is what was pushing the video down. */
+  @media (max-width:600px){
+    #heroBoard{display:none}
+    .hero .actions{margin-top:18px}
+    .proof{font-size:10.5px; letter-spacing:.12em}
+    .proof li::after{margin:0 9px}
+  }
+  @media (max-width:600px){ .board{--t:44px} .scout{grid-template-columns:1fr} .mechs{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr} .shots.mobile{grid-template-columns:repeat(2,1fr)} .checks{grid-template-columns:1fr} .platgrid{grid-template-columns:1fr 1fr} .feat{grid-template-columns:1fr} .needs{grid-template-columns:1fr} .deck{padding:12px 44px} .deck::before,.deck::after{width:24px;height:24px} .deck::before{left:10px} .deck::after{right:10px} .meters{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none} .dev.phone.rv.in .frame{animation:none} .shot{transition:none} .cell,.beam{transition:none} .cell.pulse{animation:none} .meter .bar i{transition:none} }
+  /* print: the PDF version. Static, white, no video, each chapter on its own page. */
+  @media print{
+    @page{ size:A4 landscape; margin:14mm }
+    body{background:#fff; color:var(--ink)} a{color:var(--blue)}
+    .wrap{width:100%}
+    header.top,.actions,.trailer,.demo .ctl,.legend,footer,.fx-tile{display:none !important}
+    .kicker{color:#6b6d8a} .sub,.quote,.card p,.checks li,.big,.lede{color:var(--ink)} .lede b{color:var(--blue)} h2 .q,.kicker.q,.card .role{color:var(--blue)}
+    .rule{background:#c9cadb} .card,.feat div,.platgrid span,.needs span,.meter .bar{border-color:#8f90a8; color:var(--ink)}
+    .meter .l,.dev .lbl,.legend span,.platgrid span{color:var(--ink)}
+    .meter .bar i{width:var(--w) !important; background:var(--blue)}
+    .print-only{display:block !important}
+    .rv{opacity:1 !important; transform:none !important}
+    section{padding:10mm 0; break-inside:avoid}
+    section.chapter{break-before:page}
+    .board{box-shadow:none; margin:0}
+    .lockup .wm,.lockup .lp{color:var(--ink)} .lockup .lp{border-color:var(--ink)}
+    .close{padding-top:10mm}
+    .notes{border-color:#c9cadb} .notes summary{color:#6b6d8a} .scout div{color:var(--ink); border-color:#8f90a8} .scout div b{color:#6b6d8a}
+    .proof,.proof li{color:var(--ink)} #trailer img.print-only{max-height:125mm; width:auto; max-width:100%}
+    .tech div{font-size:12.5px; padding:12px 14px 10px} .tech div b{color:#6b6d8a}
+  }
+  .print-only{display:none}
+
+  /* --- public game page additions --- */
+  .topnav{display:flex; gap:clamp(12px,2vw,24px)} .topnav a{font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.72); text-decoration:none} .topnav a:hover{color:#fff}
+  .actions a.soon{color:var(--lilac); border-color:var(--lilac); border-style:dashed; pointer-events:none}
+  .loves{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .loves div{border:3px solid var(--ink); box-shadow:7px 7px 0 var(--ink); background:#fff; padding:18px 18px 16px; font-size:15px; line-height:1.48; color:#2b2d4a}
+  .loves div b{display:block; font-family:var(--display); font-weight:800; font-size:19px; color:var(--blue); margin-bottom:6px}
+  section.inv h2 .q{color:var(--blue)}
+  .devices{grid-template-columns:minmax(0,4891fr) minmax(0,23041fr)}
+  .stores{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:clamp(26px,3.4vw,40px)}
+  .store{display:flex; flex-direction:column; gap:4px; text-decoration:none; background:#fff; color:var(--ink); border:3px solid #000; box-shadow:7px 7px 0 #000; padding:16px 18px; transition:transform .15s ease, box-shadow .15s ease}
+  .store:hover{transform:translate(-2px,-2px); box-shadow:9px 9px 0 #000}
+  .store b{font-family:var(--display); font-weight:800; font-size:20px}
+  .store span{font-size:13.5px; color:#4a4c6a}
+  .store em{font-style:normal; margin-top:10px; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue)}
+  .stores.press3{grid-template-columns:repeat(3,1fr)}
+  .trailer .play{align-items:flex-end; justify-content:flex-start; padding:clamp(12px,2vw,24px); background:transparent}   /* keeps the poster's own headline clear */
+  .shots{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); margin-top:14px}
+  .shots figure{margin:0} .shots img{width:100%; aspect-ratio:16/9; object-fit:cover; border:3px solid #000; box-shadow:7px 7px 0 #000; background:#000}
+  .shots figcaption{margin-top:10px; font-size:13.5px; color:rgba(255,255,255,.82)}
+  .store.hot{background:var(--gold)} .store.hot em{color:var(--ink)}
+  .store.soon{background:transparent; color:#fff; border:2px dashed var(--lilac); box-shadow:none; pointer-events:none}
+  .store.soon span{color:rgba(255,255,255,.72)} .store.soon em{color:var(--lilac)}
+  .big-quote{font-family:var(--display); font-weight:800; font-size:clamp(22px,2.6vw,34px); line-height:1.25; letter-spacing:-.01em; max-width:34ch}
+  @media (max-width:980px){ .loves{grid-template-columns:1fr 1fr} .stores,.stores.press3,.shots{grid-template-columns:1fr 1fr} .devices{grid-template-columns:1fr} }
+  @media (max-width:600px){ .loves{grid-template-columns:1fr} .stores,.stores.press3,.shots{grid-template-columns:1fr} .topnav{display:none} }
+
+  /* --- press kit additions --- */
+  .press-hero{padding:clamp(10px,2vw,30px) 0 clamp(30px,4vw,56px)}
+  .press-hero h1{font-size:clamp(34px,5.2vw,72px); margin:.2em 0 .55em}
+  .press-hero .trailers{margin-top:0}
+  .trailer .play{align-items:flex-end; justify-content:flex-start; padding:clamp(12px,2vw,24px); background:transparent}
+  .cols.even{grid-template-columns:1fr 1fr}
+  #different .loves{grid-template-columns:repeat(4,1fr); margin-top:16px}
+  .mlist{margin:14px 0 0} .mlist div{padding:10px 0; border-bottom:1px solid #e1e2f2}
+  .mlist dt{font-family:var(--display); font-weight:800; font-size:16.5px; color:var(--blue)}
+  .mlist dt .lv{font-family:var(--mono); font-weight:500; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:#6b6d8a; margin-left:8px}
+  .mlist dd{margin:3px 0 0; font-size:14.5px; line-height:1.5; color:#2b2d4a}
+  .actions a small{opacity:.7; letter-spacing:.1em}
+  .trailers{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.26fr); gap:clamp(14px,2vw,26px); align-items:start; margin-top:14px}
+  .trailers.one{grid-template-columns:1fr}
+  .vtrailer{border:3px solid #000; box-shadow:8px 8px 0 #000; background:#000; aspect-ratio:886/1920}
+  .vtrailer video{width:100%; height:100%; object-fit:cover}
+  .dlrow{display:flex; flex-wrap:wrap; gap:10px 22px; margin:22px 0 0}
+  a.dl{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#fff; text-decoration:none; border-bottom:2px solid var(--lilac); padding-bottom:2px}
+  a.dl:hover{color:var(--lilac)} a.dl.ink, section.inv a.dl{color:var(--blue); border-color:var(--blue)}
+  .credit,.note{font-size:13px; color:rgba(255,255,255,.66); margin:10px 0 0}
+  .cols{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(24px,4vw,60px); align-items:start}
+  .longd p{font-size:16.5px; line-height:1.6; color:#2b2d4a; margin:0 0 14px}
+  .longd p:first-child{font-family:var(--display); font-weight:800; font-size:21px; line-height:1.3; color:var(--blue)}
+  .facts{border-collapse:collapse; width:100%; font-size:14.5px}
+  .facts th{text-align:left; vertical-align:top; font-family:var(--mono); font-weight:500; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#6b6d8a; padding:9px 12px 9px 0; width:34%}
+  .facts td{padding:9px 0; border-bottom:1px solid #e1e2f2; color:var(--ink); word-break:break-word} .facts a{color:var(--blue)}
+  .mechgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px}
+  .mechgrid div{border:3px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background:#fff; padding:16px 16px 14px; font-size:14.5px; line-height:1.48; color:#2b2d4a}
+  .mechgrid b{display:block; font-family:var(--display); font-weight:800; font-size:18px; color:var(--blue); margin:2px 0 6px}
+  .mechgrid .lv{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#6b6d8a}
+  .mechgrid.feats div{border-width:2px; box-shadow:none}
+  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,22px); margin-top:18px}
+  .gallery figure{margin:0} .gallery img,.gallery video{width:100%; display:block; border:3px solid #000; box-shadow:7px 7px 0 #000; background:#000; aspect-ratio:16/9; object-fit:cover}
+  .gallery figcaption{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-top:12px; font-size:13.5px; color:rgba(255,255,255,.86)}
+  .arts{grid-template-columns:repeat(3,1fr)}
+  .art .sw{border:3px solid #000; box-shadow:7px 7px 0 #000; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; padding:18px; background:var(--ink)}
+  .art.light .sw{background:#fff} .art.blue .sw{background:var(--blue)}
+  .arts{grid-template-columns:repeat(4,1fr)} .art .sw img{border:0; box-shadow:none; background:none; aspect-ratio:auto; max-height:100%; width:auto; max-width:100%; object-fit:contain}
+  .art:last-child .sw{padding:0} .art:last-child .sw img{width:100%; height:100%; object-fit:cover}
+  .usage{border:3px solid var(--ink); padding:18px 20px; background:#f4f4ff} .usage h3{color:var(--blue)} .usage p{font-size:14.5px; line-height:1.55; color:#2b2d4a; margin:0}
+  .lead{font-size:17px; line-height:1.55; max-width:62ch; color:rgba(255,255,255,.92)}
+  .req{display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; margin-top:24px; background:#fff; color:var(--ink); border:3px solid #000; box-shadow:12px 12px 0 #000; padding:clamp(18px,3vw,32px)}
+  .req label{display:flex; flex-direction:column; gap:6px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#4a4c6a}
+  .req small{text-transform:none; letter-spacing:0; font-family:var(--sans); font-size:12.5px; color:#6b6d8a}
+  .req input:not([type=checkbox]),.req textarea{font:16px var(--sans); color:var(--ink); border:2px solid var(--ink); padding:11px 12px; border-radius:0; background:#fff; width:100%}
+  .req input:focus,.req textarea:focus{outline:3px solid var(--lilac); outline-offset:0}
+  .req fieldset{border:2px solid var(--ink); padding:10px 14px 12px; margin:0; display:flex; flex-wrap:wrap; gap:8px 22px; align-content:flex-start}
+  .req legend{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#4a4c6a; padding:0 6px}
+  .req label.ck{flex-direction:row; align-items:center; gap:8px; font-family:var(--sans); font-size:15.5px; letter-spacing:0; text-transform:none; color:var(--ink)}
+  .req label.ck input{width:20px; height:20px; accent-color:var(--blue)}
+  .req .wide{grid-column:1/-1} .req .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+  .req .privacy{font-size:13px; color:#6b6d8a; margin:0} .req .privacy a{color:var(--blue)}
+  .req .go{font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; background:var(--blue); color:#fff; border:3px solid #000; box-shadow:6px 6px 0 #000; padding:15px 24px; cursor:pointer}
+  .req .go:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 #000} .req .go[disabled]{opacity:.5; cursor:wait}
+  .req .msg{margin-left:14px; font-size:15px} .req .msg.err{color:#c40000} .req .msg.ok{color:#0b7a3b; font-weight:600}
+  .links{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px}
+  .links a{display:flex; flex-direction:column; gap:4px; text-decoration:none; color:var(--ink); border:3px solid #000; box-shadow:7px 7px 0 #000; background:#fff; padding:16px 18px}
+  .links b{font-family:var(--display); font-weight:800; font-size:19px; color:var(--blue)} .links span{font-size:14px; color:#4a4c6a; word-break:break-word}
+  .links a:hover{transform:translate(-2px,-2px); box-shadow:9px 9px 0 #000}
+  .legal{text-align:center; font-size:12px; color:rgba(255,255,255,.45); margin:0 0 30px}
+  .topnav{flex-wrap:wrap; justify-content:flex-end}
+  @media (max-width:980px){ #different .loves{grid-template-columns:1fr 1fr} .cols,.cols.even{grid-template-columns:1fr} .mechgrid,.gallery,.arts{grid-template-columns:1fr 1fr} .links{grid-template-columns:1fr 1fr} }
+  @media (max-width:640px){ #different .loves{grid-template-columns:1fr} .trailers{grid-template-columns:1fr} .vtrailer{width:min(260px,70%); margin:0 auto} .mechgrid,.gallery,.arts,.links,.req{grid-template-columns:1fr} .actions a{width:100%; justify-content:center} .facts th{width:40%} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="https://yumloop.net/" aria-label="Yumloop home"><img class="brand" src="https://yumloop.net/yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892"></a>
+    <nav class="topnav" aria-label="Press kit"><a href="#trailer">Trailer</a><a href="#media">Screenshots</a><a href="#about">About</a><a href="#art">Logos</a><a href="#early-access">Early access</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <section class="press-hero" id="top">
+    <div class="kicker q">Press &amp; Creator Kit · Coming soon</div>
+    <div class="lockup"><div class="wm" aria-label="Sightline">Sightline</div><span class="lp">Logic puzzle</span></div>
+    <h1>Every clue has a point of view.</h1>
+    <div class="trailers" id="trailer">
+      <div class="trailer" id="trailerBox">
+        <video id="trailerVideo" src="media/Sightline_Trailer_Horizontal_1920x1080_60fps.mp4" poster="media/trailer-poster.jpg" preload="none" playsinline controls aria-label="Sightline gameplay trailer"></video>
+        <button type="button" class="play" id="trailerPlay" aria-label="Play trailer"><span>Play trailer · 1:21</span></button>
+      </div>
+      <div class="vtrailer"><video src="media/Sightline_Trailer_Vertical_886x1920_30s.mp4" poster="media/trailer-vertical-poster.jpg" preload="none" playsinline controls aria-label="Sightline vertical trailer"></video></div>
+    </div>
+    <p class="dlrow"><a class="dl" href="media/Sightline_Trailer_Horizontal_1920x1080_60fps.mp4" download>Horizontal trailer · 1920×1080 · 60 fps · 41 MB</a>
+      <a class="dl" href="media/Sightline_Trailer_Vertical_886x1920_30s.mp4" download>Vertical trailer · 14 MB</a></p>
+    <div class="actions">
+      <a class="solid" href="download/Sightline_PressKit.zip" download>Download entire press kit <small>ZIP · 90 MB</small></a>
+      <a href="#early-access">Request full-game early access</a>
+      <a href="https://store.steampowered.com/app/4509520" target="_blank" rel="noopener" data-utm="press-kit-page">Wishlist on Steam</a>
+    </div>
+    <ul class="proof"><li>Steam · Windows · macOS · Steam Deck</li><li>iPhone &amp; iPad</li><li>Android</li><li>Coming soon</li></ul>
+  </section>
+
+  <section class="tight" id="media">
+    <div class="kicker q">Screenshots · click for full resolution</div>
+    <div class="gallery"><figure class="shot"><a href="media/shots/01_Campaign_Early_Level-24.jpg" target="_blank" rel="noopener"><img src="media/shots/01_Campaign_Early_Level-24_thumb.jpg" alt="Campaign, level 24: walls and channels" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Campaign, level 24: walls and channels</span><a class="dl" href="media/shots/01_Campaign_Early_Level-24.jpg" download="Sightline_01_Campaign_Early_Level-24.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/02_Campaign_Early_Level-60.jpg" target="_blank" rel="noopener"><img src="media/shots/02_Campaign_Early_Level-60_thumb.jpg" alt="Campaign, level 60: one-way arrows and holes" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Campaign, level 60: one-way arrows and holes</span><a class="dl" href="media/shots/02_Campaign_Early_Level-60.jpg" download="Sightline_02_Campaign_Early_Level-60.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/03_Campaign_Intermediate_Level-92.jpg" target="_blank" rel="noopener"><img src="media/shots/03_Campaign_Intermediate_Level-92_thumb.jpg" alt="Campaign, level 92: a diamond board" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Campaign, level 92: a diamond board</span><a class="dl" href="media/shots/03_Campaign_Intermediate_Level-92.jpg" download="Sightline_03_Campaign_Intermediate_Level-92.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/04_Campaign_Intermediate_Level-250.jpg" target="_blank" rel="noopener"><img src="media/shots/04_Campaign_Intermediate_Level-250_thumb.jpg" alt="Campaign, level 250: mechanics combined" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Campaign, level 250: mechanics combined</span><a class="dl" href="media/shots/04_Campaign_Intermediate_Level-250.jpg" download="Sightline_04_Campaign_Intermediate_Level-250.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/05_Campaign_Advanced_Level-360.jpg" target="_blank" rel="noopener"><img src="media/shots/05_Campaign_Advanced_Level-360_thumb.jpg" alt="Campaign, level 360: a ring board" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Campaign, level 360: a ring board</span><a class="dl" href="media/shots/05_Campaign_Advanced_Level-360.jpg" download="Sightline_05_Campaign_Advanced_Level-360.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/06_Grand-Levels_Grand-121.jpg" target="_blank" rel="noopener"><img src="media/shots/06_Grand-Levels_Grand-121_thumb.jpg" alt="Grand Levels: Grand 121" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Grand Levels: Grand 121</span><a class="dl" href="media/shots/06_Grand-Levels_Grand-121.jpg" download="Sightline_06_Grand-Levels_Grand-121.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/07_Grand-Levels_Grand-163.jpg" target="_blank" rel="noopener"><img src="media/shots/07_Grand-Levels_Grand-163_thumb.jpg" alt="Grand Levels: Grand 163" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Grand Levels: Grand 163</span><a class="dl" href="media/shots/07_Grand-Levels_Grand-163.jpg" download="Sightline_07_Grand-Levels_Grand-163.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/08_Grand-Levels_Grand-190.jpg" target="_blank" rel="noopener"><img src="media/shots/08_Grand-Levels_Grand-190_thumb.jpg" alt="Grand Levels: Grand 190" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Grand Levels: Grand 190</span><a class="dl" href="media/shots/08_Grand-Levels_Grand-190.jpg" download="Sightline_08_Grand-Levels_Grand-190.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/09_Grand-Levels_Grand-232.jpg" target="_blank" rel="noopener"><img src="media/shots/09_Grand-Levels_Grand-232_thumb.jpg" alt="Grand Levels: Grand 232" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Grand Levels: Grand 232</span><a class="dl" href="media/shots/09_Grand-Levels_Grand-232.jpg" download="Sightline_09_Grand-Levels_Grand-232.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/10_Grand-Levels_Grand-300.jpg" target="_blank" rel="noopener"><img src="media/shots/10_Grand-Levels_Grand-300_thumb.jpg" alt="Grand Levels: Grand 300, the finale" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Grand Levels: Grand 300, the finale</span><a class="dl" href="media/shots/10_Grand-Levels_Grand-300.jpg" download="Sightline_10_Grand-Levels_Grand-300.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/11_Daily-Sightline.jpg" target="_blank" rel="noopener"><img src="media/shots/11_Daily-Sightline_thumb.jpg" alt="The Daily Sightline: one board for everyone" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>The Daily Sightline: one board for everyone</span><a class="dl" href="media/shots/11_Daily-Sightline.jpg" download="Sightline_11_Daily-Sightline.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/12_Time-Challenge.jpg" target="_blank" rel="noopener"><img src="media/shots/12_Time-Challenge_thumb.jpg" alt="Time Challenge" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Time Challenge</span><a class="dl" href="media/shots/12_Time-Challenge.jpg" download="Sightline_12_Time-Challenge.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/13_Multiplayer_Ranked-Elimination-Match.jpg" target="_blank" rel="noopener"><img src="media/shots/13_Multiplayer_Ranked-Elimination-Match_thumb.jpg" alt="Multiplayer: a 16-player ranked Elimination match" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Multiplayer: a 16-player ranked Elimination match</span><a class="dl" href="media/shots/13_Multiplayer_Ranked-Elimination-Match.jpg" download="Sightline_13_Multiplayer_Ranked-Elimination-Match.jpg">Download</a></figcaption></figure><figure class="shot"><a href="media/shots/14_Multiplayer_Victory.jpg" target="_blank" rel="noopener"><img src="media/shots/14_Multiplayer_Victory_thumb.jpg" alt="Multiplayer: victory, 1st of 16" loading="lazy" width="960" height="540"></a>
+      <figcaption><span>Multiplayer: victory, 1st of 16</span><a class="dl" href="media/shots/14_Multiplayer_Victory.jpg" download="Sightline_14_Multiplayer_Victory.jpg">Download</a></figcaption></figure></div>
+  </section>
+
+  <section class="tight" id="clips">
+    <div class="kicker q">Social clips</div>
+    <div class="gallery clips"><figure class="clipcard"><video src="media/Sightline_Clip_01_The-Rule_1920x1080.mp4" poster="media/clip-01_The-Rule.jpg" preload="none" controls playsinline muted aria-label="The rule clip"></video>
+      <figcaption><span>The rule · 8 s</span><a class="dl" href="media/Sightline_Clip_01_The-Rule_1920x1080.mp4" download>Download</a></figcaption></figure><figure class="clipcard"><video src="media/Sightline_Clip_02_Mechanics_1920x1080.mp4" poster="media/clip-02_Mechanics.jpg" preload="none" controls playsinline muted aria-label="Mechanics clip"></video>
+      <figcaption><span>Mechanics · 7 s</span><a class="dl" href="media/Sightline_Clip_02_Mechanics_1920x1080.mp4" download>Download</a></figcaption></figure><figure class="clipcard"><video src="media/Sightline_Clip_03_Multiplayer_1920x1080.mp4" poster="media/clip-03_Multiplayer.jpg" preload="none" controls playsinline muted aria-label="16-player Elimination clip"></video>
+      <figcaption><span>16-player Elimination · 14 s</span><a class="dl" href="media/Sightline_Clip_03_Multiplayer_1920x1080.mp4" download>Download</a></figcaption></figure><figure class="clipcard"><video src="media/Sightline_Clip_04_Daily-Sightline_1920x1080.mp4" poster="media/clip-04_Daily-Sightline.jpg" preload="none" controls playsinline muted aria-label="The Daily clip"></video>
+      <figcaption><span>The Daily · 7 s</span><a class="dl" href="media/Sightline_Clip_04_Daily-Sightline_1920x1080.mp4" download>Download</a></figcaption></figure><figure class="clipcard"><video src="media/Sightline_Clip_05_Grand-Levels_1920x1080.mp4" poster="media/clip-05_Grand-Levels.jpg" preload="none" controls playsinline muted aria-label="Grand Levels clip"></video>
+      <figcaption><span>Grand Levels · 7 s</span><a class="dl" href="media/Sightline_Clip_05_Grand-Levels_1920x1080.mp4" download>Download</a></figcaption></figure></div>
+    <p class="credit">Music in the trailers and clips: “Swing Has Swung” by Shane Ivers, silvermansound.com, CC BY 4.0. Please keep this credit when re-uploading with audio.</p>
+  </section>
+
+  <section class="inv" id="about">
+    <div class="kicker">About the game</div>
+    <h2>One rule. <span class="q">Read it in seconds.</span></h2>
+    <div class="cols"><div class="longd"><p>What if Minesweeper stopped looking next door and started looking across the whole board?</p><p>Sightline is a deduction puzzle built on one rule you can read in seconds. A revealed tile shows numbers on its edges, and each number counts the bombs it can see in that direction: the whole line, until something blocks it. Combine what the clues can see and the board tells you exactly which tiles are safe.</p><p>Then the board starts bending the rules. Walls block a sightline. Channels let it through one way and block it across. Mirrors turn it 90 degrees, sometimes around the whole board. One-way arrows, holes and purple neighbour tiles change what each number means, and linked portals carry a sightline somewhere a straight line could never reach. The board changes. The rule doesn&#x27;t.</p><p>Every board is checked by a solver before it ships, so there is always a logical next move. If it ever feels like a guess, there&#x27;s a clue you haven&#x27;t read yet.</p><p>Sightline has 400 campaign levels across eight board shapes, 300 Grand Levels (large boards drawn as pictures), a Time Challenge, a Daily puzzle that is the same for everyone in the world, and live cross-platform Elimination multiplayer for up to 16 players. It is coming to Steam (Windows, macOS, Steam Deck), iPhone and iPad, and Android.</p><p>No guessing. No luck. Just one more level.</p></div>
+      <div><table class="facts"><tr><th>Title</th><td>Sightline: Logic Puzzle</td></tr><tr><th>Developer / Publisher</th><td>Yumloop (YUMLOOP GAMES LTD)</td></tr><tr><th>Designer</th><td>Yoni (founder, Yumloop)</td></tr><tr><th>Genre</th><td>Logic puzzle / deduction</td></tr><tr><th>Platforms</th><td>Steam (Windows, macOS, Steam Deck) · iPhone &amp; iPad · Android</td></tr><tr><th>Release</th><td>Coming soon. Steam demo coming soon</td></tr><tr><th>Players</th><td>Single-player; online multiplayer for 2–16 players (cross-platform)</td></tr><tr><th>Content</th><td>400 campaign levels · 300 Grand Levels · 30 Time Challenge boards · Daily puzzle</td></tr><tr><th>Languages</th><td>English</td></tr><tr><th>Steam</th><td><a href="https://store.steampowered.com/app/4509520" target="_blank" rel="noopener">store.steampowered.com/app/4509520</a></td></tr><tr><th>Press contact</th><td><a href="mailto:yoni@yumloop.net">yoni@yumloop.net</a></td></tr></table>
+        <p class="dlrow"><a class="dl ink" href="download/Sightline_Factsheet.pdf" download>Factsheet · PDF · 651 KB</a></p></div></div>
+  </section>
+
+  <section id="different">
+    <div class="kicker q">What makes it different</div>
+    <div class="loves"><div><b>Clues look along lines, not at neighbours</b>In most grid deduction games a number describes the tiles touching it. In Sightline a number describes everything it can see in one direction, so one clue can reach across the whole board and two clues far apart can solve each other.</div><div><b>The board changes how you see</b>New mechanics don&#x27;t add new rules. They change the path a sightline takes: blocked, bent, filtered or teleported. The same single rule keeps producing new kinds of deduction.</div><div><b>Never a coin flip</b>Every level, Daily and multiplayer board is verified solvable by pure logic before it reaches the player. Late-game Minesweeper-style 50/50 guesses don&#x27;t exist.</div><div><b>Logic as a race</b>Multiplayer turns deduction into a live knock-out: everyone solves the same boards at once, and one bomb ends your match.</div></div>
+  </section>
+
+  <section class="inv" id="mechanics">
+    <div class="cols even">
+      <div><div class="kicker">Mechanics, in teaching order</div><dl class="mlist"><div><dt>Directional clues <span class="lv">Level 1</span></dt><dd>A number sits on one edge of its tile. That edge is the direction it looks; the number is how many bombs lie along that whole line.</dd></div><div><dt>× tiles <span class="lv">Level 3</span></dt><dd>A tile that sees no bombs in any direction: every tile in line with it is safe.</dd></div><div><dt>Walls <span class="lv">Level 5</span></dt><dd>Sightlines stop dead at a wall and can&#x27;t see past it.</dd></div><div><dt>Flags <span class="lv">Level 7</span></dt><dd>Optional markers for where you think a bomb is. Purely for keeping track.</dd></div><div><dt>Channels <span class="lv">Level 9</span></dt><dd>A window: sight passes through along its arrows in either direction, and is blocked across them.</dd></div><div><dt>Purple tiles <span class="lv">Level 12</span></dt><dd>Ignore sightlines entirely. The number counts bombs in the eight touching tiles, corners included, and other sightlines pass straight through them.</dd></div><div><dt>Mirrors <span class="lv">Level 25</span></dt><dd>Bend a sightline 90 degrees. The number counts bombs along the whole bent path; several mirrors can curve one sightline around the board.</dd></div><div><dt>Holes <span class="lv">Level 48</span></dt><dd>Gaps inside the board. Sightlines stop at a hole just as they do at a wall.</dd></div><div><dt>One-way arrows <span class="lv">Level 50</span></dt><dd>Let a sightline pass only the way the arrow points. Every other direction is blocked like a wall.</dd></div><div><dt>Portals <span class="lv">Level 75</span></dt><dd>A linked pair. A sightline entering one leaves from the other, reaching bombs a straight line can&#x27;t.</dd></div></dl></div>
+      <div><div class="kicker">Modes &amp; features</div><dl class="mlist"><div><dt>Campaign</dt><dd>400 levels across eight board shapes (square, rectangle, diamond, triangle, circle, plus, heart and islands). Each mechanic is introduced in its own lesson level, and checkpoints jump straight to any of them.</dd></div><div><dt>Grand Levels</dt><dd>A second campaign of 300 large boards drawn as pictures (mazes, castles, islands, constellations), made for big screens.</dd></div><div><dt>Daily Sightline</dt><dd>One new board a day, the same for every player in the world, with streaks and a global leaderboard.</dd></div><div><dt>Time Challenge</dt><dd>30 boards against the clock, unlocked through the campaign.</dd></div><div><dt>Multiplayer: Elimination</dt><dd>Up to 16 players solve the same boards at the same time. Hit a bomb and you&#x27;re out; the last player standing wins. Quick Play, Ranked, and private rooms with a five-letter code. Cross-platform across iPhone, iPad, Android, Windows, Mac and Steam Deck.</dd></div><div><dt>One save everywhere</dt><dd>Progress syncs through the player&#x27;s platform account (Game Center, Google Play Games, Steam), and a one-time link code joins different ecosystems.</dd></div><div><dt>Built for every input</dt><dd>Touch, mouse, keyboard and controller, including Steam Deck; colour-blind palettes and reduced motion.</dd></div></dl></div>
+    </div>
+  </section>
+
+  <section class="tight" id="art">
+    <div class="kicker q">Logos, icon &amp; key art</div>
+    <div class="gallery arts"><figure class="art dark"><div class="sw"><img src="media/Sightline_Logo_Lockup_White_Transparent.png" alt="Sightline logo, white" loading="lazy"></div>
+      <figcaption><span>Sightline logo, white</span><a class="dl" href="media/Sightline_Logo_Lockup_White_Transparent.png" download>Download</a></figcaption></figure><figure class="art light"><div class="sw"><img src="media/Sightline_Logo_Lockup_Dark_Transparent.png" alt="Sightline logo, dark" loading="lazy"></div>
+      <figcaption><span>Sightline logo, dark</span><a class="dl" href="media/Sightline_Logo_Lockup_Dark_Transparent.png" download>Download</a></figcaption></figure><figure class="art blue"><div class="sw"><img src="media/Yumloop_Logo_Shaded_3D_Transparent.png" alt="Yumloop logo, shaded (as in the game)" loading="lazy"></div>
+      <figcaption><span>Yumloop logo, shaded (as in the game)</span><a class="dl" href="media/Yumloop_Logo_Shaded_3D_Transparent.png" download>Download</a></figcaption></figure><figure class="art dark"><div class="sw"><img src="media/Yumloop_Logo_White_Transparent.png" alt="Yumloop logo, white" loading="lazy"></div>
+      <figcaption><span>Yumloop logo, white</span><a class="dl" href="media/Yumloop_Logo_White_Transparent.png" download>Download</a></figcaption></figure><figure class="art light"><div class="sw"><img src="media/Yumloop_Logo_Dark_Transparent.png" alt="Yumloop logo, dark" loading="lazy"></div>
+      <figcaption><span>Yumloop logo, dark</span><a class="dl" href="media/Yumloop_Logo_Dark_Transparent.png" download>Download</a></figcaption></figure><figure class="art dark"><div class="sw"><img src="media/Sightline_App-Icon_iOS_1024.png" alt="App icon, 1024 px" loading="lazy"></div>
+      <figcaption><span>App icon, 1024 px</span><a class="dl" href="media/Sightline_App-Icon_iOS_1024.png" download>Download</a></figcaption></figure><figure class="art dark"><div class="sw"><img src="media/Sightline_Key-Art_Logo_3840x2160_preview.jpg" alt="Key art, 4K" loading="lazy"></div>
+      <figcaption><span>Key art, 4K</span><a class="dl" href="media/Sightline_Key-Art_Logo_3840x2160.jpg" download>Download</a></figcaption></figure></div>
+    <div class="actions"><a class="solid" href="download/Sightline_PressKit.zip" download>Download entire press kit <small>ZIP · 90 MB</small></a>
+      <a href="download/Sightline_Factsheet.pdf" download>Factsheet PDF</a></div>
+    <p class="note">The ZIP holds both trailers (originals), 14 screenshots (lossless PNG), 5 clips, logos (light, dark and the shaded Yumloop logo), app icons, Steam capsule art, key art, the factsheet, plain-text descriptions and a README with usage terms.</p>
+  </section>
+
+  <section class="inv" id="developer">
+    <div class="kicker">Developer</div>
+    <h2>Yumloop</h2>
+    <div class="cols"><div class="longd"><p>Yumloop is a new independent games studio founded by Yoni, a game designer who previously worked at Rockstar North on Grand Theft Auto V and Red Dead Redemption 2.</p><p>Sightline is Yumloop&#x27;s first game, designed and built solo. It started with one question: what if a Minesweeper-style clue didn&#x27;t tell you what was immediately around it, but what it could see?</p><p>“I love games where complexity emerges from a small number of consistent rules rather than continually adding exceptions, and Sightline grew naturally from that idea.” (Yoni, designer)</p></div>
+      <div class="usage"><h3>Using these assets</h3><p>Everything in this kit (trailers, clips, screenshots, logos, icons and key art) may be used freely in editorial coverage, reviews, previews, videos and streams about Sightline, in print, online and in video. Please don&#x27;t alter the logos, or use the assets to suggest an endorsement or for unrelated advertising. Monetised videos and streams of Sightline are welcome.</p></div></div>
+  </section>
+
+  <section id="early-access">
+    <div class="kicker q">Press &amp; creators</div>
+    <h2>Request full-game early access.</h2>
+    <p class="lead">Journalists and content creators can request complimentary early access to the full game on Steam, iPhone/iPad or Android, or on several platforms if you cover more than one. There is no embargo: publish whenever you like. Every request is read by the designer, and access is sent through the platform’s official channel: a Steam key, an App Store code or TestFlight invite, or a Google Play code or tester invite.</p>
+    <form class="req" id="reqForm" novalidate>
+      <label>Name<input name="name" required maxlength="120" autocomplete="name"></label>
+      <label>Outlet or channel <small>(name and link)</small><input name="channel" required maxlength="300" placeholder="e.g. Thinky Games, youtube.com/@…"></label>
+      <label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label>
+      <fieldset><legend>Platforms <small>(choose one or more)</small></legend>
+        <label class="ck"><input type="checkbox" name="platforms" value="steam"> Steam</label>
+        <label class="ck"><input type="checkbox" name="platforms" value="ios"> iPhone / iPad</label>
+        <label class="ck"><input type="checkbox" name="platforms" value="android"> Android</label></fieldset>
+      <label class="wide">Notes <small>(optional: coverage plans, audience, anything else)</small><textarea name="notes" maxlength="2000" rows="4"></textarea></label>
+      <label class="hp" aria-hidden="true">Leave empty<input name="website" tabindex="-1" autocomplete="off"></label>
+      <p class="privacy wide">Your details are used only to answer this request and are kept privately by Yumloop. See the <a href="https://yumloop.net/privacy">privacy policy</a>.</p>
+      <div class="wide"><button type="submit" class="go">Send request</button> <span class="msg" id="reqMsg" role="status" aria-live="polite"></span></div>
+    </form>
+  </section>
+
+  <section class="inv" id="contact">
+    <div class="kicker">Contact &amp; links</div>
+    <div class="links">
+      <a href="mailto:yoni@yumloop.net?subject=Sightline%20press"><b>Press contact</b><span>yoni@yumloop.net</span></a>
+      <a href="https://store.steampowered.com/app/4509520" target="_blank" rel="noopener" data-utm="press-kit-page"><b>Steam</b><span>Wishlist · demo coming soon</span></a>
+      <a href="https://discord.gg/dsgBxhG3GP" target="_blank" rel="noopener"><b>Discord</b><span>Official Sightline server</span></a>
+      <a href="https://yumloop.net/sightline_game/"><b>Game page</b><span>yumloop.net/sightline_game</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://yumloop.net/">Yumloop</a>
+    <a href="https://yumloop.net/sightline_game/">Sightline</a>
+    <a href="https://yumloop.net/support.html">Support</a>
+    <a href="https://yumloop.net/privacy.html">Privacy</a>
+  </footer>
+  <p class="legal">© 2026 YUMLOOP GAMES LTD. All rights reserved. Sightline and the Sightline logo are trademarks of YUMLOOP GAMES LTD.</p>
+</div>
+<script>
+(function(){
+  var ENDPOINT = window.PRESS_ENDPOINT;
+  // trailer
+  var v = document.getElementById('trailerVideo'), box = document.getElementById('trailerBox');
+  document.getElementById('trailerPlay').addEventListener('click', function(){ v.play(); box.classList.add('playing'); });
+  v.addEventListener('play', function(){ box.classList.add('playing'); });
+  // Steam links from this page carry the press-page UTM
+  document.querySelectorAll('[data-utm]').forEach(function(a){ a.href = a.href.split('?')[0] + '?utm_source=' + a.getAttribute('data-utm') + '&utm_medium=site&utm_campaign=sightline_launch'; });
+  // request form
+  var f = document.getElementById('reqForm'), msg = document.getElementById('reqMsg'), btn = f.querySelector('.go');
+  function say(t, cls){ msg.textContent = t; msg.className = 'msg ' + (cls || ''); }
+  function mailtoFallback(d){
+    var body = 'Name: ' + d.name + '\nOutlet/channel: ' + d.channel + '\nEmail: ' + d.email + '\nPlatforms: ' + d.platforms.join(', ') + '\n\n' + (d.notes || '');
+    return 'mailto:yoni@yumloop.net?subject=' + encodeURIComponent('Sightline early access request: ' + d.name) + '&body=' + encodeURIComponent(body);
+  }
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var d = { name: f.name.value.trim(), channel: f.channel.value.trim(), email: f.email.value.trim(), notes: f.notes.value.trim(),
+              website: f.website.value, platforms: [].slice.call(f.querySelectorAll('input[name=platforms]:checked')).map(function(c){ return c.value; }) };
+    if(!d.name || !d.channel){ say('Please add your name and outlet or channel.', 'err'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){ say('Please check your email address.', 'err'); return; }
+    if(!d.platforms.length){ say('Please choose at least one platform.', 'err'); return; }
+    btn.disabled = true; say('Sending…');
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, j: j }; }); })
+      .then(function(res){
+        if(res.ok){ f.reset(); say('Thanks! Your request has been received. You’ll hear back by email.', 'ok'); }
+        else { say((res.j && res.j.error) || 'That didn’t go through.', 'err'); }
+      })
+      .catch(function(){ msg.innerHTML = ''; msg.className = 'msg err'; msg.append('Couldn’t reach the server. '); var a = document.createElement('a'); a.href = mailtoFallback(d); a.textContent = 'Send it by email instead'; msg.append(a); })
+      .finally(function(){ btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>

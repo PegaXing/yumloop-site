@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sightline: Logic Puzzle · Yumloop</title>
-<meta name="description" content="Sightline is a logic puzzle where every clue counts the bombs it can see. One rule, 700 levels, a Daily puzzle and 16-player multiplayer. No guessing. No luck.">
+<meta name="description" content="Sightline is a logic puzzle where every clue counts the bombs it can see. One rule, 730 levels, a Daily puzzle and 16-player multiplayer. No guessing. No luck.">
 <link rel="canonical" href="https://yumloop.net/sightline_game/">
 <meta name="theme-color" content="#140FD7">
 <meta property="og:type" content="website">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://yumloop.net/sightline_game/">
 <meta property="og:title" content="Sightline: Logic Puzzle">
 <meta property="og:description" content="Every clue has a point of view. No guessing. No luck. Just one more level.">
-<meta property="og:image" content="https://yumloop.net/sightline_game/media/trailer-poster.jpg">
+<meta property="og:image" content="https://yumloop.net/sightline_game/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="https://yumloop.net/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="https://yumloop.net/apple-touch-icon.png">
@@ -24,9 +24,10 @@
    Only add a link once that store page (or the Steam demo) is publicly live. */
 window.SIGHTLINE_LINKS = {
   steam:      'https://store.steampowered.com/app/4509520',
-  demo:       null,   /* Steam demo (app 5686910): set to the Steam store page once the demo is public */
+  demo:       'https://store.steampowered.com/app/4509520',   /* the Steam demo (app 5686910) appears on the game's Steam page; the card says Demo coming soon until it is public, then change its text to Play free */
   appStore:   null,
-  googlePlay: null
+  googlePlay: null,
+  discord:    'https://discord.gg/dsgBxhG3GP'   /* official server invite (permanent). Server invites are paused until the designer opens the server */
 };
 </script>
 <style>
@@ -292,18 +293,24 @@ window.SIGHTLINE_LINKS = {
   .store b{font-family:var(--display); font-weight:800; font-size:20px}
   .store span{font-size:13.5px; color:#4a4c6a}
   .store em{font-style:normal; margin-top:10px; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue)}
+  .stores.press3{grid-template-columns:repeat(3,1fr)}
+  .trailer .play{align-items:flex-end; justify-content:flex-start; padding:clamp(12px,2vw,24px); background:transparent}   /* keeps the poster's own headline clear */
+  .shots{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); margin-top:14px}
+  .shots figure{margin:0} .shots img{width:100%; aspect-ratio:16/9; object-fit:cover; border:3px solid #000; box-shadow:7px 7px 0 #000; background:#000}
+  .shots figcaption{margin-top:10px; font-size:13.5px; color:rgba(255,255,255,.82)}
+  .store.hot{background:var(--gold)} .store.hot em{color:var(--ink)}
   .store.soon{background:transparent; color:#fff; border:2px dashed var(--lilac); box-shadow:none; pointer-events:none}
   .store.soon span{color:rgba(255,255,255,.72)} .store.soon em{color:var(--lilac)}
   .big-quote{font-family:var(--display); font-weight:800; font-size:clamp(22px,2.6vw,34px); line-height:1.25; letter-spacing:-.01em; max-width:34ch}
-  @media (max-width:980px){ .loves{grid-template-columns:1fr 1fr} .stores{grid-template-columns:1fr 1fr} .devices{grid-template-columns:1fr} }
-  @media (max-width:600px){ .loves{grid-template-columns:1fr} .stores{grid-template-columns:1fr} .topnav{display:none} }
+  @media (max-width:980px){ .loves{grid-template-columns:1fr 1fr} .stores,.stores.press3,.shots{grid-template-columns:1fr 1fr} .devices{grid-template-columns:1fr} }
+  @media (max-width:600px){ .loves{grid-template-columns:1fr} .stores,.stores.press3,.shots{grid-template-columns:1fr} .topnav{display:none} }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <a href="https://yumloop.net/" aria-label="Yumloop home"><img class="brand" src="https://yumloop.net/yumloop-logo.png?v=3" alt="Yumloop" width="760" height="892" data-hit></a>
-    <nav class="topnav" aria-label="Sightline"><a href="#trailer">Trailer</a><a href="#get">Platforms</a></nav>
+    <nav class="topnav" aria-label="Sightline"><a href="#trailer">Trailer</a><a href="#shots">Screenshots</a><a href="#get">Platforms</a><a href="https://yumloop.net/press/sightline/">Press kit</a></nav>
   </header>
 
   <section class="hero" id="top">
@@ -330,26 +337,47 @@ window.SIGHTLINE_LINKS = {
       <button type="button" class="play" id="trailerPlay" aria-label="Play trailer"><span>Play trailer</span></button>
     </div>
     <ul class="proof rv" data-hit>
-      <li>700 levels</li>
+      <li>730 levels</li>
       <li>Daily puzzle</li>
       <li>Up to 16-player multiplayer</li>
       <li>Cross-platform</li>
     </ul>
   </section>
 
+  <section class="tight" id="shots">
+    <div class="kicker rv" data-hit>Screenshots</div>
+    <div class="shots rv" data-hit>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/03_Campaign_Intermediate_Level-92.jpg" target="_blank" rel="noopener"><img src="media/shots/03_Campaign_Intermediate_Level-92.jpg" alt="Campaign: a diamond board" loading="lazy" width="960" height="540"></a><figcaption>Campaign: a diamond board</figcaption></figure>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/04_Campaign_Intermediate_Level-250.jpg" target="_blank" rel="noopener"><img src="media/shots/04_Campaign_Intermediate_Level-250.jpg" alt="Campaign: mechanics combined" loading="lazy" width="960" height="540"></a><figcaption>Campaign: mechanics combined</figcaption></figure>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/07_Grand-Levels_Grand-163.jpg" target="_blank" rel="noopener"><img src="media/shots/07_Grand-Levels_Grand-163.jpg" alt="Grand Levels: Grand 163" loading="lazy" width="960" height="540"></a><figcaption>Grand Levels: Grand 163</figcaption></figure>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/10_Grand-Levels_Grand-300.jpg" target="_blank" rel="noopener"><img src="media/shots/10_Grand-Levels_Grand-300.jpg" alt="Grand Levels: Grand 300" loading="lazy" width="960" height="540"></a><figcaption>Grand Levels: Grand 300</figcaption></figure>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/11_Daily-Sightline.jpg" target="_blank" rel="noopener"><img src="media/shots/11_Daily-Sightline.jpg" alt="The Daily: one board for everyone" loading="lazy" width="960" height="540"></a><figcaption>The Daily: one board for everyone</figcaption></figure>
+      <figure><a href="https://yumloop.net/press/sightline/media/shots/13_Multiplayer_Ranked-Elimination-Match.jpg" target="_blank" rel="noopener"><img src="media/shots/13_Multiplayer_Ranked-Elimination-Match.jpg" alt="Multiplayer: 16-player Elimination" loading="lazy" width="960" height="540"></a><figcaption>Multiplayer: 16-player Elimination</figcaption></figure>
+    </div>
+  </section>
+
   <section class="tight" id="get">
     <div class="kicker q rv" data-hit>Platforms</div>
     <div class="stores rv" data-hit>
       <a class="store" href="#" data-link="steam" data-soon="Coming soon"><b>Steam</b><span>Windows · macOS · Steam Deck</span><em>Wishlist now</em></a>
-      <a class="store" href="#" data-link="demo" data-soon="Coming soon"><b>Free demo</b><span>On Steam</span><em>Play free</em></a>
+      <a class="store" href="#" data-link="demo" data-soon="Demo coming soon"><b>Free demo</b><span>On Steam</span><em>Demo coming soon</em></a>
       <a class="store" href="#" data-link="appStore" data-soon="Coming soon"><b>App Store</b><span>iPhone · iPad</span><em>Download</em></a>
       <a class="store" href="#" data-link="googlePlay" data-soon="Coming soon"><b>Google Play</b><span>Android phones · tablets</span><em>Download</em></a>
     </div>
   </section>
 
+  <section class="tight" id="press">
+    <div class="kicker q rv" data-hit>Press, creators &amp; community</div>
+    <div class="stores press3 rv" data-hit>
+      <a class="store hot" href="https://yumloop.net/press/sightline/"><b>Press &amp; Creator Kit</b><span>Trailers, screenshots, logos, factsheet</span><em>Open the kit</em></a>
+      <a class="store" href="https://yumloop.net/press/sightline/#early-access"><b>Request Early Access</b><span>Free full game for journalists and creators</span><em>Request access</em></a>
+      <a class="store" href="#" data-link="discord" data-soon="Coming soon"><b>Discord</b><span>The official Sightline server</span><em>Join the server</em></a>
+    </div>
+  </section>
+
   <footer>
     <a href="https://yumloop.net/">Yumloop</a>
-    <a href="https://yumloop.net/sightline-press.html">Press</a>
+    <a href="https://yumloop.net/press/sightline/">Press kit</a>
     <a href="https://yumloop.net/support.html">Support</a>
     <a href="https://yumloop.net/privacy.html">Privacy</a>
   </footer>
